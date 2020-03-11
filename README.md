@@ -3,7 +3,7 @@
 ![](https://img.shields.io/badge/-Maastricht_University-blue?style=flat-square) ![](https://img.shields.io/badge/field-AI-green?style=flat-square) ![](https://img.shields.io/badge/made_with-Python-red?style=flat-square) ![](https://img.shields.io/badge/docs-Markdown-lightblue?style=flat-square) <a href="https://gitmoji.carloscuesta.me"> <img src="https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square" alt="Gitmoji"></a>
 
 >DKE Master Research Project 18 - Competition: Create University Timetables
-
+https://www.overleaf.com/6551622851pwnmpbffbypp
 ## Goals 🥇
 Create an educational scheduling system from scratch for the DKE and test different approaches.
 
