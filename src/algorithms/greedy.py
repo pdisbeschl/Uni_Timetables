@@ -1,30 +1,26 @@
 """
-Timetable scheduler
+Greedy Timetable scheduler
 ===================
 
 author: Huy Ngo
 author: Yu Fee Chan
-author: Daniel Kaestner 
-author: Paul Disbeschl 
+author: Daniel Kaestner
+author: Paul Disbeschl
 author: Guillermo Quintana Pelayo
-author: Camilla Lummerzheim 
+author: Camilla Lummerzheim
 
 Documented following PEP 257.
 """
 
-class Scheduler:
-    """Main scheduler class
+from framework.scheduler import Scheduler
 
-    Generates a timetable according to the 
-    specified input data and selected
-    algorithm.
-    """
-
+class Greedy(Scheduler):
     def __init__(self):
-        pass
+        super().__init__()
 
     def generate_timetable(self, input_dir, algorithm):
-        """Generates a timetable.
+        """
+        Generates a timetable.
 
         Input
         -----
@@ -32,10 +28,5 @@ class Scheduler:
             path where input files are located.
         algorithm: type
             algorithm to use to generate the timetable.
-        """
-        pass
-
-    def __evaluate(self):
-        """Evaluates a timetable.
         """
         pass
