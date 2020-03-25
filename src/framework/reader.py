@@ -69,4 +69,4 @@ class ConstraintParser():
         return self.holidays
 
     def get_period_info(self):
-        return self.period_info
+        return self.period_info 
