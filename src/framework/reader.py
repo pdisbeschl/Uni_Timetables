@@ -26,6 +26,7 @@ class ConstraintParser():
         self.rooms = {}
         self.lecturers = {}
         self.holidays = {}
+#        self.timeslots = {}
         self.read_excel()
 
     def read_excel(self):
@@ -60,6 +61,19 @@ class ConstraintParser():
         self.logFile.write(str(self.lecturers) + '\n\n')
         self.logFile.write('Reading of hard constraints complete\n')
 
+ #       self.logFile.write('Generate a list of free timeslots')
+
+
+#    def generate_timeslots(self):
+
+
+    """
+    Generate a dictionary in the format (Timestamp : [0,1]), where 1 indicates that a day is a holiday and no lectures can happen
+    It covers all dates for a given period and flags all weekend days as a holidays and additional holidays can be added
+    in the excel file.
+    @param holidays_df a dataframe with specified dates where no lectures should happen
+    @return holidays a dict which covers all dates in a period and indicates if a lecture can happen
+    """
     def load_holidays(self, holidays_df):
         holidays_df['Date'] = pd.to_datetime(holidays_df['Date'], format="%d.%m.%Y")
         holidays_df["Holiday"] = 1
@@ -75,6 +89,11 @@ class ConstraintParser():
             date_counter += timedelta(days=1)
         return self.holidays
 
+    """
+    Generate a dictionary for lectures which contains a all dates where a lecturer is not available
+    @param lectures_df dataframe with all dates where a lecturer is not available
+    @return lecturers a dict in form {lecturer: {date1:[from,to], date2:[from,to],...},...}
+    """
     def load_lecturers(self, lecturers_df):
         #Group unavailabilities for each lecturer
         for lecturer in lecturers_df.groupby("Lecturer"):
@@ -107,4 +126,4 @@ class ConstraintParser():
         return self.holidays
 
     def get_period_info(self):
-        return self.period_info 
+        return self.period_info
