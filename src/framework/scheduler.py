@@ -14,6 +14,7 @@ Documented following PEP 257.
 
 from abc import ABCMeta, abstractmethod
 import time
+from framework.reader import ConstraintParser
 
 """
 Main scheduler class
@@ -25,6 +26,7 @@ class Scheduler(metaclass=ABCMeta):
     """ Any initialisation steps that all algorithms need """
     #I am thinking of reading a schedule, starting a timer to measure runtime etc.
     def __init__(self):
+        self.constraints = ConstraintParser()
         pass
 
     """ Evaluates a timetable """

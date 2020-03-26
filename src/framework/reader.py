@@ -8,12 +8,16 @@ author: Paul Disbeschl
 author: Guillermo Quintana Pelayo
 author: Camilla Lummerzheim
 
+We are currently working with timestamp
+
 Documented following PEP 257.
 """
 
 import pandas as pd
+from datetime import datetime, timedelta
 
 class ConstraintParser():
+    logFile = open(__file__ + "\..\..\Logs\log.txt", "a")
 
     def __init__(self):
         #Dictionaries with information about the period, holidays, courses, rooms and lecturers
@@ -25,6 +29,7 @@ class ConstraintParser():
         self.read_excel()
 
     def read_excel(self):
+        self.logFile.write('Reading hard constraints\n')
         #Load the excel file and transform them into dictionaries which we can use for the algorithms
         xls = pd.ExcelFile(__file__ + "//..//..//InputOutput//Sample.xlsx")
         courses_df = pd.read_excel(xls, 'Courses')
@@ -34,11 +39,43 @@ class ConstraintParser():
         lecturers_df = pd.read_excel(xls, 'Lecturers')
 
         #Create a dictionary with the shape {CourseID : {Programme: BAY1, ...}} and likewise for all the other files
+        self.logFile.write('Reading courses\n')
         self.courses = courses_df.set_index("CourseID").transpose().to_dict()
-        self.rooms = rooms_df.set_index("RoomID").transpose().to_dict()
-        self.holidays = holidays_df.transpose().to_dict()
-        self.period_info = period_info_df.transpose().to_dict()
+        self.logFile.write(str(self.courses) + '\n\n')
 
+        self.logFile.write('Reading rooms\n')
+        self.rooms = rooms_df.set_index("RoomID").transpose().to_dict()
+        self.logFile.write(str(self.rooms) + '\n\n')
+
+        self.logFile.write('Reading period info\n')
+        self.period_info = period_info_df.apply(pd.to_datetime).to_dict('records')[0]
+        self.logFile.write(str(self.period_info) + '\n\n')
+
+        self.logFile.write('Reading holidays\n')
+        self.holidays = self.load_holidays(holidays_df)
+        self.logFile.write(str(self.holidays) + '\n\n')
+
+        self.logFile.write('Reading Lecturers\n')
+        self.lecturers = self.load_lecturers(lecturers_df)
+        self.logFile.write(str(self.lecturers) + '\n\n')
+        self.logFile.write('Reading of hard constraints complete\n')
+
+    def load_holidays(self, holidays_df):
+        holidays_df['Date'] = pd.to_datetime(holidays_df['Date'], format="%d.%m.%Y")
+        holidays_df["Holiday"] = 1
+        self.holidays = holidays_df.set_index('Date').to_dict()
+        self.holidays = self.holidays["Holiday"]
+        date_counter = self.period_info['StartDate']
+
+        while date_counter <= self.period_info['EndDate']:
+            if date_counter.weekday() < 5 and date_counter not in self.holidays:
+                self.holidays[date_counter] = 0
+            else:
+                self.holidays[date_counter] = 1
+            date_counter += timedelta(days=1)
+        return self.holidays
+
+    def load_lecturers(self, lecturers_df):
         #Group unavailabilities for each lecturer
         for lecturer in lecturers_df.groupby("Lecturer"):
             name = lecturer[0]
@@ -55,6 +92,7 @@ class ConstraintParser():
                     dates[values["Date"][x]] = [times[x]]
 
             self.lecturers[name] = dates
+        return self.lecturers
 
     def get_rooms(self):
         return self.rooms
@@ -63,7 +101,7 @@ class ConstraintParser():
         return self.courses
 
     def get_lecturers(self):
-        return self.lecturers
+        return self.lecturers.split(';')
 
     def get_holidays(self):
         return self.holidays

@@ -15,10 +15,15 @@ Documented following PEP 257.
 from framework.scheduler import Scheduler
 
 class Greedy(Scheduler):
+    logFile = open(__file__ + "\..\..\Logs\log.txt", "a")
+
     def __init__(self):
+        self.logFile.write('Initialising Greedy algorithm\n')
         super().__init__()
 
-    def generate_timetable(self, input_dir, algorithm):
+
+    def generate_timetable(self):
+        print(self.constraints.get_courses())
         """
         Generates a timetable.
 
