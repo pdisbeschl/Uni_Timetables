@@ -26,7 +26,7 @@ class ConstraintParser():
         self.rooms = {}
         self.lecturers = {}
         self.holidays = {}
-#        self.timeslots = {}
+        self.free_timeslots = {}
         self.read_excel()
 
     def read_excel(self):
@@ -59,13 +59,22 @@ class ConstraintParser():
         self.logFile.write('Reading Lecturers\n')
         self.lecturers = self.load_lecturers(lecturers_df)
         self.logFile.write(str(self.lecturers) + '\n\n')
+
+        self.logFile.write('Generate a list of free timeslots\n')
+        self.free_timeslots = self.generate_timeslots()
+        self.logFile.write(str(self.free_timeslots) + '\n\n')
+
         self.logFile.write('Reading of hard constraints complete\n')
 
- #       self.logFile.write('Generate a list of free timeslots')
-
-
-#    def generate_timeslots(self):
-
+    def generate_timeslots(self):
+        free_timeslots = []
+        for date, holiday in self.holidays.items():
+            if not holiday:
+                for i in range(0,4):
+                    hour = int(8 + 2*i + (((i + 1) * 30) / 60))
+                    start = date.replace(hour=hour, minute=((30+i*30)%60))
+                    free_timeslots.append(start)
+        return free_timeslots
 
     """
     Generate a dictionary in the format (Timestamp : [0,1]), where 1 indicates that a day is a holiday and no lectures can happen
@@ -127,3 +136,6 @@ class ConstraintParser():
 
     def get_period_info(self):
         return self.period_info
+
+    def get_free_timeslots(self):
+        return self.free_timeslots

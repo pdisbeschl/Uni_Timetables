@@ -3,6 +3,13 @@ from algorithms.ilp import ILP
 from framework.reader import ConstraintParser
 import time
 import json
+import datetime
+import pprint
+
+def myconverter(o):
+    if isinstance(o, datetime):
+        return o.timestamp()
+
 
 def main():
     print("Calling main")
@@ -10,6 +17,12 @@ def main():
     logFile.write('Starting scheduling algorithm\n')
     x = Greedy()
     x.generate_timetable()
+    pp = pprint.PrettyPrinter(depth=6)
+    output = open(__file__ + "\..\InputOutput\out.json", "w")
+    out = pp.pformat(x.get_schedule())
+    output.write(out)
+
+
     #y = ILP()
 
     #constraints = ConstraintParser()

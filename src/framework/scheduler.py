@@ -26,8 +26,8 @@ class Scheduler(metaclass=ABCMeta):
     """ Any initialisation steps that all algorithms need """
     #I am thinking of reading a schedule, starting a timer to measure runtime etc.
     def __init__(self):
-        self.constraints = ConstraintParser()
-        pass
+        self.hard_constraints = ConstraintParser()
+        self.schedule = {}
 
     """ Evaluates a timetable """
     def __evaluate(self):
@@ -42,6 +42,10 @@ class Scheduler(metaclass=ABCMeta):
     def stop_timer(self):
         self.stop_time = time.time()
         print(self.stop_time)
+
+    """ Returns the produced schedule """
+    def get_schedule(self):
+        return self.schedule
 
     """
     Tries to compute the runtime based on the start_time and stop_time.
