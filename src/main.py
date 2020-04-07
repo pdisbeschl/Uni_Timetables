@@ -5,6 +5,7 @@ import time
 import json
 import datetime
 import pprint
+import os 
 
 def myconverter(o):
     if isinstance(o, datetime):
@@ -13,13 +14,14 @@ def myconverter(o):
 
 def main():
     print("Calling main")
-    logFile = open(__file__ + "\..\Logs\log.txt", "w")
+    logFile = open(os.path.realpath('./Logs/log.txt'), "w")
     logFile.write('Starting scheduling algorithm\n')
     x = Greedy()
     x.generate_timetable()
     pp = pprint.PrettyPrinter(depth=6)
-    output = open(__file__ + "\..\InputOutput\out.json", "w")
-    out = pp.pformat(x.get_schedule())
+    output = open(os.path.realpath('./InputOutput/out.json'), "w")
+    #out = pp.pformat(x.get_schedule())
+    out = json.dumps(x.get_schedule(), indent=4)
     output.write(out)
 
 

@@ -13,10 +13,10 @@ Documented following PEP 257.
 """
 
 from framework.scheduler import Scheduler
-import json
+import json, os
 
 class Greedy(Scheduler):
-    logFile = open(__file__ + "\..\..\Logs\log.txt", "a")
+    logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
     def __init__(self):
         self.logFile.write('Initialising Greedy algorithm\n')
@@ -31,7 +31,7 @@ class Greedy(Scheduler):
         rooms = self.hard_constraints.get_rooms()
 
         free_timeslots = self.hard_constraints.get_free_timeslots()
-        print(self.hard_constraints.get_courses())
+        #print(self.hard_constraints.get_courses())
         #Iterate over all courses
         for course_id, course in courses.items():
             print("Processing " + course_id)
@@ -49,7 +49,7 @@ class Greedy(Scheduler):
                     if room_id == None:
                         continue
 
-                    self.schedule.setdefault(timeslot, []).append({'CourseID' : course_id, 'RoomID' : room_id})
+                    self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id, "RoomID" : room_id})
                     course['Contact hours'] -= 2
                     break
 

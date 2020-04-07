@@ -15,9 +15,10 @@ Documented following PEP 257.
 
 import pandas as pd
 from datetime import datetime, timedelta
+import os
 
 class ConstraintParser():
-    logFile = open(__file__ + "\..\..\Logs\log.txt", "a")
+    logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
     def __init__(self):
         #Dictionaries with information about the period, holidays, courses, rooms and lecturers
@@ -32,7 +33,7 @@ class ConstraintParser():
     def read_excel(self):
         self.logFile.write('Reading hard constraints\n')
         #Load the excel file and transform them into dictionaries which we can use for the algorithms
-        xls = pd.ExcelFile(__file__ + "//..//..//InputOutput//Sample.xlsx")
+        xls = pd.ExcelFile(os.path.realpath('./InputOutput/Sample.xlsx'))
         courses_df = pd.read_excel(xls, 'Courses')
         rooms_df = pd.read_excel(xls, 'Rooms')
         holidays_df = pd.read_excel(xls, 'Holidays')
@@ -73,7 +74,7 @@ class ConstraintParser():
                 for i in range(0,4):
                     hour = int(8 + 2*i + (((i + 1) * 30) / 60))
                     start = date.replace(hour=hour, minute=((30+i*30)%60))
-                    free_timeslots.append(start)
+                    free_timeslots.append(str(start))
         return free_timeslots
 
     """
