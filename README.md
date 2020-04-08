@@ -17,21 +17,15 @@ If it works, try to generalize it.
 Make a user interface.
 
 ## To-Do list 📑
-- [x] Initial meeting with supervisor
-- [ ] Research state-of-the-art
-- [ ] Model problem as an ILP
-- [ ] Talk to Denise (scheduler at DKE) - ask her what the priorities are when it comes to the constraints
-- [ ] Create a google form to extract students priorities
-- [ ] Implement a basic greedy approach
-- [ ] Online re-scheduling (professor is sick, unplanned events...)
-- [ ] Mental wellbeing - efficiency of scheduling
-- [ ] Generalize software for the whole UM
-
+To-Do list updated to work as issues within this repo.
 
 ## Deliverables 📦
 **Phase 1**
+- [Project plan](MRP_Timetabling_at_DKE_PPlan.pdf)
+
+**Phase 2**
 - Software that can run several algorithm implementations.
 
 ## Made with ❤ by
 
-<a href="https://github.com/pdisbeschl"><img src="https://avatars1.githubusercontent.com/u/11519995?s=400&v=4" title="schto031" width="80" height="80"></a>   <a href="https://github.com/GuilleQP"><img src="https://avatars0.githubusercontent.com/u/36505071?s=400&v=4" title="GuilleQP" width="80" height="80"></a>
+<a href="https://github.com/pdisbeschl"><img src="https://avatars1.githubusercontent.com/u/11519995?s=400&v=4" title="schto031" width="80" height="80"></a>   <a href="https://github.com/GuilleQP"><img src="https://avatars0.githubusercontent.com/u/36505071?s=400&v=4" title="GuilleQP" width="80" height="80"></a>   <a href="https://github.com/Dexter192"><img src="https://avatars2.githubusercontent.com/u/15359953?s=460&v=4" title="GuilleQP" width="80" height="80"></a>
