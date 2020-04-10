@@ -28,4 +28,4 @@ To-Do list updated to work as issues within this repo.
 
 ## Made with ❤ by
 
-<a href="https://github.com/pdisbeschl"><img src="https://avatars1.githubusercontent.com/u/11519995?s=400&v=4" title="schto031" width="80" height="80"></a>   <a href="https://github.com/GuilleQP"><img src="https://avatars0.githubusercontent.com/u/36505071?s=400&v=4" title="GuilleQP" width="80" height="80"></a>   <a href="https://github.com/Dexter192"><img src="https://avatars2.githubusercontent.com/u/15359953?s=460&v=4" title="GuilleQP" width="80" height="80"></a>
+<a href="https://github.com/pdisbeschl"><img src="https://avatars1.githubusercontent.com/u/11519995?s=400&v=4" title="schto031" width="80" height="80"></a>   <a href="https://github.com/GuilleQP"><img src="https://avatars0.githubusercontent.com/u/36505071?s=400&v=4" title="GuilleQP" width="80" height="80"></a>   <a href="https://github.com/Dexter192"><img src="https://avatars2.githubusercontent.com/u/15359953?s=460&v=4" title="Daniel" width="81" height="80"></a>
