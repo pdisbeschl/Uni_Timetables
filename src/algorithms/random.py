@@ -37,6 +37,9 @@ class Random(Scheduler):
         free_timeslots = self.hard_constraints.get_free_timeslots()
         #print(self.hard_constraints.get_courses())
         #Iterate over all courses
+        l = list(courses.items())
+        np.random.shuffle(l)
+        courses = dict(l)
         for course_id, course in courses.items():
             print("Processing " + course_id)
             prog_id = course['Programme']
