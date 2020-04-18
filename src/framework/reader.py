@@ -67,7 +67,7 @@ class ConstraintParser():
 
         self.logFile.write('Reading of hard constraints complete\n')
 
-    def generate_timeslots(self):
+    def generate_timeslots(self): #The holidays are lists with binary integer variables (key - value pair), indicating if it's a holiday or not
         free_timeslots = []
         for date, holiday in self.holidays.items():
             if not holiday:

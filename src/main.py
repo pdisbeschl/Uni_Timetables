@@ -1,6 +1,7 @@
 from algorithms.greedy import Greedy
 from algorithms.ilp import ILP
 from algorithms.random import Random
+from algorithms.weekly import Weekly
 from framework.reader import ConstraintParser
 import time
 import json
@@ -30,7 +31,8 @@ def main():
     logFile = open(os.path.realpath('./Logs/log.txt'), "w")
     logFile.write('Starting scheduling algorithm\n')
     #x = Greedy()
-    x = Random()
+    #x = Random()
+    x = Weekly()
     x.generate_timetable()
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
