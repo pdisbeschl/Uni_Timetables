@@ -126,19 +126,19 @@ class ConstraintParser():
         return self.lecturers
 
     def get_rooms(self):
-        return self.rooms.copy()
+        return self.rooms
 
     def get_courses(self):
-        return self.courses.copy()
+        return self.courses
 
     def get_lecturers(self):
-        return self.lecturers.copy()
+        return self.lecturers
 
     def get_holidays(self):
-        return self.holidays.copy()
+        return self.holidays
 
     def get_period_info(self):
-        return self.period_info.copy()
+        return self.period_info
 
     def get_free_timeslots(self):
-        return self.free_timeslots.copy()
+        return self.free_timeslots
