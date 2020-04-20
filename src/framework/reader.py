@@ -42,7 +42,9 @@ class ConstraintParser():
 
         #Create a dictionary with the shape {CourseID : {Programme: BAY1, ...}} and likewise for all the other files
         self.logFile.write('Reading courses\n')
-        self.courses = courses_df.set_index("CourseID").transpose().to_dict()
+        courses_df["Lecturers"] = courses_df["Lecturers"].apply(lambda x: x.replace(" ", ""))
+        courses_df = courses_df.set_index("CourseID").transpose().to_dict()
+        self.courses = courses_df
         self.logFile.write(str(self.courses) + '\n\n')
 
         self.logFile.write('Reading rooms\n')
@@ -74,7 +76,7 @@ class ConstraintParser():
                 for i in range(0,4):
                     hour = int(8 + 2*i + (((i + 1) * 30) / 60))
                     start = date.replace(hour=hour, minute=((30+i*30)%60))
-                    free_timeslots.append(str(start))
+                    free_timeslots.append(start)
         return free_timeslots
 
     """
@@ -107,7 +109,7 @@ class ConstraintParser():
     def load_lecturers(self, lecturers_df):
         #Group unavailabilities for each lecturer
         for lecturer in lecturers_df.groupby("Lecturer"):
-            name = lecturer[0]
+            name = lecturer[0].replace(" ", "")
             values = lecturer[1].reset_index()
             #Format the times to a ["FROM","TO"] list for the current lecturer
             times = [[values["From"][x],values["To"][x]] for x in range(0,len(values["From"]))]
@@ -124,19 +126,19 @@ class ConstraintParser():
         return self.lecturers
 
     def get_rooms(self):
-        return self.rooms
+        return self.rooms.copy()
 
     def get_courses(self):
-        return self.courses
+        return self.courses.copy()
 
     def get_lecturers(self):
-        return self.lecturers.split(';')
+        return self.lecturers.copy()
 
     def get_holidays(self):
-        return self.holidays
+        return self.holidays.copy()
 
     def get_period_info(self):
-        return self.period_info
+        return self.period_info.copy()
 
     def get_free_timeslots(self):
-        return self.free_timeslots
+        return self.free_timeslots.copy()

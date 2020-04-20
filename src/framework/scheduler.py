@@ -45,6 +45,7 @@ class Scheduler(metaclass=ABCMeta):
 
     """ Returns the produced schedule """
     def get_schedule(self):
+        self.schedule = {str(k): v for k, v in self.schedule.items()}
         return self.schedule
 
     """
