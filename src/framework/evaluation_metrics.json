@@ -1,0 +1,9 @@
+{
+    "preferences": {
+        "max_hours_per_day": 5,
+        "starting_time": "08:30:00",
+        "break_length": 0.5,
+        "same_schedule_every_week": true,
+        "day_off": "friday"
+    }
+}
