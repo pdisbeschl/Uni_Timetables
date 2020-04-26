@@ -1,4 +1,7 @@
 .vscode
 __pycache__/
 *.py[cod]
-Logs/log.txt
+src/Logs/log.txt
+src/InputOutput/out.*
+.idea/*
+src/.idea/*
