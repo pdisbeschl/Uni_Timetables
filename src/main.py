@@ -2,6 +2,7 @@ from algorithms.greedy import Greedy
 from algorithms.ilp import ILP
 from algorithms.random import Random
 from algorithms.weekly import Weekly
+from algorithms.tabu import Tabu
 from framework.reader import ConstraintParser
 import time
 import json
@@ -34,10 +35,24 @@ def main():
     x = Random()
     #x = Weekly()
     x.generate_timetable()
+    schedule = x.get_schedule()
+    for k in schedule.keys():
+        schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
     #out = pp.pformat(x.get_schedule())
-    out = json.dumps(x.get_schedule(), indent=4)
+    out = json.dumps(schedule, indent=4)
+    output.write(out)
+
+    see_output(x.get_schedule())
+
+    # output both schedules to compare schedules
+    y = Tabu()
+    y.generate_timetable(x.get_schedule())
+    pp = pprint.PrettyPrinter(depth=6)
+    output = open(os.path.realpath('./InputOutput/out.json'), "w")
+    # out = pp.pformat(x.get_schedule())
+    out = json.dumps(y.get_schedule(), indent=4)
     output.write(out)
 
     see_output(x.get_schedule())
