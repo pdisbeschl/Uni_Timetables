@@ -16,13 +16,9 @@ def myconverter(o):
         return o.timestamp()
 
 def see_output(out):
-    new_out = {}
-    for i in out.keys():
-        new_out.setdefault(i.split(' ')[0], {}).setdefault(i.split(' ')[1], out[i])
-    #print(new_out)
     with open(os.path.realpath('./InputOutput/out.html'), "w") as f:
         f.write('<link rel="stylesheet" type="text/css" href="style.css">')
-        f.write(json2html.convert(json=json.dumps([new_out], indent=4)))
+        f.write(json2html.convert(json=json.dumps([out], indent=4)))
     url = "file://"+os.path.realpath('./InputOutput/out.html')
     webbrowser.open(url,new=2)
 
@@ -30,17 +26,21 @@ def main():
     print("Calling main")
     logFile = open(os.path.realpath('./Logs/log.txt'), "w")
     logFile.write('Starting scheduling algorithm\n')
-    #x = Greedy()
-    x = Random()
+    x = Greedy()
+    #x = Random()
     #x = Weekly()
     x.generate_timetable()
-    pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
-    #out = pp.pformat(x.get_schedule())
-    out = json.dumps(x.get_schedule(), indent=4)
-    output.write(out)
+    out = x.get_schedule()
+    
+    #Fix output format FIXME: change original output format so this is not necessary
+    new_out = {}
+    for i in out.keys():
+        new_out.setdefault(i.split(' ')[0], {}).setdefault(i.split(' ')[1], out[i])
+    
+    output.write(json.dumps(new_out, indent=4))
 
-    see_output(x.get_schedule())
+    see_output(new_out)
 
     #y = ILP()
     
