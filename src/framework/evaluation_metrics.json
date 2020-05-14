@@ -1,9 +1,31 @@
 {
     "preferences": {
-        "max_hours_per_day": 8,
-        "starting_time": "08:30:00",
-        "break_length": 0.5,
-        "same_schedule_every_week": true,
-        "day_off": "friday"
+        "max_hours_per_day": {
+            "8": 7.4,
+            "6": 53.7,
+            "4": 28.9
+        },
+        "starting_time": {
+            "08:30:00": 43.8,
+            "11:00:00": 62.3,
+            "13:30:00": 15.4
+        },
+        "break_length":{
+            "0.5": 96.3,
+            "3": 3.7
+        },
+        "same_schedule_every_week":{
+            "true": 69.7,
+            "false": 11.8
+        },
+        "day_off": {
+            "monday": 34.6,
+            "tuesday": 5.6,
+            "wednesday": 19.1,
+            "thursday": 16.7,
+            "friday": 54.3,
+            "none": 10.5
+        },
+        "practicals_same_day": "TODO"
     }
 }

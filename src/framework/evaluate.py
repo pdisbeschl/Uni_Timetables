@@ -27,12 +27,12 @@ class Evaluate:
     def __init__(self, path_to_timetable):
         self.read_metrics()
         self.read_timetable(path_to_timetable)
-        self.check_conflicts()
+        #self.check_conflicts() #FIXME not necessary now, also it doesnt check the 'elective' boolean
         self.greedy_evaluation()
-        print(self.score)
+        print('\n[FINAL RESULT] Schedule score: %0.2f'%(self.score))
 
     def read_metrics(self):
-        print('[Info] Reading metrics file...')
+        print('[INFO] Reading metrics file...')
         with open(os.path.realpath(self.metrics_file_path),"r") as f:
             self.metrics = json.load(f)
         
@@ -40,12 +40,12 @@ class Evaluate:
         #print(self.preferences)
     
     def read_timetable(self, path):
-        print('[Info] Reading timetable file...')
+        print('[INFO] Reading timetable file...')
         with open(os.path.realpath(path),"r") as f:
             self.timetable = json.load(f)
             
     def check_conflicts(self):
-        print('[info] Checking conflicts...')
+        print('[INFO] Checking conflicts...')
         for day in self.timetable:
             for timeslot in self.timetable[day]:
                 prog = []
@@ -69,27 +69,41 @@ class Evaluate:
     def greedy_evaluation(self):
         #metrics_names = ['max_hours_per_day','starting_time','break_length','same_schedule_every_week','day_off']
         for m in self.preferences:
-            print('[info] Resolving metric: %s'%(m))
+            print('[INFO] Resolving metric: %s'%(m))
             if m == 'max_hours_per_day':
-                #Check for each day if the max hours is reached
-                fails = 0
-                max = self.preferences[m]
-                for day in self.timetable:
-                    hours_per_prog = {}
-                    for timeslot in self.timetable[day]:
-                        for c in self.timetable[day][timeslot]:
-                            if c['ProgID'] not in hours_per_prog:
-                                hours_per_prog.setdefault(c['ProgID'], 2)
-                            else:
-                                hours_per_prog[c['ProgID']] += 2 #FIXME I'm assuming every timeslot is 2h long
-                    for i in hours_per_prog:
-                        if hours_per_prog[i] >max:
+                
+                for i in self.preferences[m]:
+                    max = int(i)
+                    #Check for each day if the max hours is reached
+                    fails = 0
+                    for day in self.timetable:
+                        hours_per_prog = {}
+                        for timeslot in self.timetable[day]:
+                            for c in self.timetable[day][timeslot]:
+                                if c['ProgID'] not in hours_per_prog:
+                                    hours_per_prog.setdefault(c['ProgID'], 2)
+                                else:
+                                    hours_per_prog[c['ProgID']] += 2 #FIXME I'm assuming every timeslot is 2h long
+                        for j in hours_per_prog:
+                            if hours_per_prog[j] >max:
+                                fails+=1
+                                break #If this break is removed then it count the total fails
+                    days_count = len(self.timetable.keys())
+                    print('[RESULT] %i days out of %i satisfy the %.2f%% of people who want %s hours/day.'%(days_count - fails, days_count,self.preferences[m][i], i))
+                    self.score += (days_count - fails) / self.preferences[m][i]
+            if m == 'starting_time':
+                for start_time in self.preferences[m]:
+                    #Check for each day if the max hours is reached
+                    fails = 0
+                    for day in self.timetable:
+                        if list(self.timetable[day].keys())[0] != start_time:
                             fails+=1
-                            break #If this break is removed then it count the total fails
-                days_count = len(self.timetable.keys())
-                print('[Result] %i days out of %i meet the requirement.'%(days_count - fails, days_count))
-                self.score -= fails
-
+                    days_count = len(self.timetable.keys())
+                    print('[RESULT] %i days out of %i satisfy the %.2f%% of people who want to start at %s.'%(days_count - fails, days_count,self.preferences[m][start_time], start_time))
+                    self.score += (days_count - fails) / self.preferences[m][start_time]
+            if m == 'break_length':
+                pass #TODO
+            
 
 if __name__ == "__main__":
     e = Evaluate('../InputOutput/out.json')
