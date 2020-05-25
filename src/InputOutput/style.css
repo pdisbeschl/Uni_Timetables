@@ -1,16 +1,18 @@
 table {
+  table-layout: auto;
     border-collapse: collapse;
     width: 100%;
   }
   
-  th, td {
-    text-align: left;
-    padding: 8px;
-  }
+table td{
+  align-content: center;
+}
   
-  tr:nth-child(even){background-color: #f2f2f2}
-  
-  th {
-    background-color: #4CAF50;
-    color: white;
-  }
+.gray {
+  background-color: lightgray;
+}
+
+tr td{
+  width:1%;
+  white-space:nowrap;
+}
