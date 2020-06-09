@@ -17,6 +17,15 @@ import numpy as np
 import random
 import math
 
+"""
+idea:
+1. initialization population (instance timetable), each gene contains room information(capacity,room id) and course information(subject, num of students, teachers)
+2. calculate fitness function for each individual from population based on constraints.
+3. select pair of parents to crossover new child.
+4. the new child is then undergone throung mution.
+5. iteration the loop until find feasible timetable.
+
+"""
 
 class Genetic(Scheduler):
     def __init__(self):
