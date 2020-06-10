@@ -2,12 +2,6 @@
 __pycache__/
 *.py[cod]
 Logs/log.txt
-<<<<<<< HEAD
 src/Logs/log.txt
-src/InputOutput/style.css
-src/InputOutput/out.json
-src/InputOutput/out.html
-src/InputOutput/newOutput.html
-=======
-.idea/
->>>>>>> ba62029f53e38937006ee0f1a0d41d75e7bb03dc
+src/InputOutput/
+/.idea/
