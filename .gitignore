@@ -3,3 +3,7 @@ __pycache__/
 *.py[cod]
 Logs/log.txt
 src/Logs/log.txt
+src/InputOutput/style.css
+src/InputOutput/out.json
+src/InputOutput/out.html
+src/InputOutput/newOutput.html

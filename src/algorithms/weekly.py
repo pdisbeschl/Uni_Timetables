@@ -2,12 +2,12 @@
 Weekly Timetable scheduler (based off of the greedy algorithm)
 ===================
 Just dont look at this code (Paul wrote it)
-author: Huy Ngo
-author: Yu Fee Chan
 author: Daniel Kaestner & PP :P
 author: Paul Disbeschl & PP ;P
 author: Guillermo Quintana Pelayo
 author: Camilla Lummerzheim
+author: Huy Ngo
+author: Yu Fee Chan
 
 Documented following PEP 257.
 """
