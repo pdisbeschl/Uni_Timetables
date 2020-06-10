@@ -88,9 +88,10 @@ def main():
     print("Calling main")
     logFile = open(os.path.realpath('./Logs/log.txt'), "w")
     logFile.write('Starting scheduling algorithm\n')
-    x = Greedy()
+    #x = Greedy()
     #x = Random()
     #x = Weekly()
+    x = ILP()
     x.generate_timetable()
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
@@ -99,7 +100,7 @@ def main():
     output.write(out)
 
     #see_output(x.get_schedule())
-    see_output2(x.get_schedule())
+    see_output(x.get_schedule())
     #y = ILP()
     
     #constraints = ConstraintParser()
