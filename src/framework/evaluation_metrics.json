@@ -11,8 +11,8 @@
             "13:30:00": 15.4
         },
         "break_length":{
-            "0.5": 96.3,
-            "3": 3.7
+            "0": 96.3,
+            "1": 3.7
         },
         "same_schedule_every_week":{
             "true": 69.7,
@@ -25,7 +25,13 @@
             "thursday": 16.7,
             "friday": 54.3,
             "none": 10.5
-        },
-        "practicals_same_day": "TODO"
+        }
+    },
+    "weights": {
+        "max_hours_per_day": 0.388,
+        "starting_time": 0.261,
+        "break_length": 0.36,
+        "same_schedule_every_week": 0.73,
+        "day_off": 0.164
     }
 }

@@ -4,6 +4,7 @@ from algorithms.random import Random
 from algorithms.weekly import Weekly
 from algorithms.tabu import Tabu
 from framework.reader import ConstraintParser
+from framework.evaluate import Evaluate
 import time
 import json
 import datetime
@@ -96,6 +97,7 @@ def main():
 
     x = algorithms[selectedAlgorithm]
     x.generate_timetable()
+    Evaluate('./InputOutput/out.json')
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
     #out = pp.pformat(x.get_schedule())
