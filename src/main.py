@@ -96,14 +96,11 @@ def main():
 
     x = algorithms[selectedAlgorithm]
     x.generate_timetable()
-    pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
-    #out = pp.pformat(x.get_schedule())
-    out = json.dumps(x.get_schedule(), indent=4)
-    output.write(out)
+    out = x.get_schedule()
 
-    #see_output(x.get_schedule())
-    see_output(x.get_schedule())
+    output.write(json.dumps(out, indent=4))
+    see_output2(out)
     #y = ILP()
     
     #constraints = ConstraintParser()
