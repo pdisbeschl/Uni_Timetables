@@ -53,50 +53,8 @@ class ILP(Scheduler):
 
         #Every course must have exactly #'contact hours' scheduled in the schedule
         for cid,course in courses.items():
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid)+";"+cid) for tid in free_timeslots) == course['Contact hours']/2), 'Contact hours '+ cid
+            self.model.add_constr(xsum(self.model.var_by_name(str(tid)+";"+cid) for tid in free_timeslots) == course['Contact hours']/2)
 
-        # We do not want to schedule two courses of the same year in one timeslot
-        for tid in free_timeslots:
-            # We do not want to schedule two courses of the same year in one timeslot
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in courses.items() if course['Programme'] == 'BAY1') <= 1), 'Overlap BAY1 '+ str(tid)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in courses.items() if course['Programme'] == 'BAY2') <= 1), 'Overlap BAY2 '+ str(tid)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in courses.items() if course['Programme'] == 'BAY3') <= 1), 'Overlap BAY3 '+ str(tid)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in courses.items() if course['Programme'] == 'MAAIY1') <= 1), 'Overlap MAAIY1 ' + str(tid)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in courses.items() if course['Programme'] == 'MADSDMY1') <= 1), 'Overlap MADSDMY1 ' + str(tid)
-
-
-        #self.model.clear()
-        #x = [self.model.add_var(var_type=BINARY, name=str(tid) + ";" + cid) for cid in courses.keys() for tid in free_timeslots]
-
-        #Make sure no prof teaches two courses at the same time - Extract the teachers for all courses
-        lecturers = {}
-        for cid,course in courses.items():
-            for lecturer in course["Lecturers"].split(';'):
-                lecturers.setdefault(lecturer, []).append(cid)
-
-        #Create a copy of the courses that a lecturer teaches which is used for unavailability
-        lecturer_courses = lecturers.copy()
-
-        # If the teacher just teaches one course we dont have to add a constraint
-        for lecturer, course_list in lecturer_courses.items():
-            if len(course_list) == 1:
-                lecturers.pop(lecturer)
-
-        # For every timeslot add a constraint that at most one of the courses that a teacher teaches is taught
-        for tid in free_timeslots:
-            for lecturer, course_list in lecturers.items():
-                self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid in course_list) <= 1), lecturer
-
-        lecturer_unavailability = self.hard_constraints.get_lecturers()
-        for lecturer, courses in lecturer_courses.items():
-            if lecturer in lecturer_unavailability.keys():
-                for cid in courses:
-                    for tid in lecturer_unavailability[lecturer]:
-                        self.model.add_constr(self.model.var_by_name(str(tid) + ";" + cid) <= 0)
-
-        ##################################################################################################################
-        ##########################NO MORE CONSTRAINTS LOR VARIABLES AFTER THIS############################################
-        ##################################################################################################################
         #Solve the ILP
         self.model.optimize(max_seconds=300)
 
@@ -104,8 +62,6 @@ class ILP(Scheduler):
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
         #Sort the solution by timeslots
         self.selected.sort()
-
-
 
     """
     Transforms a solution from the ILP to the format that is used to represent our schedules
@@ -118,10 +74,7 @@ class ILP(Scheduler):
             tid,cid = selected_slot.split(";")
             #Extract required information
             prog_id = courses[cid]['Programme']
-            room_id = courses[cid]['Lecturers']
             #Fill schedule dictionary with info
-            self.schedule.setdefault(tid, []).append({"CourseID": cid, "ProgID": prog_id, "RoomID": room_id})
+            self.schedule.setdefault(tid, []).append({"CourseID": cid, "ProgID": prog_id, "RoomID": "-1"})
         #Sort the schedule based on timeslots (hotfix)
         return
-#for c in self.model.constrs:
-#    print(c)
