@@ -3,7 +3,9 @@ __pycache__/
 *.py[cod]
 Logs/log.txt
 src/Logs/log.txt
-src/InputOutput/
+src/InputOutput/out.*
+src/InputOutput/newOutput.html
 /.idea/
 src/InputOutput/Sample.xlsx
 *.xlsx
+src/.idea/*
