@@ -101,5 +101,3 @@ class Greedy(Scheduler):
                 return room
         return None
 
-    def get_schedule(self):
-        return self.schedule
