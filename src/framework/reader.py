@@ -54,6 +54,8 @@ class ConstraintParser():
 
         self.logFile.write('Reading period info\n')
         self.period_info = period_info_df.apply(pd.to_datetime).to_dict('records')[0]
+        if self.period_info["StartDate"].dayofweek != 0:
+            self.logFile.write("WARNING: Period start is not a Monday!")
         self.logFile.write(str(self.period_info) + '\n\n')
 
         self.logFile.write('Reading holidays\n')
@@ -145,10 +147,6 @@ class ConstraintParser():
                         self.lecturers[lecturer].append(self.free_timeslots[i])
             self.lecturers[lecturer] = list(dict.fromkeys(self.lecturers[lecturer]))
         return self.lecturers
-
-    def binary_search_timeslots(self, time):
-        start_index = 0
-        end_index = len(self.free_timeslots)
 
     def get_rooms(self):
         return self.rooms
