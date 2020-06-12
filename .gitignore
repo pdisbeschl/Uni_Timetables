@@ -6,6 +6,6 @@ src/Logs/log.txt
 src/InputOutput/out.*
 src/InputOutput/newOutput.html
 /.idea/
-src/InputOutput/Sample.xlsx
+src/InputOutput/Sample_One_Course.xlsx
 *.xlsx
 src/.idea/*

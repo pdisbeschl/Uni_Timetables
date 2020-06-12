@@ -63,7 +63,7 @@ class ILP(Scheduler):
         #Ensure that two courses of the same year do not fall on the same timeslot
         self.add_no_course_overlap_constraint()
         #Ensure that noone has to teach two courses at the same time
-        self.add_lecturer_overlap_constraint(lecturers)
+        #self.add_lecturer_overlap_constraint(lecturers)
         #Ensure that noone has to teach when he is not available
         self.add_unavailability_constraints(lecturers)
 
@@ -74,7 +74,7 @@ class ILP(Scheduler):
         ##########################NO MORE CONSTRAINTS LOR VARIABLES AFTER THIS############################################
         ##################################################################################################################
         #Solve the ILP
-        self.model.max_mip_gap_abs = 25
+        #self.model.max_mip_gap_abs = 25
         status = self.model.optimize()
         #Get all timeslot,course tuples which are scheduled
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
@@ -89,7 +89,9 @@ class ILP(Scheduler):
         lectures_per_day = 4
         days_per_week = 5
         repetitiveness = [0] * (lectures_per_day*days_per_week*len(self.courses))
-        cost = [self.model.add_var(var_type=BINARY, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
+        #How many repeating classes shall score
+        repetitive_score = 1
+        cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness)*repetitive_score)]
         tid = self.get_first_possible_lecture()
         while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
             for i in range(0, days_per_week):
@@ -106,14 +108,9 @@ class ILP(Scheduler):
 
         #If we schedule more than 2,3,4,...,8 classes on the same weekslot, we reward the objective function. This should
         #increase the repetitiveness of the schedule
-        for i,r in enumerate(repetitiveness):
-            self.model.add_constr(cost[i] <= r*(1/2), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/3), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/4), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/5), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/6), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/7), name=cost[i].name)
-            self.model.add_constr(cost[i] <= r*(1/8), name=cost[i].name)
+        for j in range(0,repetitive_score):
+            for i,r in enumerate(repetitiveness):
+                self.model.add_constr(cost[i+len(repetitiveness)*j] <= r*(1/(j+8)), name=cost[i+len(repetitiveness)*j].name)
 
         for c in cost:
             self.model.objective = self.model.objective - c
