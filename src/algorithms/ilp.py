@@ -15,6 +15,7 @@ import os
 from mip import *
 from framework.scheduler import Scheduler
 import datetime
+import time
 """
 A class to build a schedule computed bz an ILP
 """
@@ -74,6 +75,7 @@ class ILP(Scheduler):
         ##########################NO MORE CONSTRAINTS LOR VARIABLES AFTER THIS############################################
         ##################################################################################################################
         #Solve the ILP
+        #self.model.seed = int(time.time())
         #self.model.max_mip_gap_abs = 25
         status = self.model.optimize()
         #Get all timeslot,course tuples which are scheduled
@@ -90,8 +92,7 @@ class ILP(Scheduler):
         days_per_week = 5
         repetitiveness = [0] * (lectures_per_day*days_per_week*len(self.courses))
         #How many repeating classes shall score
-        repetitive_score = 1
-        cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness)*repetitive_score)]
+        cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
         tid = self.get_first_possible_lecture()
         while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
             for i in range(0, days_per_week):
@@ -105,16 +106,13 @@ class ILP(Scheduler):
                             repetitiveness[index] = repetitiveness[index] + v
                 tid = tid + datetime.timedelta(days=1)
             tid = tid + datetime.timedelta(days=2) #Skip the weekend
-
         #If we schedule more than 2,3,4,...,8 classes on the same weekslot, we reward the objective function. This should
         #increase the repetitiveness of the schedule
-        for j in range(0,repetitive_score):
-            for i,r in enumerate(repetitiveness):
-                self.model.add_constr(cost[i+len(repetitiveness)*j] <= r*(1/(j+8)), name=cost[i+len(repetitiveness)*j].name)
+        for i,r in enumerate(repetitiveness):
+            self.model.add_constr(cost[i] <= r, name=cost[i].name)
 
         for c in cost:
             self.model.objective = self.model.objective - c
-
     """
     Returns a timeslot which the first Monday, 8:30 of the period
     This is important for the repetitiveness score because the first monday of a period could be a holiday. 
