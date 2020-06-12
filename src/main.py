@@ -97,7 +97,7 @@ def main():
 
     x = algorithms[selectedAlgorithm]
     x.generate_timetable()
-    Evaluate('./InputOutput/out.json')
+    Evaluate(x.get_schedule())
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")
     #out = pp.pformat(x.get_schedule())
