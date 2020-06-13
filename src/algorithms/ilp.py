@@ -15,7 +15,7 @@ import os
 from mip import *
 from framework.scheduler import Scheduler
 import datetime
-import time
+import json
 """
 A class to build a schedule computed bz an ILP
 """
@@ -24,6 +24,10 @@ class ILP(Scheduler):
 
     def __init__(self):
         super().__init__()
+        metrics_file_path = "framework/evaluation_metrics.json"
+        with open(os.path.realpath(metrics_file_path), "r") as f:
+            self.metrics = json.load(f)
+
         #Create the ILP model
         self.model = Model(sense=MINIMIZE, solver_name=CBC)
         #Supresses output from the ILP
@@ -61,6 +65,8 @@ class ILP(Scheduler):
 
         self.repetitiveness_score()
 
+        self.lecture_start_score(x)
+
         #Add all constraints to the ILP
         #Ensure that every course is taught exactly the required hours
         self.add_contact_hours_constraint()
@@ -72,7 +78,6 @@ class ILP(Scheduler):
         self.add_unavailability_constraints(lecturers)
 
 
-        #self.repetitiveness_two_constecutive_classes()
 
         #self.model.write('model.lp')
         ##################################################################################################################
@@ -88,6 +93,30 @@ class ILP(Scheduler):
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
         #Sort the solution by timeslots
         self.selected.sort()
+
+    """
+    Add a score for each lecture based on the starting time of the lecture. The score is taken from the evaluation_metrics.json
+    Which derrives the scoring from the survey that was performed
+    """
+    def lecture_start_score(self, x):
+        lecture_start = [[],[],[]]
+        start_score = self.metrics['preferences']['starting_time']
+        multiplier = [0] * len(start_score)
+        for index, score in enumerate(start_score.items()):
+            multiplier[index] = score[1]
+
+        for v in x:
+            name = v.name.split(';')
+            if '08:30:00' in name[0]:
+                lecture_start[0].append(v)
+            elif '11:00:00' in name[0]:
+                lecture_start[1].append(v)
+            elif '13:30:00' in name[0]:
+                lecture_start[2].append(v)
+
+        for index,start in enumerate(lecture_start):
+            self.model.objective = self.model.objective - multiplier[index]*xsum(start)
+        return
 
     """
     DEPRECATED: THIS WAS A DIFFERENT APPROACH TO THE REPETITIVENESS SCORING WHICH DID NOT PERFORM BETTER
