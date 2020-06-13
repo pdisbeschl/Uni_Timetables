@@ -28,6 +28,12 @@ class ILP(Scheduler):
         with open(os.path.realpath(metrics_file_path), "r") as f:
             self.metrics = json.load(f)
 
+        #This could or should be less static
+        self.lectures_per_day = 4
+        self.days_per_week = 5
+        self.weeks_per_block = 8
+
+
         #Create the ILP model
         self.model = Model(sense=MINIMIZE, solver_name=CBC)
         #Supresses output from the ILP
@@ -63,9 +69,12 @@ class ILP(Scheduler):
         #together
         #self.model.objective = maximize(xsum(1 * self.model.var_by_name(str(tid)+";"+cid) for cid in self.courses.keys() for tid in self.free_timeslots))
 
+        #Add a score to the objective function based on how repetitive the schedule is
         self.repetitiveness_score()
-
+        #Add a score to the objective function based on when the first lecture of the day starts
         self.lecture_start_score(x)
+        #Add a score to the objective function based on how many lectures are scheduled per day
+        self.classes_per_day_score()
 
         #Add all constraints to the ILP
         #Ensure that every course is taught exactly the required hours
@@ -88,11 +97,65 @@ class ILP(Scheduler):
         #self.model.max_mip_gap = 5
         #self.model.integer_tol = 0.25
         #self.model.max_mip_gap_abs = 5
-        status = self.model.optimize(max_seconds=10)
+        status = self.model.optimize(max_seconds=20)
         #Get all timeslot,course tuples which are scheduled
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
         #Sort the solution by timeslots
         self.selected.sort()
+
+
+    """
+    Sum the lectures scheduled for a day and give a score based on the number of lectures per day. The score for the
+    number of lectures per day is taken from the evaluation_metric.json which is calculated from the survey results
+    """
+    def classes_per_day_score(self):
+        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4}
+        #Create a sum for every course and a weekly repeating timeslot
+        lectures_per_day_sum = [0] * (self.weeks_per_block*self.days_per_week)
+        #How many repeating classes shall score
+        #cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
+        tid = self.get_first_possible_lecture()
+        week_counter = 0
+        while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
+            for i in range(0, self.days_per_week):
+                lectures_scheduled_per_day = [0] * 5
+                for k, cid in enumerate(self.courses):
+                    index = index_dict[self.courses[cid]['Programme']]
+                    for j in range(0, self.lectures_per_day):
+                        hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
+                        tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
+                        v = self.model.var_by_name(str(tid) + ';' + cid)
+                        if v is not None:
+                            lectures_scheduled_per_day[index] = lectures_scheduled_per_day[index] + v
+                tid = tid + datetime.timedelta(days=1)
+                lectures_per_day_sum[week_counter * self.days_per_week+i] = lectures_scheduled_per_day
+            tid = tid + datetime.timedelta(days=2) #Skip the weekend
+            week_counter += 1
+        lectures_per_day_2 = [self.model.add_var(var_type=BINARY,name="HoursPerDay2x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
+        lectures_per_day_4 = [self.model.add_var(var_type=BINARY,name="HoursPerDay4x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
+        lectures_per_day_6 = [self.model.add_var(var_type=BINARY,name="HoursPerDay6x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
+        lectures_per_day_8 = [self.model.add_var(var_type=BINARY,name="HoursPerDay8x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
+
+        for j,lectures_per_day_for_year in enumerate(lectures_per_day_sum):
+            for i,lectures_on_day in enumerate(lectures_per_day_for_year):
+                self.model.add_constr(1*lectures_per_day_2[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_2[j*len(lectures_per_day_for_year)+i].name))
+                self.model.add_constr(2*lectures_per_day_4[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_4[j*len(lectures_per_day_for_year)+i].name))
+                self.model.add_constr(3*lectures_per_day_6[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_6[j*len(lectures_per_day_for_year)+i].name))
+                self.model.add_constr(4*lectures_per_day_8[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_8[j*len(lectures_per_day_for_year)+i].name))
+
+        #This could be more generic
+        importance = 10
+        hour_score = self.metrics['preferences']['max_hours_per_day']
+        factor_two = sum(hour_score.values())*importance#*0 Uncommenting this results in basically no 2 hour lectures
+        factor_four = sum(hour_score.values())*importance
+        factor_six = hour_score['6'] + hour_score['8']*importance
+        factor_eight = hour_score['8']*importance
+
+        self.model.objective = self.model.objective - xsum(lectures_per_day_2)*factor_two
+        self.model.objective = self.model.objective - xsum(lectures_per_day_4)*factor_four
+        self.model.objective = self.model.objective - xsum(lectures_per_day_6)*factor_six
+        self.model.objective = self.model.objective - xsum(lectures_per_day_8)*factor_eight
+
 
     """
     Add a score for each lecture based on the starting time of the lecture. The score is taken from the evaluation_metrics.json
@@ -125,17 +188,14 @@ class ILP(Scheduler):
     """
     def repetitiveness_two_constecutive_classes(self):
         #Create a sum for every course and a weekly repeating timeslot
-        lectures_per_day = 4
-        days_per_week = 5
-        weeks_per_block = 8
-        repetitiveness = [0] * (lectures_per_day*days_per_week*len(self.courses)*(weeks_per_block-1))
+        repetitiveness = [0] * (self.lectures_per_day*self.days_per_week*len(self.courses)*(self.weeks_per_block-1))
         #How many repeating classes shall score
         cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
         tid = self.get_first_possible_lecture()
         counter = 0
         while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
-            for i in range(0, days_per_week):
-                for j in range(0, lectures_per_day):
+            for i in range(0, self.days_per_week):
+                for j in range(0, self.lectures_per_day):
                     hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
                     tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
                     for k, cid in enumerate(self.courses):
@@ -143,7 +203,7 @@ class ILP(Scheduler):
                         tid_plus_one_week = tid + datetime.timedelta(days=7)
                         v_plus_one_week = self.model.var_by_name(str(tid_plus_one_week) + ';' + cid)
                         if v is not None and v_plus_one_week is not None:
-                            index = counter*days_per_week*lectures_per_day*len(self.courses) + i*lectures_per_day*len(self.courses)+j*len(self.courses)+k
+                            index = counter*self.days_per_week*self.lectures_per_day*len(self.courses) + i*self.lectures_per_day*len(self.courses)+j*len(self.courses)+k
                             repetitiveness[index] = v + v_plus_one_week
                 tid = tid + datetime.timedelta(days=1)
             tid = tid + datetime.timedelta(days=2) #Skip the weekend
@@ -167,21 +227,19 @@ class ILP(Scheduler):
     """
     def repetitiveness_score(self):
         #Create a sum for every course and a weekly repeating timeslot
-        lectures_per_day = 4
-        days_per_week = 5
-        repetitiveness = [0] * (lectures_per_day*days_per_week*len(self.courses))
+        repetitiveness = [0] * (self.lectures_per_day*self.days_per_week*len(self.courses))
         #How many repeating classes shall score
         cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
         tid = self.get_first_possible_lecture()
         while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
-            for i in range(0, days_per_week):
-                for j in range(0, lectures_per_day):
+            for i in range(0, self.days_per_week):
+                for j in range(0, self.lectures_per_day):
                     hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
                     tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
                     for k, cid in enumerate(self.courses):
                         v = self.model.var_by_name(str(tid) + ';' + cid)
                         if v is not None:
-                            index = i*len(self.courses)*lectures_per_day+j*len(self.courses)+k
+                            index = i*len(self.courses)*self.lectures_per_day+j*len(self.courses)+k
                             repetitiveness[index] = repetitiveness[index] + v
                 tid = tid + datetime.timedelta(days=1)
             tid = tid + datetime.timedelta(days=2) #Skip the weekend
