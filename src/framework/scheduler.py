@@ -48,6 +48,9 @@ class Scheduler(metaclass=ABCMeta):
         self.schedule = {str(k): v for k, v in self.schedule.items()}
         return self.schedule
 
+    def get_period_info(self):
+        return self.hard_constraints.get_period_info()
+
     """
     Tries to compute the runtime based on the start_time and stop_time.
     If either time is not defined, return -1

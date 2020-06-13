@@ -17,6 +17,12 @@ Documented following PEP 257.
 #   Copy this week 7 times to make a block and remove infeasabilities.
 #   Schedule remaining contact hours.
 
+"""
+TODO: 
+Consider contact hours when copying from the weekly schedule
+Place classes which have conflicts
+"""
+
 from framework.scheduler import Scheduler
 import json, os
 import copy

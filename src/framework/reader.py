@@ -16,6 +16,7 @@ Documented following PEP 257.
 import pandas as pd
 from datetime import datetime, timedelta
 import os
+from bisect import bisect_left, bisect_right
 
 class ConstraintParser():
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
@@ -53,19 +54,21 @@ class ConstraintParser():
 
         self.logFile.write('Reading period info\n')
         self.period_info = period_info_df.apply(pd.to_datetime).to_dict('records')[0]
+        if self.period_info["StartDate"].dayofweek != 0:
+            self.logFile.write("WARNING: Period start is not a Monday!")
         self.logFile.write(str(self.period_info) + '\n\n')
 
         self.logFile.write('Reading holidays\n')
         self.holidays = self.load_holidays(holidays_df)
         self.logFile.write(str(self.holidays) + '\n\n')
 
-        self.logFile.write('Reading Lecturers\n')
-        self.lecturers = self.load_lecturers(lecturers_df)
-        self.logFile.write(str(self.lecturers) + '\n\n')
-
         self.logFile.write('Generate a list of free timeslots\n')
         self.free_timeslots = self.generate_timeslots()
         self.logFile.write(str(self.free_timeslots) + '\n\n')
+
+        self.logFile.write('Reading Lecturers\n')
+        self.lecturers = self.load_lecturers(lecturers_df)
+        self.logFile.write(str(self.lecturers) + '\n\n')
 
         self.logFile.write('Reading of hard constraints complete\n')
 
@@ -121,8 +124,28 @@ class ConstraintParser():
                     dates[values["Date"][x]].append(times[x])
                 else:
                     dates[values["Date"][x]] = [times[x]]
-
             self.lecturers[name] = dates
+
+        lecturer_iter = self.lecturers.copy()
+        self.lecturers = {}
+        #Dont look at this. It is shit!
+        for lecturer, unavailabilities in lecturer_iter.items():
+            self.lecturers[lecturer] = []
+            for date, times in unavailabilities.items():
+                for [start,end] in times:
+                    temp = start
+                    class_hours = [temp.replace(hour=8, minute=30), temp.replace(hour=11, minute=0), temp.replace(hour=13, minute=30), temp.replace(hour=16, minute=0)]
+                    start_index = max(0,bisect_left(class_hours,start))
+                    end_index = min(len(class_hours)-1,bisect_left(class_hours,end))
+                    start = date.replace(hour=class_hours[start_index].hour, minute=class_hours[start_index].minute)
+                    end = date.replace(hour=class_hours[end_index].hour, minute=class_hours[end_index].minute)
+
+                    start_index = bisect_left(self.free_timeslots, start)
+                    end_index = bisect_left(self.free_timeslots, end)
+
+                    for i in range(start_index,end_index):
+                        self.lecturers[lecturer].append(self.free_timeslots[i])
+            self.lecturers[lecturer] = list(dict.fromkeys(self.lecturers[lecturer]))
         return self.lecturers
 
     def get_rooms(self):
