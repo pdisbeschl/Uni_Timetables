@@ -2,6 +2,7 @@ from algorithms.greedy import Greedy
 from algorithms.ilp import ILP
 from algorithms.random import Random
 from algorithms.weekly import Weekly
+from algorithms.weekly_LS import Weekly_LS
 from framework.reader import ConstraintParser
 import time
 import json
@@ -91,7 +92,8 @@ def main():
     #x = Greedy()
     #x = Random()
     #x = Weekly()
-    x = ILP()
+#    x = ILP()
+    x = Weekly_LS()
     x.generate_timetable()
     pp = pprint.PrettyPrinter(depth=6)
     output = open(os.path.realpath('./InputOutput/out.json'), "w")

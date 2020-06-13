@@ -212,12 +212,11 @@ class Weekly_LS(Scheduler):
             event_insert['RoomID'] = insert_loc[0]
             # insert in schedule
             schedule[insert_loc[1]].append(event_insert)
-            print(event_insert, insert_loc)
             individual['Schedule'] = schedule
             individual['Chromosome'][event_insert['Gene_no']] = ({'CourseID': event_insert['CourseID'],
                       'RoomID': insert_loc[0], 'TimeSlot': insert_loc[1]})
             individual['Availables'][insert_loc[0]].remove(insert_loc[1])
-            individual['Score'] += min_costs # cost update
+            individual['Score'] += min_costs[event_index] # cost update
             removed.remove(removed[event_index])
             return removed, individual
         
@@ -283,18 +282,21 @@ class Weekly_LS(Scheduler):
             sched = self.chrom_to_schedule(chrom, timeslots, weekly_courses)
             population.append({'Chromosome':chrom, 'Availables': avb, 
                            'Score':float('nan'), 'Schedule': sched})
+    
+        individual = population[0]
+        individual = self.local_search(individual)
         
         
         
-#        chrom_final = chrom_greedy 
-#        # translate chromosome into schedule
-#        for gene_no, gene in chrom_final.items():
-#            timeslot = gene["TimeSlot"]
-#            course_id = gene["CourseID"]
-#            prog_id = weekly_courses[gene["CourseID"]]["Programme"]
-#            room_id = gene["RoomID"]
-#            self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id+
-#                "("+str(weekly_courses[course_id]['Elective'])+")", "ProgID" : prog_id, "RoomID" : room_id})
+        chrom_final = individual['Chromosome']
+        # translate chromosome into schedule
+        for gene_no, gene in chrom_final.items():
+            timeslot = gene["TimeSlot"]
+            course_id = gene["CourseID"]
+            prog_id = weekly_courses[gene["CourseID"]]["Programme"]
+            room_id = gene["RoomID"]
+            self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id+
+                "("+str(weekly_courses[course_id]['Elective'])+")", "ProgID" : prog_id, "RoomID" : room_id})
 
 
     """
