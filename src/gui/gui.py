@@ -130,7 +130,7 @@ class GUI:
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')
 
-        algorithms = [Greedy(), Random(), Weekly(), ILP(), Tabu()]
+        algorithms = [ILP(), Greedy(), Tabu(), Random(), Weekly()]
         x = algorithms[selectedAlgorithm]
         
         x.generate_timetable()
