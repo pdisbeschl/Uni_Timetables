@@ -14,95 +14,22 @@ import re
 import copy
 from json2html import *
 import webbrowser
+from gui.gui import GUI
 
 def myconverter(o):
     if isinstance(o, datetime):
         return o.timestamp()
 
-def see_output(out):
-    new_out = {}
-    for i in out.keys():
-        new_out.setdefault(i.split(' ')[0], {}).setdefault(i.split(' ')[1], out[i])
-    #print(new_out)
-    with open(os.path.realpath('./InputOutput/out.html'), "w") as f:
-        f.write('<link rel="stylesheet" type="text/css" href="style.css">')
-        f.write(json2html.convert(json=json.dumps([new_out], indent=4)))
-    url = "file://"+os.path.realpath('./InputOutput/out.html')
-    webbrowser.open(url,new=2)
 
-def see_output2(out, period_info):
-    version = '0.1' #FIXME change to add up with new versions
-    fixed_out = {}
-    for i in out.keys():
-        fixed_out.setdefault(i.split(' ')[0], {}).setdefault(i.split(' ')[1], out[i])
-    #Read base output table    
-    f = open(os.path.realpath('./InputOutput/newOutput.html'), "r")
-    html_original = f.read()
-    p = re.compile('<div id="0">((.|\n)*)</div><!--0-->')
-    div_1 = p.search(html_original).group(0)
-    p = re.compile('<div id="1">((.|\n)*)</div><!--1-->')
-    div_2 = p.search(html_original).group(0)
-    #Insert timetable values
-    num_weeks = int(len(fixed_out.keys())/7)
-    num_weeks = 8
-    html_original = html_original.replace('NUMWEEK','0')
-    for i in range(1,num_weeks):
-        html_original = html_original.replace('<!--0-->','\n'+div_1)
-        html_original = html_original.replace('NUMWEEK',str(i))
-    out_file =  open(os.path.realpath('./InputOutput/out.html'), "w")
-    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">')
-    programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
-    full_html = ''
-    #For each programme add a table
-    for prog in programme:
-        html = copy.copy(html_original)
-        html = html.replace('PROGRAMME',prog)
-        #Store result
-        full_html += html
-
-    week = 0
-    day = period_info['StartDate']
-    aux = 0
-    #Insert values from json
-    while day < period_info['EndDate']:
-    #for day in fixed_out:
-        if str(day.date()) in fixed_out:
-            for timeslot in fixed_out[str(day.date())]:
-                for course in fixed_out[str(day.date())][timeslot]:
-                    full_html = full_html.replace('_%s_%s_%s_COURSE_%s'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
-                    t = [int(i) for i in timeslot.split(':')]
-                    lecture_time = day + datetime.timedelta(hours=t[0], minutes=t[1])
-                    full_html = full_html.replace('_%s_%s_%s_ROOM_%s'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
-                    #print('_%s_%s_COURSE_%s'%(week,timeslot,course['ProgID']))
-        #increase day count
-        if aux==7:
-            week+=1
-            aux=0
-        else:
-            aux+=1
-            day = day + datetime.timedelta(days=1)
-    #specify timetable version
-    full_html = full_html.replace('_VERSION',version)
-    #Remove empty spaces
-    full_html = re.sub('_.*','',full_html)
-    #Write result
-    out_file.write(full_html)
-    out_file.close()
-    #Open browser
-    url = "file://"+os.path.realpath('./InputOutput/out.html')
-    webbrowser.open(url,new=2)
-
-
-def main():
+def main(alg=None):
     print("Calling main")
     logFile = open(os.path.realpath('./Logs/log.txt'), "w")
     logFile.write('Starting scheduling algorithm\n')
 
     algorithms = [Greedy(), Random(), Weekly(), ILP(), Tabu()]
-
     selectedAlgorithm = 3
-
     x = algorithms[selectedAlgorithm]
+    
     x.generate_timetable()
     eval = Evaluate(x.get_schedule())
     print(eval.get_score())
@@ -129,4 +56,4 @@ def main():
     #print(x.get_runtime())
 
 if __name__ == '__main__':
-    main()
+    GUI()
