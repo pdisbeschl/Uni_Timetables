@@ -7,3 +7,5 @@ src/InputOutput/
 /.idea/
 src/InputOutput/Sample.xlsx
 *.xlsx
+src/algorithms/tester.py
+src/Logs/log.txt
