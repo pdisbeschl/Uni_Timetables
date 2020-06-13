@@ -108,7 +108,11 @@ class GUI:
     inputFile = ''
     outputDir = ''
 
-    def __init__(self):
+    def __init__(self, alg=None):
+        if alg!=None:
+            print('asdasdasd')
+            self.generate(alg)
+            return
         Form, Window = uic.loadUiType('./gui/quokkas.ui')
 
         app = QApplication([])
@@ -123,9 +127,12 @@ class GUI:
         self.form.pushButton.clicked.connect(self.generate)
         self.form.browseButtonInput.clicked.connect(self.browseFile)
 
-    def generate(self):
+    def generate(self, alg=None):
         #alg = str(self.form.algComboBox.currentText())
-        selectedAlgorithm = self.form.algComboBox.currentIndex()
+        if alg==None:
+            selectedAlgorithm = self.form.algComboBox.currentIndex()
+        else:
+            selectedAlgorithm = alg
         print("Calling main")
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')
