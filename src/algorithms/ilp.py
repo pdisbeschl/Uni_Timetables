@@ -25,9 +25,10 @@ class ILP(Scheduler):
     def __init__(self):
         super().__init__()
         #Create the ILP model
-        self.model = Model()
+        self.model = Model(sense=MINIMIZE, solver_name=CBC)
         #Supresses output from the ILP
-        self.model.verbose = 1
+        self.model.verbose = 0
+        self.model.threads = -1
 
     """
     Method which is called to generate the timetable
@@ -58,30 +59,79 @@ class ILP(Scheduler):
         #together
         #self.model.objective = maximize(xsum(1 * self.model.var_by_name(str(tid)+";"+cid) for cid in self.courses.keys() for tid in self.free_timeslots))
 
+        self.repetitiveness_score()
+
         #Add all constraints to the ILP
         #Ensure that every course is taught exactly the required hours
         self.add_contact_hours_constraint()
         #Ensure that two courses of the same year do not fall on the same timeslot
         self.add_no_course_overlap_constraint()
         #Ensure that noone has to teach two courses at the same time
-        #self.add_lecturer_overlap_constraint(lecturers)
+        self.add_lecturer_overlap_constraint(lecturers)
         #Ensure that noone has to teach when he is not available
         self.add_unavailability_constraints(lecturers)
 
-        self.repetitiveness_score()
+
+        #self.repetitiveness_two_constecutive_classes()
 
         #self.model.write('model.lp')
         ##################################################################################################################
-        ##########################NO MORE CONSTRAINTS LOR VARIABLES AFTER THIS############################################
+        ##########################NO MORE CONSTRAINTS OR VARIABLES AFTER THIS#############################################
         ##################################################################################################################
         #Solve the ILP
         #self.model.seed = int(time.time())
-        #self.model.max_mip_gap_abs = 25
-        status = self.model.optimize()
+        #self.model.max_mip_gap = 5
+        #self.model.integer_tol = 0.25
+        #self.model.max_mip_gap_abs = 5
+        status = self.model.optimize(max_seconds=10)
         #Get all timeslot,course tuples which are scheduled
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
         #Sort the solution by timeslots
         self.selected.sort()
+
+    """
+    DEPRECATED: THIS WAS A DIFFERENT APPROACH TO THE REPETITIVENESS SCORING WHICH DID NOT PERFORM BETTER
+    If two classes are scheduled on the same timeslot in two weeks the ILP has a better score
+    This should be more robust to the rational upper bound of the dual and also more robust for occasions such as holidays
+    """
+    def repetitiveness_two_constecutive_classes(self):
+        #Create a sum for every course and a weekly repeating timeslot
+        lectures_per_day = 4
+        days_per_week = 5
+        weeks_per_block = 8
+        repetitiveness = [0] * (lectures_per_day*days_per_week*len(self.courses)*(weeks_per_block-1))
+        #How many repeating classes shall score
+        cost = [self.model.add_var(var_type=INTEGER, name="Cost"+str(i)) for i in range(0,len(repetitiveness))]
+        tid = self.get_first_possible_lecture()
+        counter = 0
+        while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
+            for i in range(0, days_per_week):
+                for j in range(0, lectures_per_day):
+                    hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
+                    tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
+                    for k, cid in enumerate(self.courses):
+                        v = self.model.var_by_name(str(tid) + ';' + cid)
+                        tid_plus_one_week = tid + datetime.timedelta(days=7)
+                        v_plus_one_week = self.model.var_by_name(str(tid_plus_one_week) + ';' + cid)
+                        if v is not None and v_plus_one_week is not None:
+                            index = counter*days_per_week*lectures_per_day*len(self.courses) + i*lectures_per_day*len(self.courses)+j*len(self.courses)+k
+                            repetitiveness[index] = v + v_plus_one_week
+                tid = tid + datetime.timedelta(days=1)
+            tid = tid + datetime.timedelta(days=2) #Skip the weekend
+            counter += 1
+        #If we schedule more than 2,3,4,...,8 classes on the same weekslot, we reward the objective function. This should
+        #increase the repetitiveness of the schedule
+        for i,r in enumerate(repetitiveness):
+            self.model.add_constr(cost[i] == r, name=cost[i].name)
+
+        d = [self.model.add_var(var_type=BINARY,name="D" + str(i)) for i in range(0, len(cost))]
+
+        for i,c in enumerate(cost):
+            self.model.add_constr(10*d[i] >= c, name='x'+str(cost[i].name))
+
+        self.model.objective = xsum(d)
+        #for d1 in d:
+            #self.model.objective = self.model.objective + d1
 
     """
     If a course is scheduled at least four times on the same day and time we increase the score of the objective function
@@ -109,10 +159,22 @@ class ILP(Scheduler):
         #If we schedule more than 2,3,4,...,8 classes on the same weekslot, we reward the objective function. This should
         #increase the repetitiveness of the schedule
         for i,r in enumerate(repetitiveness):
-            self.model.add_constr(cost[i] <= r, name=cost[i].name)
+            self.model.add_constr(cost[i] >= r, name=cost[i].name)
 
-        for c in cost:
-            self.model.objective = self.model.objective - c
+        d = [self.model.add_var(var_type=BINARY,name="D" + str(i)) for i in range(0, len(cost))]
+
+        for i,c in enumerate(cost):
+            self.model.add_constr(8*d[i] >= c, name='x'+str(cost[i].name))
+
+        self.model.objective = xsum(d)
+
+    #        for i in range(0,int(len(cost)/len(self.courses))):
+#            for j in range(0, len(self.courses)):
+#                self.model.add_constr(d[j] <= -cost[i*len(self.courses)+j], name='MaxCost' + str(j) +'xx' + str(i*len(self.courses)+j))
+
+#        for d1 in d:
+#            self.model.objective = self.model.objective + d1
+
     """
     Returns a timeslot which the first Monday, 8:30 of the period
     This is important for the repetitiveness score because the first monday of a period could be a holiday. 
@@ -141,13 +203,14 @@ class ILP(Scheduler):
     """
     def add_no_course_overlap_constraint(self):
         # We do not want to schedule two courses of the same year in one timeslot
+
         for tid in self.free_timeslots:
             # We do not want to schedule two courses of the same year in one timeslot
             self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY1') <= 1)#, 'Overlap BAY1 '+ str(tid)
-            #self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY2') <= 1)#, 'Overlap BAY2 '+ str(tid)
-            #self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY3') <= 1)#, 'Overlap BAY3 '+ str(tid)
-            #self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MAAIY1') <= 1)#, 'Overlap MAAIY1 ' + str(tid)
-            #self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MADSDMY1') <= 1)#, 'Overlap MADSDMY1 ' + str(tid)
+            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY2') <= 1)#, 'Overlap BAY2 '+ str(tid)
+            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY3') <= 1)#, 'Overlap BAY3 '+ str(tid)
+            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MAAIY1') <= 1)#, 'Overlap MAAIY1 ' + str(tid)
+            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MADSDMY1') <= 1)#, 'Overlap MADSDMY1 ' + str(tid)
 
     """
     If a teacher teaches more than one course we add a constraint that the sum of the two corresponding courses is <= 1
