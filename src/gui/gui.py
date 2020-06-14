@@ -52,7 +52,7 @@ def see_output2(out, period_info):
     html_original = f.read()
     p = re.compile('<div id="0">((.|\n)*)</div><!--0-->')
     div_1 = p.search(html_original).group(0)
-    p = re.compile('<div id="1">((.|\n)*)</div><!--1-->')
+    p = re.compile('<div id="1">((.|\n)*)</div><!--1_PROGRAMME-->')
     div_2 = p.search(html_original).group(0)
     #Insert timetable values
     num_weeks = int(len(fixed_out.keys())/7)
@@ -77,6 +77,7 @@ def see_output2(out, period_info):
     week = 0
     day = period_info['StartDate']
     aux = 0
+    courses = set()
     #Insert values from json
     while day < period_info['EndDate']:
     #for day in fixed_out:
@@ -87,6 +88,14 @@ def see_output2(out, period_info):
                     t = [int(i) for i in timeslot.split(':')]
                     lecture_time = day + datetime.timedelta(hours=t[0], minutes=t[1])
                     full_html = full_html.replace('_%s_%s_%s_ROOM_%s'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
+
+                    if course['CourseID'] not in courses:
+                        courses.add(course['CourseID'])
+                        full_html = full_html.replace('_TABLE2_COURSE_%s'%(course['ProgID']),course['CourseID'])
+                        full_html = full_html.replace('_TABLE2_NAME_%s'%(course['ProgID']),course['Name'])
+                        full_html = full_html.replace('_TABLE2_LECTURERS_%s'%(course['ProgID']),course['Lecturers'])
+                        full_html = full_html.replace('<!--1_%s-->'%(course['ProgID']),'\n'+div_2)
+                        full_html = full_html.replace('PROGRAMME',course['ProgID'])
                     #print('_%s_%s_COURSE_%s'%(week,timeslot,course['ProgID']))
         #increase day count
         if aux==7:
@@ -98,6 +107,7 @@ def see_output2(out, period_info):
     #specify timetable version
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces
+    full_html = re.sub('<!--1.*','',full_html)
     full_html = re.sub('_.*','',full_html)
     #Write result
     out_file.write(full_html)
@@ -112,7 +122,6 @@ class GUI:
 
     def __init__(self, alg=None):
         if alg!=None:
-            print('asdasdasd')
             self.generate(alg)
             return
         Form, Window = uic.loadUiType('./gui/quokkas.ui')
@@ -126,15 +135,15 @@ class GUI:
         app.exec_()
 
     def setup_buttons(self):
-        self.form.pushButton.clicked.connect(self.generate)
+        self.form.pushButton.clicked.connect(self.generate_gui)
         self.form.browseButtonInput.clicked.connect(self.browseFile)
 
-    def generate(self, alg=None):
-        #alg = str(self.form.algComboBox.currentText())
-        if alg==None:
-            selectedAlgorithm = self.form.algComboBox.currentIndex()
-        else:
-            selectedAlgorithm = alg
+    def generate_gui(self):
+        self.generate(self.form.algComboBox.currentIndex())
+    
+    def generate(self, alg):
+        #alg = str(self.form.algComboBox.currentText())¡
+        selectedAlgorithm = alg
         print("Calling main")
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')

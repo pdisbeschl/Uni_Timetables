@@ -353,7 +353,8 @@ class ILP(Scheduler):
             tid,cid = selected_slot.split(";")
             #Extract required information
             prog_id = courses[cid]['Programme']
-            room_id = courses[cid]['Lecturers']
+            lecturers = courses[cid]['Lecturers']
+            name = courses[cid]['Course name']
             #Fill schedule dictionary with info
-            self.schedule.setdefault(tid, []).append({"CourseID": cid, "ProgID": prog_id, "RoomID": room_id})
+            self.schedule.setdefault(tid, []).append({"CourseID": cid, "Name": name, "ProgID": prog_id, "RoomID": "-1", "Lecturers": lecturers})
         return
