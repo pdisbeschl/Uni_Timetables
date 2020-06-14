@@ -112,5 +112,3 @@ class Random(Scheduler):
             return np.random.choice(valid_rooms)
         return None
 
-    def get_schedule(self):
-        return self.schedule
