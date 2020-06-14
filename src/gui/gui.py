@@ -64,8 +64,10 @@ def see_output2(out, period_info):
         html_original = html_original.replace('<!--0-->','\n'+div_1)
         html_original = html_original.replace('NUMWEEK',str(i))
     out_file =  open(os.path.realpath('./InputOutput/out.html'), "w")
-    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">')
+    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">\n'
+                   '<script src="edit_schedule.js"></script>')
     programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
+    #programme = ['BAY1']  # FIXME This is for testing the JavaScript code. Makes the HTML easier to read - To be removed
     full_html = ''
     #For each programme add a table
     for prog in programme:
@@ -73,6 +75,8 @@ def see_output2(out, period_info):
         html = html.replace('PROGRAMME',prog)
         #Store result
         full_html += html
+
+    full_html = fill_table_classes(full_html, period_info)
 
     week = 0
     day = period_info['StartDate']
@@ -84,16 +88,16 @@ def see_output2(out, period_info):
         if str(day.date()) in fixed_out:
             for timeslot in fixed_out[str(day.date())]:
                 for course in fixed_out[str(day.date())][timeslot]:
-                    full_html = full_html.replace('_%s_%s_%s_COURSE_%s'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
+                    full_html = full_html.replace('~_%s_%s_%s_COURSE_%s~'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
                     t = [int(i) for i in timeslot.split(':')]
                     lecture_time = day + datetime.timedelta(hours=t[0], minutes=t[1])
-                    full_html = full_html.replace('_%s_%s_%s_ROOM_%s'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
+                    full_html = full_html.replace('~_%s_%s_%s_ROOM_%s~'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
 
                     if course['CourseID'] not in courses:
                         courses.add(course['CourseID'])
-                        full_html = full_html.replace('_TABLE2_COURSE_%s'%(course['ProgID']),course['CourseID'])
-                        full_html = full_html.replace('_TABLE2_NAME_%s'%(course['ProgID']),course['Name'])
-                        full_html = full_html.replace('_TABLE2_LECTURERS_%s'%(course['ProgID']),course['Lecturers'])
+                        full_html = full_html.replace('~_TABLE2_COURSE_%s~'%(course['ProgID']),course['CourseID'])
+                        full_html = full_html.replace('~_TABLE2_NAME_%s~'%(course['ProgID']),course['Name'])
+                        full_html = full_html.replace('~_TABLE2_LECTURERS_%s~'%(course['ProgID']),course['Lecturers'])
                         full_html = full_html.replace('<!--1_%s-->'%(course['ProgID']),'\n'+div_2)
                         full_html = full_html.replace('PROGRAMME',course['ProgID'])
                     #print('_%s_%s_COURSE_%s'%(week,timeslot,course['ProgID']))
@@ -108,13 +112,30 @@ def see_output2(out, period_info):
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces
     full_html = re.sub('<!--1.*','',full_html)
-    full_html = re.sub('_.*','',full_html)
+    full_html = re.sub('~_.*~','',full_html)
     #Write result
     out_file.write(full_html)
     out_file.close()
     #Open browser
     url = "file://"+os.path.realpath('./InputOutput/out.html')
     webbrowser.open(url,new=2)
+
+def fill_table_classes(full_html, period_info):
+    week = 0
+    day = period_info['StartDate']
+    while day <= period_info['EndDate']:
+        #Check if weekday
+        if day.weekday() < 5:
+            cell_id = str(day.date())
+            full_html = full_html.replace('_SLOTID_%s_%s'%(week, day.weekday()), str(day.date()))
+        else:
+            week += 1
+            day = day + datetime.timedelta(days=1)
+        day = day + datetime.timedelta(days=1)
+
+    return full_html
+
+
 
 class GUI:
     inputFile = ''
