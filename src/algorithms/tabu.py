@@ -14,10 +14,12 @@ Documented following PEP 257.
 
 from framework.scheduler import Scheduler
 from algorithms.random import Random
+from framework.evaluate import Evaluate
 import os
 import numpy as np
 import copy
 import sys
+import datetime
 
 
 class Tabu(Scheduler):
@@ -40,12 +42,14 @@ class Tabu(Scheduler):
             random = Random()
             random.generate_timetable()
             initial_schedule = random.get_schedule()
+            self.evaluate(initial_schedule)
         # sort initial schedule to make it easier to compare
         for k in initial_schedule.keys():
             initial_schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
         # initialize variables
         best_schedule = initial_schedule
-        best_schedule_value = self.evaluate(best_schedule)
+        # also check hard constraints here just to be sure
+        best_schedule_value = self.evaluate(best_schedule, True)
         tabu_list = [best_schedule]
         best_candidate = best_schedule
         # follow basic tabu search algorithm
@@ -112,11 +116,12 @@ class Tabu(Scheduler):
                 # do not put lecture in timeslot it originally was in
                 if timeslot_name == current_timeslot_name:
                     continue
-                timeslot = schedule[timeslot_name]
+                timeslot = copy.deepcopy(schedule[timeslot_name])
                 # check if lecture can be put in the timeslot
-                if self.is_possible_placement(lecture, timeslot):
+                possible, lecture_to_append = self.is_possible_placement(copy.deepcopy(lecture), timeslot, timeslot_name)
+                if possible:
                     # put it there
-                    schedule[timeslot_name].append(lecture)
+                    schedule[timeslot_name].append(lecture_to_append)
                     # sort schedule to make it better comparable
                     schedule[timeslot_name].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
                     # add copy of current schedule to neighbors
@@ -127,52 +132,51 @@ class Tabu(Scheduler):
             schedule[current_timeslot_name].append(lecture)
         return neighbors
 
-    def is_possible_placement(self, lecture, timeslot):
+    def is_possible_placement(self, lecture, timeslot, timeslot_name):
         """
         Checks if lecture can be placed in the timeslot.
+        Can also manipulate lecture and change the room.
         (Most code copied from Greedy)
         """
         course_data = self.hard_constraints.get_courses()[lecture["CourseID"]]
+        lecturer_unavailability = self.hard_constraints.get_lecturers()
+        rooms_data = self.hard_constraints.get_rooms()
         for other_lecture in timeslot:
             other_course_data = self.hard_constraints.get_courses()[other_lecture["CourseID"]]
             # Check if programme already has another course in the timeslot
             if lecture["ProgID"] == other_lecture["ProgID"]:
                 # exclude electives
-                if not course_data["Elective"] or not other_course_data["Elective"]:
-                    return False
-            # Check if any of the lecturers already has another course in the timeslot
+                if not (course_data["Elective"] and other_course_data["Elective"]) or lecture["CourseID"] == other_lecture["CourseID"]:
+                    return False, lecture
+            # Check if any of the lecturers is not available there
             for lecturer in course_data["Lecturers"].split(";"):
+                # check if a lecturer has another course in this timeslot
                 if lecturer in other_course_data["Lecturers"]:
-                    return False
-            # TODO check more constraints (e.g. availability of lecturer and room (or find a new room))
-        return True
+                    return False, lecture
+                # check if a lecturer cannot teach in that timeslot
+                if lecturer in lecturer_unavailability:
+                    for time in lecturer_unavailability[lecturer]:
+                        if time == datetime.datetime.strptime(timeslot_name, '%Y-%m-%d %H:%M:%S'):
+                            return False, lecture
+        # Check room constraint
+        booked_rooms = [c["RoomID"] for c in timeslot]
+        # Check if originally planned room is free
+        if lecture["RoomID"] in booked_rooms:
+            # if not check if another room is free
+            found_room = False
+            for room in rooms_data:
+                if room not in booked_rooms and rooms_data[room]["Capacity"] >= course_data["Number of students"]:
+                    lecture["RoomID"] = room
+                    found_room = True
+                    break
+            # no other room is found
+            if not found_room:
+                return False, lecture
+        return True, lecture
 
-    def evaluate(self, schedule):
+    def evaluate(self, schedule, check_hard_constraints=False):
         """
         Evaluates a schedule assuming that no hard constraint is violated.
         """
-        # This is just a simple dummy to check if the algorithm works.
-        # The idea is to favor early timeslots early in the block,
-        # simply because it is easy to test if the algorithm improves the schedules.
-        # TODO Replace by a real evaluation function
-        value = 0
-        days = len(self.hard_constraints.get_free_timeslots()) / 4
-        date = ""
-        for timeslot in schedule.keys():
-            if timeslot.split()[0] != date:
-                # less value if we move to the next day
-                days -= 1
-            for courses in schedule[timeslot]:
-                # the earlier in the day the better
-                time = timeslot.split()[1]
-                if time == "08:30:00":
-                    value += 3
-                elif time == "11:00:00":
-                    value += 2
-                elif time == "13:30:00":
-                    value += 1
-                elif time == "16:00:00":
-                    value += 0
-                # the earlier in the block the better
-                value += days
-        return value
+        e = Evaluate(schedule, check_hard_constraints, True)
+        return e.get_score()

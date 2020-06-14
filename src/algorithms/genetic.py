@@ -33,9 +33,9 @@ class Genetic(Scheduler):
     def __init__(self):
         super().__init__()
         self.population = []
-        self.population_size = 250
+        self.population_size = 10
         self.individual_size = 20 * 8
-        self.generations = 250
+        self.generations = 10000
         self.crossover_probability = 0.5
         self.mutation_probability = 0.2
         self.rooms = self.hard_constraints.get_rooms()
@@ -50,8 +50,9 @@ class Genetic(Scheduler):
         count = 1
 
         # no divide =21; divide =58
+        # num of conflict * course
         max_fit = 4 * 21
-        # stop when satisfying all hard constraints or reach generation 500th
+        # stop when satisfying all hard constraints or reach generation th
         while self.fitness(pop[final_idx]) < max_fit and count < self.generations:
             list_fitness_pop = []
             for i in pop:
@@ -65,6 +66,7 @@ class Genetic(Scheduler):
                 individual1_new, individual2_new = self.crossover(parent1, parent2)
                 individual1_new = self.mutation(individual1_new)
                 individual2_new = self.mutation(individual2_new)
+
                 # check if new generations are better or not.
                 # If yes replace weakest individuals from previous generation with new generations
                 if self.fitness(individual1_new) > self.fitness(pop[np.argmin(list_fitness_pop)]):
@@ -79,14 +81,13 @@ class Genetic(Scheduler):
             count += 1
             print("gen {} best fit: {} rate {:.2f}%".format(
                 count, self.fitness(pop[final_idx]), self.fitness(pop[final_idx]) / max_fit * 100))
-            if np.argmin(list_fitness_pop) == np.argmax(list_fitness_pop):
-                break
         print("done!")
         print("fail {}".format(max_fit - self.fitness(pop[final_idx])))
         result = pop[final_idx]
         result = fill_timeslot(result, self.courses)
         result = self.convert_to_schedule(result)
         self.copy_schedule(result)
+        print("a")
 
     def crossover(self, individual1, individual2):
         individual1_new = individual1.copy()
@@ -246,16 +247,17 @@ class Genetic(Scheduler):
         period_end = self.hard_constraints.period_info["EndDate"]
         week_counter = 1
         first_lecture = next(iter(schedule.keys()))
-        courses = self.hard_constraints.get_courses()
+        courses = self.courses
         while first_lecture + timedelta(days=7 * week_counter) < period_end:
             for date, scheduled_courses in schedule.items():
                 date = date + timedelta(days=7 * week_counter)
 
                 for course in scheduled_courses:
                     course_id = course["CourseID"]
-                    self.schedule.setdefault(str(date), []).append(
-                        {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
-                    courses[course_id]['Contact hours'] -= 2
+                    if courses[course_id]['Contact hours'] > 0:
+                        self.schedule.setdefault(str(date), []).append(
+                            {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
+                        courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 
 
@@ -280,7 +282,6 @@ def has_lecturer_conflict(gen, pos, individual, courses):
     return False
 
 
-# if course slots =18 or 17 set full slot per day
 def has_slot_conflict(gen, pos, courses):
     list_courses = list(courses)
     # start, end = column
@@ -329,11 +330,13 @@ def fill_timeslot(data, courses):
             gen_course = courses[gen_course_id]
             contact_hours = int(gen_course["Contact hours"] / 2)
             needed_slot_per_week = math.ceil(contact_hours / 7)
+            needed_slot_per_week -= 1
             for i in range(idx + 8, end_slot + 1, 8):
-                needed_slot_per_week -= 1
-                if new_timetable[i] == 0 and needed_slot_per_week != 0:
-                    new_timetable[i] = value
-                elif new_timetable[i] != 0:
+                if new_timetable[i] == 0:
+                    if needed_slot_per_week > 0:
+                        new_timetable[i] = value
+                        needed_slot_per_week -= 1
+                else:
                     break
     return new_timetable
 

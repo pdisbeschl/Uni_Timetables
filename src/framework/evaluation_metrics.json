@@ -1,37 +1,36 @@
 {
     "preferences": {
         "max_hours_per_day": {
-            "8": 0.074,
-            "6": 0.537,
-            "4": 0.289
+            "8": 0.072,
+            "6": 0.536,
+            "4": 0.392
         },
         "starting_time": {
-            "08:30:00": 0.438,
-            "11:00:00": 0.623,
-            "13:30:00": 0.154
+            "08:30:00": 0.367,
+            "11:00:00": 0.509,
+            "13:30:00": 0.124
         },
         "break_length":{
-            "0": 0.963,
-            "1": 0.037
+            "0": 0.964,
+            "1": 0.036
         },
         "same_schedule_every_week":{
-            "true": 0.697,
-            "false": 0.118
+            "true": 1
         },
         "day_off": {
-            "monday": 0.346,
-            "tuesday": 0.056,
-            "wednesday": 0.191,
-            "thursday": 0.167,
-            "friday": 0.543,
-            "none": 0.105
+            "monday": 0.244,
+            "tuesday": 0.038,
+            "wednesday": 0.138,
+            "thursday": 0.116,
+            "friday": 0.387,
+            "none": 0.077
         }
     },
     "weights": {
-        "max_hours_per_day": 0.388,
-        "starting_time": 0.261,
-        "break_length": 0.36,
-        "same_schedule_every_week": 0.73,
-        "day_off": 0.164
+        "max_hours_per_day": 0.425,
+        "starting_time": 0.281,
+        "break_length": 0.039,
+        "same_schedule_every_week": 0.078,
+        "day_off": 0.177
     }
 }

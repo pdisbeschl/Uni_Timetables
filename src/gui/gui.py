@@ -7,6 +7,7 @@ author: Guillermo Quintana Pelayo
 author: Camilla Lummerzheim
 author: Huy Ngo
 author: Yu Fee Chan
+
 Documented following PEP 257.
 """
 from PyQt5 import uic
@@ -25,7 +26,7 @@ import time
 import json
 import datetime
 import pprint
-import os
+import os 
 import re
 import copy
 from json2html import *
@@ -47,23 +48,27 @@ def see_output2(out, period_info):
     fixed_out = {}
     for i in out.keys():
         fixed_out.setdefault(i.split(' ')[0], {}).setdefault(i.split(' ')[1], out[i])
-    #Read base output table
+    #Read base output table    
     f = open(os.path.realpath('./InputOutput/newOutput.html'), "r")
     html_original = f.read()
     p = re.compile('<div id="0">((.|\n)*)</div><!--0-->')
     div_1 = p.search(html_original).group(0)
-    p = re.compile('<div id="1">((.|\n)*)</div><!--1-->')
+    p = re.compile('<div id="1">((.|\n)*)</div><!--1_PROGRAMME-->')
     div_2 = p.search(html_original).group(0)
     #Insert timetable values
     num_weeks = int(len(fixed_out.keys())/7)
     num_weeks = 8
+    # First week num
     html_original = html_original.replace('NUMWEEK','0')
+    # From second week onwards
     for i in range(1,num_weeks):
         html_original = html_original.replace('<!--0-->','\n'+div_1)
         html_original = html_original.replace('NUMWEEK',str(i))
     out_file =  open(os.path.realpath('./InputOutput/out.html'), "w")
-    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">')
+    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">\n'
+                   '<script src="edit_schedule.js"></script>')
     programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
+    #programme = ['BAY1']  # FIXME This is for testing the JavaScript code. Makes the HTML easier to read - To be removed
     full_html = ''
     #For each programme add a table
     for prog in programme:
@@ -72,19 +77,30 @@ def see_output2(out, period_info):
         #Store result
         full_html += html
 
+    full_html = fill_table_classes(full_html, period_info)
+
     week = 0
     day = period_info['StartDate']
     aux = 0
+    courses = set()
     #Insert values from json
     while day < period_info['EndDate']:
     #for day in fixed_out:
         if str(day.date()) in fixed_out:
             for timeslot in fixed_out[str(day.date())]:
                 for course in fixed_out[str(day.date())][timeslot]:
-                    full_html = full_html.replace('_%s_%s_%s_COURSE_%s'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
+                    full_html = full_html.replace('~_%s_%s_%s_COURSE_%s~'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
                     t = [int(i) for i in timeslot.split(':')]
                     lecture_time = day + datetime.timedelta(hours=t[0], minutes=t[1])
-                    full_html = full_html.replace('_%s_%s_%s_ROOM_%s'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
+                    full_html = full_html.replace('~_%s_%s_%s_ROOM_%s~'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
+
+                    if course['CourseID'] not in courses:
+                        courses.add(course['CourseID'])
+                        full_html = full_html.replace('~_TABLE2_COURSE_%s~'%(course['ProgID']),course['CourseID'])
+                        full_html = full_html.replace('~_TABLE2_NAME_%s~'%(course['ProgID']),course['CourseID'])
+                        full_html = full_html.replace('~_TABLE2_LECTURERS_%s~'%(course['ProgID']),course['CourseID'])
+                        full_html = full_html.replace('<!--1_%s-->'%(course['ProgID']),'\n'+div_2)
+                        full_html = full_html.replace('PROGRAMME',course['ProgID'])
                     #print('_%s_%s_COURSE_%s'%(week,timeslot,course['ProgID']))
         #increase day count
         if aux==7:
@@ -96,7 +112,8 @@ def see_output2(out, period_info):
     #specify timetable version
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces
-    full_html = re.sub('_.*','',full_html)
+    full_html = re.sub('<!--1.*','',full_html)
+    full_html = re.sub('~_.*~','',full_html)
     #Write result
     out_file.write(full_html)
     out_file.close()
@@ -104,13 +121,29 @@ def see_output2(out, period_info):
     url = "file://"+os.path.realpath('./InputOutput/out.html')
     webbrowser.open(url,new=2)
 
+def fill_table_classes(full_html, period_info):
+    week = 0
+    day = period_info['StartDate']
+    while day <= period_info['EndDate']:
+        #Check if weekday
+        if day.weekday() < 5:
+            cell_id = str(day.date())
+            full_html = full_html.replace('_SLOTID_%s_%s'%(week, day.weekday()), str(day.date()))
+        else:
+            week += 1
+            day = day + datetime.timedelta(days=1)
+        day = day + datetime.timedelta(days=1)
+
+    return full_html
+
+
+
 class GUI:
     inputFile = ''
     outputDir = ''
 
     def __init__(self, alg=None):
         if alg!=None:
-            print('asdasdasd')
             self.generate(alg)
             return
         Form, Window = uic.loadUiType('./gui/quokkas.ui')
@@ -124,15 +157,15 @@ class GUI:
         app.exec_()
 
     def setup_buttons(self):
-        self.form.pushButton.clicked.connect(self.generate)
+        self.form.pushButton.clicked.connect(self.generate_gui)
         self.form.browseButtonInput.clicked.connect(self.browseFile)
 
-    def generate(self, alg=None):
-        #alg = str(self.form.algComboBox.currentText())
-        if alg==None:
-            selectedAlgorithm = self.form.algComboBox.currentIndex()
-        else:
-            selectedAlgorithm = alg
+    def generate_gui(self):
+        self.generate(self.form.algComboBox.currentIndex())
+    
+    def generate(self, alg):
+        #alg = str(self.form.algComboBox.currentText())¡
+        selectedAlgorithm = alg
         print("Calling main")
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')
@@ -141,7 +174,7 @@ class GUI:
         x = algorithms[selectedAlgorithm]
         
         x.generate_timetable()
-        eval = Evaluate(x.get_schedule())
+        eval = Evaluate(x.get_schedule(),check_hard_constraints=False)
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
         output = open(os.path.realpath('./InputOutput/out.json'), "w")

@@ -133,7 +133,7 @@ class Weekly(Scheduler):
                         continue
 
 
-                    self.schedule.setdefault(date, []).append({"CourseID" : course_id, "ProgID" : course["ProgID"], "RoomID" : course["RoomID"]})
+                    self.schedule.setdefault(date, []).append({"CourseID": course_id, "Name": courses[course_id]['Course name'],"ProgID": course['ProgID'], "RoomID": course['RoomID'], "Lecturers": courses[course_id]['Lecturers']})
                     courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 
