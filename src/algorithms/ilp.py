@@ -38,7 +38,7 @@ class ILP(Scheduler):
         #Create the ILP model
         self.model = Model(sense=MINIMIZE, solver_name=CBC)
         #Enable/Supresses output from the ILP
-        self.model.verbose = 0
+        self.model.verbose = 1
         #Allow all cores to be used for faster runtime
         self.model.threads = -1
 
@@ -74,6 +74,8 @@ class ILP(Scheduler):
         self.lecture_start_score(x, 1)
         #Add a score to the objective function based on how many lectures are scheduled per day
         self.classes_per_day_score(1)
+        #Add a score for the days that are off
+        self.day_off_score(2)
 
         #Add all hard constraints to the ILP - they have no effect on the objective function
         #Ensure that every course is taught exactly the required hours
@@ -98,11 +100,39 @@ class ILP(Scheduler):
         #self.model.integer_tol = 0.25
         #self.model.max_mip_gap_abs = 5
         #Allow a maximum of 20 seconds to find a feasible solution and improve on it
-        status = self.model.optimize(max_seconds=20)
+        status = self.model.optimize(max_seconds=30)
         #Get all timeslot,course tuples which are scheduled
         self.selected = [x[i].name for i in range(len(x)) if x[i].x >= 0.9]
         #Sort the solution by timeslots
         self.selected.sort()
+
+    """
+    Add a score if a respective day has no classes scheduled. This is a soft constraint but since Bachelor students usually
+    have only three days of lectures per week this will steer which two days will be off then
+    We need to add a binary decision variable such that BigM*d >= number of classes scheduled on the day for every day and for every year
+    With respective weights we then add (1-d)*w to the objective function which will cause the variables corresponding to
+    the preferred days to be more likely to be zero
+    We need to add this for every year and for every day
+    """
+    def day_off_score(self, importance):
+        days = [0] * (self.weeks_per_block*self.days_per_week)
+        lectures_per_day_sum, index_dict = self.get_sum_of_lectures_for_day()
+
+        #Create binary variables which indicate if we schedule less than 2,4,6 or 8 hours a day. These are added to the objective function with given weights
+        lectures_per_day = [self.model.add_var(var_type=BINARY,name="LecturesPerDayI" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
+
+        #Extract the score for the days off and transform them into a list such that day_score[0] = day_score['Monday'] etc.
+        day_score = self.metrics['preferences']['day_off']
+        day_score = list(day_score.values())
+
+        #Create constraints for all the days and years that we have in the form of BigM*d>=lectures on day. If d=0 it is good
+        #because we add (1-d) to the objective function and this we want as many variables to be 0 as possible.
+        for j,lectures_per_day_for_year in enumerate(lectures_per_day_sum):
+            for i,lectures_on_day in enumerate(lectures_per_day_for_year):
+                bin_var = lectures_per_day[j*len(lectures_per_day_for_year)+i]
+                self.model.add_constr(5*bin_var >= lectures_on_day, name='y'+str(j)+str(bin_var.name))
+                #Add the score for the respective day
+                self.model.objective = self.model.objective - (1-bin_var) * day_score[j%self.days_per_week] * importance
 
 
     """
@@ -110,35 +140,7 @@ class ILP(Scheduler):
     of scheduled classes is scored based on the score obtained by the survey
     """
     def classes_per_day_score(self, importance):
-        #Create a dictionary of all the years that are currently taught. Should be made dynamic
-        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4}
-        #Create a list for the sum for every course for every day where classes can occur0
-        lectures_per_day_sum = [0] * (self.weeks_per_block*self.days_per_week)
-        #Get the period start and initialise a counter in which week we currently are
-        tid = self.get_first_possible_lecture()
-        week_counter = 0
-        #Iterate over all days of the period
-        while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
-            for i in range(0, self.days_per_week):
-                #For every year create a list which holds a linear expression of the decision variables for scheduled lectures
-                lectures_scheduled_per_day = [0] * 5
-                #Iterate over all courses
-                for k, cid in enumerate(self.courses):
-                    #Find the index for the lectures_scheduled_per_day to which we want to add the sum of the classes on the day
-                    index = index_dict[self.courses[cid]['Programme']]
-                    #Iterate over all timeslots for this day. Semi hard coded
-                    for j in range(0, self.lectures_per_day):
-                        hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
-                        tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
-                        #Get the decision variable for the current (timeslot,course) and if exists add the sum of lecturs on the day to the corresponding year
-                        v = self.model.var_by_name(str(tid) + ';' + cid)
-                        if v is not None:
-                            lectures_scheduled_per_day[index] = lectures_scheduled_per_day[index] + v
-                tid = tid + datetime.timedelta(days=1)
-                lectures_per_day_sum[week_counter * self.days_per_week+i] = lectures_scheduled_per_day
-            tid = tid + datetime.timedelta(days=2) #Skip the weekend
-            week_counter += 1
-
+        lectures_per_day_sum, index_dict = self.get_sum_of_lectures_for_day()
         #Create binary variables which indicate if we schedule less than 2,4,6 or 8 hours a day. These are added to the objective function with given weights
         lectures_per_day_2 = [self.model.add_var(var_type=BINARY,name="HoursPerDay2x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
         lectures_per_day_4 = [self.model.add_var(var_type=BINARY,name="HoursPerDay4x" + str(i)) for i in range(0, len(lectures_per_day_sum)*len(index_dict))]
@@ -169,6 +171,36 @@ class ILP(Scheduler):
         self.model.objective = self.model.objective - xsum(lectures_per_day_6)*factor_six
         self.model.objective = self.model.objective - xsum(lectures_per_day_8)*factor_eight
 
+    def get_sum_of_lectures_for_day(self):
+        #Create a dictionary of all the years that are currently taught. Should be made dynamic
+        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4}
+        #Create a list for the sum for every course for every day where classes can occur0
+        lectures_per_day_sum = [0] * (self.weeks_per_block*self.days_per_week)
+        #Get the period start and initialise a counter in which week we currently are
+        tid = self.get_first_possible_lecture()
+        week_counter = 0
+        #Iterate over all days of the period
+        while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
+            for i in range(0, self.days_per_week):
+                #For every year create a list which holds a linear expression of the decision variables for scheduled lectures
+                lectures_scheduled_per_day = [0] * 5
+                #Iterate over all courses
+                for k, cid in enumerate(self.courses):
+                    #Find the index for the lectures_scheduled_per_day to which we want to add the sum of the classes on the day
+                    index = index_dict[self.courses[cid]['Programme']]
+                    #Iterate over all timeslots for this day. Semi hard coded
+                    for j in range(0, self.lectures_per_day):
+                        hour = int(8 + 2 * j + (((j + 1) * 30) / 60))
+                        tid = tid.replace(hour=hour, minute=((30 + j * 30) % 60))
+                        #Get the decision variable for the current (timeslot,course) and if exists add the sum of lecturs on the day to the corresponding year
+                        v = self.model.var_by_name(str(tid) + ';' + cid)
+                        if v is not None:
+                            lectures_scheduled_per_day[index] = lectures_scheduled_per_day[index] + v
+                tid = tid + datetime.timedelta(days=1)
+                lectures_per_day_sum[week_counter * self.days_per_week+i] = lectures_scheduled_per_day
+            tid = tid + datetime.timedelta(days=2) #Skip the weekend
+            week_counter += 1
+        return lectures_per_day_sum, index_dict
 
     """
     We add a score for the start time of each lecture. If we can place a lecture at 11:00 it is better than placing it
@@ -178,12 +210,17 @@ class ILP(Scheduler):
     It does not consider at what thime the first lecture is scheduled but only prioritises scheduling slots
     """
     def lecture_start_score(self, x, importance):
-        lecture_start = [[],[],[]]
+        lecture_start = [[],[],[],[]]
         #Load the metrics from the survey and extract the score for each respective multipliers
         start_score = self.metrics['preferences']['starting_time']
-        multiplier = [0] * len(start_score)
+        multiplier = [0] * (len(start_score)+1)
         for index, score in enumerate(start_score.items()):
             multiplier[index] = score[1]
+        multiplier[len(multiplier)-1]=1
+        multiplier[0] = 1
+        multiplier[1] = 4
+        multiplier[2] = 3
+        multiplier[3] = 2
 
         #Iterate over all timeslot;course decision variables and add them to an array based on their starting time
         # This is very hard coded. Based on the survey we only have scores for three starting times
@@ -195,6 +232,8 @@ class ILP(Scheduler):
                 lecture_start[1].append(v)
             elif '13:30:00' in name[0]:
                 lecture_start[2].append(v)
+            else:
+                lecture_start[3].append(v)
 
         #For every starting timeslot we add a score based on the values obtained in the survey
         #If a class is not scheduled the decision variable is 0 and thus has no effect
@@ -353,7 +392,8 @@ class ILP(Scheduler):
             tid,cid = selected_slot.split(";")
             #Extract required information
             prog_id = courses[cid]['Programme']
-            room_id = courses[cid]['Lecturers']
+            lecturers = courses[cid]['Lecturers']
+            name = courses[cid]['Course name']
             #Fill schedule dictionary with info
-            self.schedule.setdefault(tid, []).append({"CourseID": cid, "ProgID": prog_id, "RoomID": room_id})
+            self.schedule.setdefault(tid, []).append({"CourseID": cid, "Name": name, "ProgID": prog_id, "RoomID": "-1", "Lecturers": lecturers})
         return

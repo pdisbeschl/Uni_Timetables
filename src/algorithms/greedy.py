@@ -54,7 +54,7 @@ class Greedy(Scheduler):
                     if room_id == None:
                         continue
 
-                    self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id, "ProgID" : prog_id, "RoomID" : room_id})
+                    self.schedule.setdefault(timeslot, []).append({"CourseID": course_id, "Name": courses[course_id]['Course name'],"ProgID": prog_id, "RoomID": room_id, "Lecturers": courses[course_id]['Lecturers']})
                     course['Contact hours'] -= 2
                     break
 
