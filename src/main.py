@@ -26,4 +26,4 @@ if __name__ == '__main__':
     # Tabu = 2
     # Random = 3
     #  Weekly = 4
-    GUI(alg=0)
+    GUI(alg=1)

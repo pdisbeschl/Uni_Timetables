@@ -82,7 +82,7 @@ class Evaluate:
                     else:
                         raise Exception('Conflict in programme %s on %s' % (c['ProgID'], timeslot))
                 # Room conflicts
-                if c['RoomID'] not in room:
+                if c['RoomID'] not in room or c['RoomID'] == '-1':
                     room.append(c['RoomID'])
                 else:
                     raise Exception('Conflict in room %s on %s' % (c['RoomID'], timeslot))
@@ -96,7 +96,7 @@ class Evaluate:
                         if dt in self.constraints.get_lecturers()[lecturer]:
                             raise Exception('Conflict with lecturer %s on %s' % (lecturer, timeslot))
                 # Room size
-                if course_data['Number of students'] > self.constraints.get_rooms()[c['RoomID']]['Capacity']:
+                if c['RoomID'] != '-1'  and course_data['Number of students'] > self.constraints.get_rooms()[c['RoomID']]['Capacity']:
                     raise Exception('Conflict in room %s on %s' % (c['RoomID'], timeslot))
                 # Count to check contact hours
                 if c['CourseID'] not in courses.keys():
