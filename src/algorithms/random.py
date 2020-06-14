@@ -49,7 +49,7 @@ class Random(Scheduler):
                 # Iterate over all timeslots
                 for timeslot in free_timeslots:
                     # Check if the programme (year group) isn't already in another class
-                    if self.has_prog_conflict(courses, timeslot, course):
+                    if self.has_prog_conflict(courses, timeslot, course, course_id):
                         continue
 
                     # Check, if the lecturer is already teaching a course at that time
@@ -73,7 +73,7 @@ class Random(Scheduler):
     The following method checks to see if there is no conflict between classes of the same programme (year-group).
     Idea: Programmes can't be scheduled at the same time unless the classes are electives.
     """
-    def has_prog_conflict(self, courses, timeslot, course):
+    def has_prog_conflict(self, courses, timeslot, course, course_id):
         if timeslot not in self.schedule.keys():
             return False
         # Iterate over all scheduled courses in a timeslot
@@ -81,7 +81,7 @@ class Random(Scheduler):
             scheduled_course = courses[scheduled_course_info['CourseID']]
             # Check if the students of the currently 'to-be-planned course' are already in a class (Excluding Electives!)
             if scheduled_course['Programme'] == course['Programme']:
-                if course['Elective'] == 0:
+                if course['Elective'] == 0 or scheduled_course['Elective'] == 0 or course_id == scheduled_course_info['CourseID']:
                     return True
         return False
 

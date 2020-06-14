@@ -42,6 +42,7 @@ class Tabu(Scheduler):
             random = Random()
             random.generate_timetable()
             initial_schedule = random.get_schedule()
+            self.evaluate(initial_schedule)
         # sort initial schedule to make it easier to compare
         for k in initial_schedule.keys():
             initial_schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
@@ -116,7 +117,7 @@ class Tabu(Scheduler):
                     continue
                 timeslot = copy.deepcopy(schedule[timeslot_name])
                 # check if lecture can be put in the timeslot
-                possible, lecture_to_append = self.is_possible_placement(lecture, timeslot, timeslot_name)
+                possible, lecture_to_append = self.is_possible_placement(copy.deepcopy(lecture), timeslot, timeslot_name)
                 if possible:
                     # put it there
                     schedule[timeslot_name].append(lecture_to_append)
@@ -144,7 +145,7 @@ class Tabu(Scheduler):
             # Check if programme already has another course in the timeslot
             if lecture["ProgID"] == other_lecture["ProgID"]:
                 # exclude electives
-                if not course_data["Elective"] or not other_course_data["Elective"]:
+                if not (course_data["Elective"] and other_course_data["Elective"]) or lecture["CourseID"] == other_lecture["CourseID"]:
                     return False, lecture
             # Check if any of the lecturers is not available there
             for lecturer in course_data["Lecturers"].split(";"):
@@ -157,7 +158,7 @@ class Tabu(Scheduler):
                         if time == datetime.datetime.strptime(timeslot_name, '%Y-%m-%d %H:%M:%S'):
                             return False, lecture
         # Check room constraint
-        booked_rooms = set([c["RoomID"] for c in timeslot])
+        booked_rooms = [c["RoomID"] for c in timeslot]
         # Check if originally planned room is free
         if lecture["RoomID"] in booked_rooms:
             # if not check if another room is free
