@@ -57,7 +57,9 @@ def see_output2(out, period_info):
     #Insert timetable values
     num_weeks = int(len(fixed_out.keys())/7)
     num_weeks = 8
+    # First week num
     html_original = html_original.replace('NUMWEEK','0')
+    # From second week onwards
     for i in range(1,num_weeks):
         html_original = html_original.replace('<!--0-->','\n'+div_1)
         html_original = html_original.replace('NUMWEEK',str(i))

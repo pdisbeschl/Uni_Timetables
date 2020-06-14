@@ -114,7 +114,7 @@ class Tabu(Scheduler):
                 # do not put lecture in timeslot it originally was in
                 if timeslot_name == current_timeslot_name:
                     continue
-                timeslot = schedule[timeslot_name]
+                timeslot = copy.deepcopy(schedule[timeslot_name])
                 # check if lecture can be put in the timeslot
                 possible, lecture_to_append = self.is_possible_placement(lecture, timeslot, timeslot_name)
                 if possible:
