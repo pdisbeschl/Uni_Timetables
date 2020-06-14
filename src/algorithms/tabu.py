@@ -48,7 +48,8 @@ class Tabu(Scheduler):
             initial_schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
         # initialize variables
         best_schedule = initial_schedule
-        best_schedule_value = self.evaluate(best_schedule)
+        # also check hard constraints here just to be sure
+        best_schedule_value = self.evaluate(best_schedule, True)
         tabu_list = [best_schedule]
         best_candidate = best_schedule
         # follow basic tabu search algorithm
@@ -173,9 +174,9 @@ class Tabu(Scheduler):
                 return False, lecture
         return True, lecture
 
-    def evaluate(self, schedule):
+    def evaluate(self, schedule, check_hard_constraints=False):
         """
         Evaluates a schedule assuming that no hard constraint is violated.
         """
-        e = Evaluate(schedule, True)
+        e = Evaluate(schedule, check_hard_constraints, True)
         return e.get_score()
