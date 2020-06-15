@@ -9,7 +9,7 @@ import time
 import json
 import datetime
 import pprint
-import os 
+import os
 import re
 import copy
 from json2html import *
@@ -18,13 +18,13 @@ from gui.gui import GUI
 
 if __name__ == '__main__':
     #####Run with GUI
-    #GUI()
+    # GUI()
 
     #####Run without GUI
     # ILP = 0 
     # Greedy = 1
     # Tabu = 2
     # Random = 3
-    #  Weekly = 4
-    #  Weekly = 5
+    # Weekly = 4
+    # Genetic = 5
     GUI(alg=5)

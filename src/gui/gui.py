@@ -174,7 +174,7 @@ class GUI:
         x = algorithms[selectedAlgorithm]
         
         x.generate_timetable()
-        eval = Evaluate(x.get_schedule(),check_hard_constraints=False)
+        eval = Evaluate(x.get_schedule(),check_hard_constraints=True)
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
         output = open(os.path.realpath('./InputOutput/out.json'), "w")

@@ -17,6 +17,7 @@ import numpy as np
 import random
 import math
 from datetime import timedelta
+import datetime
 
 """
 idea:
@@ -28,20 +29,20 @@ idea:
 
 """
 
-
 class Genetic(Scheduler):
     def __init__(self):
         super().__init__()
         self.population = []
         self.population_size = 10
         self.individual_size = 20 * 8
-        self.generations = 10000
-        self.crossover_probability = 0.5
-        self.mutation_probability = 0.2
+        self.generations = 2000
+        self.crossover_probability = 0.8
+        self.mutation_probability = 0.05
         self.rooms = self.hard_constraints.get_rooms()
         self.courses = self.hard_constraints.get_courses()
         self.timeslots = self.hard_constraints.get_free_timeslots()
-        # self.courses = divide_courses_to_slot(self.hard_constraints.get_courses())
+        self.holidays = self.hard_constraints.get_holidays()
+        # self.courses = self.divide_courses_to_slot(self.hard_constraints.get_courses())
 
     def generate_timetable(self):
         self.create_population()
@@ -51,7 +52,7 @@ class Genetic(Scheduler):
 
         # no divide =21; divide =58
         # num of conflict * course
-        max_fit = 4 * 21
+        max_fit = 5 * 21
         # stop when satisfying all hard constraints or reach generation th
         while self.fitness(pop[final_idx]) < max_fit and count < self.generations:
             list_fitness_pop = []
@@ -84,10 +85,9 @@ class Genetic(Scheduler):
         print("done!")
         print("fail {}".format(max_fit - self.fitness(pop[final_idx])))
         result = pop[final_idx]
-        result = fill_timeslot(result, self.courses)
+        result = self.fill_timeslot(result)
         result = self.convert_to_schedule(result)
-        self.copy_schedule(result)
-        print("a")
+        self.copy_schedule(result, distribution_timeslot=False)
 
     def crossover(self, individual1, individual2):
         individual1_new = individual1.copy()
@@ -188,13 +188,15 @@ class Genetic(Scheduler):
                 if c["Number of students"] <= r["Capacity"]:
                     score += 1
                 # lecturers constraint
-                if not has_lecturer_conflict(g, count, individual, courses):
+                if not self.has_lecturer_conflict(g, count, individual):
                     score += 1
                 # slot constraint
-                if not has_slot_conflict(g, count, courses):
+                if not self.has_slot_conflict(g, count):
                     score += 1
                 # room constraint
-                if not has_room_conflict(g, count, courses, individual):
+                if not self.has_room_conflict(g, count, individual):
+                    score += 1
+                if not self.has_programme_conflict(g, count, individual):
                     score += 1
                 # start at 11pm (soft constraint)
                 # if s == 2:
@@ -243,119 +245,187 @@ class Genetic(Scheduler):
             c_room = 0
         return schedule_result
 
-    def copy_schedule(self, schedule):
+    def copy_schedule(self, schedule, distribution_timeslot=False):
+        holidays = self.holidays
         period_end = self.hard_constraints.period_info["EndDate"]
         week_counter = 1
         first_lecture = next(iter(schedule.keys()))
         courses = self.courses
         while first_lecture + timedelta(days=7 * week_counter) < period_end:
+            list_slots_per_week = {}
             for date, scheduled_courses in schedule.items():
                 date = date + timedelta(days=7 * week_counter)
+                dt = str(date).split()[0]
+                dt = datetime.datetime.strptime(dt, '%Y-%m-%d')
+                if holidays[dt] == 0:
+                    for course in scheduled_courses:
+                        course_id = course["CourseID"]
 
-                for course in scheduled_courses:
-                    course_id = course["CourseID"]
-                    if courses[course_id]['Contact hours'] > 0:
-                        self.schedule.setdefault(str(date), []).append(
-                            {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
-                        courses[course_id]['Contact hours'] -= 2
+                        if distribution_timeslot:
+                            contact_hours = int(courses[course_id]["Contact hours"] / 2)
+                            needed_slot_per_week = math.ceil(contact_hours / 7)
+                            if course_id not in list_slots_per_week.keys():
+                                list_slots_per_week[course_id] = needed_slot_per_week
+                                if week_counter >= 4:
+                                    list_slots_per_week[course_id] = 3
+
+                        if courses[course_id]['Contact hours'] > 0:
+                            if distribution_timeslot:
+                                if list_slots_per_week[course_id] > 0:
+                                    list_slots_per_week[course_id] -= 1
+                                    self.schedule.setdefault(str(date), []).append(
+                                        {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
+                                    courses[course_id]['Contact hours'] -= 2
+                            else:
+                                self.schedule.setdefault(str(date), []).append(
+                                    {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
+                                courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 
+    # check lecture conflict in slot time of day
+    # gen = class
+    def has_lecturer_conflict(self, gen, pos, individual):
+        courses = self.courses
+        list_courses = list(courses)
+        # low,high = row
+        low_slot = pos - (pos % 8)
+        high_slot = (math.floor(low_slot / 32) + 1) * 32
 
-# check lecture conflict in slot time of day
-# gen = class
-def has_lecturer_conflict(gen, pos, individual, courses):
-    list_courses = list(courses)
-    # low,high = row
-    low_slot = pos - (pos % 8)
-    high_slot = pos - (pos % 8) + 8
+        gen_course_id = list_courses[int(gen) - 1]
+        gen_course = courses[gen_course_id]
+        lecturers = gen_course["Lecturers"].split(';')
+        contact_hours = int(gen_course["Contact hours"] / 2)
+        needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
 
-    gen_course = courses[list_courses[int(gen) - 1]]
-    lecturers = gen_course["Lecturers"].split(';')
+        check_slot = low_slot + (needed_slot_per_week * 8)
+        if check_slot < high_slot:
+            high_slot = check_slot
+        for g in individual[low_slot:high_slot]:
+            if g != 0 and g != gen:
+                c = courses[list_courses[int(g) - 1]]
+                list_lecturers = c["Lecturers"].split(';')
+                for l in list_lecturers:
+                    if l in lecturers:
+                        return True
+        return False
 
-    for g in individual[low_slot:high_slot]:
-        if g != 0 and g != gen:
-            c = courses[list_courses[int(g) - 1]]
-            list_lecturers = c["Lecturers"].split(';')
-            for l in list_lecturers:
-                if l in lecturers:
-                    return True
-    return False
+    def has_slot_conflict(self, gen, pos):
+        courses = self.courses
+        list_courses = list(courses)
+        # start, end = column
+        # 32 slots per day
+        start_slot = (pos % 8) + math.floor(pos / 32) * 32
+        end_slot = start_slot + 24
 
+        gen_course_id = list_courses[int(gen) - 1]
+        gen_course = courses[gen_course_id]
 
-def has_slot_conflict(gen, pos, courses):
-    list_courses = list(courses)
-    # start, end = column
-    # 32 slots per day
-    start_slot = (pos % 8) + math.floor(pos / 32) * 32
-    end_slot = start_slot + 24
-
-    gen_course_id = list_courses[int(gen) - 1]
-    gen_course = courses[gen_course_id]
-
-    contact_hours = int(gen_course["Contact hours"] / 2)
-    needed_slot_per_week = math.ceil(contact_hours / 7)
-    if (pos + 8 * (needed_slot_per_week - 1)) > end_slot:
-        return True
-    return False
-
-
-# check room conflict in same day
-def has_room_conflict(gen, pos, courses, individual):
-    list_courses = list(courses)
-    # start, end = column
-    # 32 slots per day
-    start_slot = (pos % 8) + math.floor(pos / 32) * 32
-    end_slot = start_slot + 24
-
-    gen_course_id = list_courses[int(gen) - 1]
-    gen_course = courses[gen_course_id]
-
-    contact_hours = int(gen_course["Contact hours"] / 2)
-    needed_slot_per_week = math.ceil(contact_hours / 7)
-    for i in range(pos + 8, end_slot + 1, 8):
-        needed_slot_per_week -= 1
-        if individual[i] != 0 and needed_slot_per_week != 0:
+        contact_hours = int(gen_course["Contact hours"] / 2)
+        needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
+        if (pos + 8 * (needed_slot_per_week - 1)) > end_slot:
             return True
-    return False
+        return False
 
+    # check room conflict in same day
+    def has_room_conflict(self, gen, pos, individual):
+        courses = self.courses
+        list_courses = list(courses)
+        # start, end = column
+        # 32 slots per day
+        start_slot = (pos % 8) + math.floor(pos / 32) * 32
+        end_slot = start_slot + 24
 
-def fill_timeslot(data, courses):
-    list_courses = list(courses)
-    new_timetable = data.copy()
-    for idx, value in enumerate(data):
-        if value != 0:
-            start_slot = (idx % 8) + math.floor(idx / 32) * 32
-            end_slot = start_slot + 24
-            gen_course_id = list_courses[int(value) - 1]
-            gen_course = courses[gen_course_id]
-            contact_hours = int(gen_course["Contact hours"] / 2)
-            needed_slot_per_week = math.ceil(contact_hours / 7)
+        gen_course_id = list_courses[int(gen) - 1]
+        gen_course = courses[gen_course_id]
+
+        contact_hours = int(gen_course["Contact hours"] / 2)
+        needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
+        for i in range(pos + 8, end_slot + 1, 8):
             needed_slot_per_week -= 1
-            for i in range(idx + 8, end_slot + 1, 8):
-                if new_timetable[i] == 0:
-                    if needed_slot_per_week > 0:
-                        new_timetable[i] = value
-                        needed_slot_per_week -= 1
-                else:
-                    break
-    return new_timetable
+            if individual[i] != 0 and needed_slot_per_week != 0:
+                return True
+        return False
 
+    def has_programme_conflict(self, gen, pos, individual):
+        courses = self.courses
+        list_courses = list(courses)
+        # low,high = row
+        low_slot = pos - (pos % 8)
+        high_slot = (math.floor(low_slot / 32) + 1) * 32
 
-# course with 36h or 34h occupies 3 slots/week
-# course with 20h or 22h occupies 2 slots/w
-# course with 12h occupies 1 slot/w
-# total 58/160 slots/week
-# TODO: currently not use
-def divide_courses_to_slot(courses):
-    list_courses_by_slot = {}
-    for k, v in courses.items():
-        # 2 hours/timeslot
-        contact_hours = int(v["Contact hours"] / 2)
-        # 7 weeks/ period
-        needed_slot_per_week = math.ceil(contact_hours / 7)
-        if needed_slot_per_week == 1:
-            list_courses_by_slot[k] = v
+        gen_course_id = list_courses[int(gen) - 1]
+        gen_course = courses[gen_course_id]
+        programme = gen_course["Programme"]
+        contact_hours = int(gen_course["Contact hours"] / 2)
+        needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
+
+        check_slot = low_slot + (needed_slot_per_week * 8)
+        if check_slot < high_slot:
+            high_slot = check_slot
+        for g in individual[low_slot:high_slot]:
+            if g != 0 and g != gen:
+                c = courses[list_courses[int(g) - 1]]
+                if programme == c["Programme"]:
+                    return True
+        return False
+
+    def fill_timeslot(self, data):
+        courses = self.courses
+        list_courses = list(courses)
+        new_timetable = data.copy()
+        for idx, value in enumerate(data):
+            if value != 0:
+                start_slot = (idx % 8) + math.floor(idx / 32) * 32
+                end_slot = start_slot + 24
+                gen_course_id = list_courses[int(value) - 1]
+                gen_course = courses[gen_course_id]
+                contact_hours = int(gen_course["Contact hours"] / 2)
+                needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
+                needed_slot_per_week -= 1
+                for i in range(idx + 8, end_slot + 1, 8):
+                    if new_timetable[i] == 0:
+                        if needed_slot_per_week > 0:
+                            new_timetable[i] = value
+                            needed_slot_per_week -= 1
+                    else:
+                        break
+        return new_timetable
+
+    def calculate_need_slot_per_week(self, course_id):
+        list_courses_per_programme = {}
+        for v in self.courses.values():
+            programme_name = v["Programme"]
+            if programme_name not in list_courses_per_programme.keys():
+                list_courses_per_programme[programme_name] = 1
+            else:
+                list_courses_per_programme[programme_name] += 1
+
+        course_programme = self.courses[course_id]["Programme"]
+        contact_hours = int(self.courses[course_id]["Contact hours"] / 2)
+        if list_courses_per_programme[course_programme] <= 5:
+            needed_slot_per_week = math.ceil(contact_hours / 7)
         else:
-            for t in range(needed_slot_per_week):
-                list_courses_by_slot[k + "_" + str(t)] = v
-    return list_courses_by_slot
+            if contact_hours <= 16:
+                needed_slot_per_week = math.ceil(contact_hours / 7)
+            else:
+                needed_slot_per_week = math.floor(contact_hours / 7)
+        return needed_slot_per_week
+
+    # course with 36h or 34h occupies 3 slots/week
+    # course with 20h or 22h occupies 2 slots/w
+    # course with 12h occupies 1 slot/w
+    # total 58/160 slots/week
+    # TODO: currently not use
+    def divide_courses_to_slot(self, courses):
+        list_courses_by_slot = {}
+        for k, v in courses.items():
+            # 2 hours/timeslot
+            contact_hours = int(v["Contact hours"] / 2)
+            # 7 weeks/ period
+            needed_slot_per_week = self.calculate_need_slot_per_week(k)
+            if needed_slot_per_week == 1:
+                list_courses_by_slot[k] = v
+            else:
+                for t in range(needed_slot_per_week):
+                    list_courses_by_slot[k + "_" + str(t)] = v
+        return list_courses_by_slot
