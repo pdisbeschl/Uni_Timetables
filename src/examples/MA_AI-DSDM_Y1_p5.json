@@ -1,0 +1,79 @@
+{
+    "2019-04-06 08:30:00": [
+        {
+            "CourseID": "KEN4257",
+            "ProgID": "MAAIY1",
+            "RoomID": "C1.015"
+        }
+    ],
+    "2019-04-06 11:00:00": [
+        {
+            "CourseID": "KEN4257",
+            "ProgID": "MAAIY1",
+            "RoomID": "C1.015"
+        }
+    ],
+    "2019-04-06 13:30:00": [
+        {
+            "CourseID": "KEN4253",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-07 13:30:00": [
+        {
+            "CourseID": "KEN4255",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-07 16:00:00": [
+        {
+            "CourseID": "KEN4255",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-08 08:30:00": [
+        {
+            "CourseID": "KEN4253",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-08 11:00:00": [
+        {
+            "CourseID": "KEN4253",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-08 13:30:00": [
+        {
+            "CourseID": "KEN4257",
+            "ProgID": "MAAIY1",
+            "RoomID": "C1.015"
+        }
+    ],
+    "2019-04-09 11:00:00": [
+        {
+            "CourseID": "KEN4153",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-09 13:30:00": [
+        {
+            "CourseID": "KEN4153",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ],
+    "2019-04-09 16:00:00": [
+        {
+            "CourseID": "KEN4153",
+            "ProgID": "MAAIY1",
+            "RoomID": "C0.004"
+        }
+    ]
+}

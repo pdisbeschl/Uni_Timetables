@@ -52,9 +52,9 @@ class ILP(Scheduler):
 
     """
     Set up the basic structure of the ILP 
-    The objective function is (as of now) useless because we onlz have hard constraints and no proper evaluation. Later the 
+    The objective function is (as of now) useless because we only have hard constraints and no proper evaluation. Later the 
     objective function will evaluate the soft constraints (e.g. score for lectures at 8:30 will have a high cost) 
-    Create binary decision variables for every course,timeslot combination (if 1 then the course is scheduled in the timeslot)
+    Create binary decision variables for every course, timeslot combination (if 1 then the course is scheduled in the timeslot)
     Ensure that every course is scheduled for the amount of contact hours
     """
     def generate_ILP_hard_constraints(self):
@@ -381,6 +381,19 @@ class ILP(Scheduler):
         return lecturers
 
     """
+    Allocates rooms under the assumption that each year group ("programme") has their own room and the capacity of each of these rooms is sufficient for this programme (this is the case normally).
+    """
+    #TODO: Check if the names correctly correspond to the room codes
+    def room_allocation(self, prog_id):
+        rooms = {'BAY1': {'Room Code':'C0.008', 'Full name':'Deep Space'}, #Sheep space?
+                 'BAY2': {'Room Code':'C0.016', 'Full name':'Cyber Space'},
+                 'BAY3': {'Room Code':'C0.020', 'Full name':'Search Space'},
+                 'MAAIY1': {'Room Code': 'C0.004', 'Full name': 'Eigenspace'},
+                 'MADSDMY1': {'Room Code':'C1.015', 'Full name':'Vector Space'},
+                 'Extra': {'Room Code':'C0.015', 'Full name':'Memory Space'}}
+        return rooms[prog_id]['Room Code']
+
+    """
     Transforms a solution from the ILP to the format that is used to represent our schedules
     The decision variables for a (timeslot,course) tuple are 1 if a course is scheduled and 0 if not
     """
@@ -394,6 +407,7 @@ class ILP(Scheduler):
             prog_id = courses[cid]['Programme']
             lecturers = courses[cid]['Lecturers']
             name = courses[cid]['Course name']
+            room_id = self.room_allocation(prog_id)
             #Fill schedule dictionary with info
-            self.schedule.setdefault(tid, []).append({"CourseID": cid, "Name": name, "ProgID": prog_id, "RoomID": "-1", "Lecturers": lecturers})
+            self.schedule.setdefault(tid, []).append({"CourseID": cid, "Name": name, "ProgID": prog_id, "RoomID": room_id, "Lecturers": lecturers})
         return
