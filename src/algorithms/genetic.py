@@ -47,6 +47,7 @@ class Genetic(Scheduler):
 
     def generate_timetable(self):
         print("Running genetic...")
+        self.generations = len(self.courses) * 100
         self.create_population()
         pop = self.population
         final_idx = 0
@@ -59,6 +60,8 @@ class Genetic(Scheduler):
             self.generations += 1000
         else:
             max_fit = 5 * len(self.courses)
+
+        flag_reduce = True
 
         # stop when satisfying all hard constraints or reach generation th
         while self.fitness(pop[final_idx]) < max_fit and count < self.generations:
@@ -93,6 +96,11 @@ class Genetic(Scheduler):
                 print("gen {}/{} best fit: {}/{} rate {:.2f}%".format(
                     count, self.generations, self.fitness(pop[final_idx]), max_fit,
                     self.fitness(pop[final_idx]) / max_fit * 100))
+
+            if flag_reduce and self.fitness(pop[final_idx]) == 5 * len(self.courses):
+                self.generations = count + 1000
+                print("maybe get feasible schedule, reduce runtime!")
+                flag_reduce = False
 
         print("done!")
         print("fail {}".format(max_fit - self.fitness(pop[final_idx])))
@@ -430,9 +438,10 @@ class Genetic(Scheduler):
                     full_contact_hours = course["Contact hours"]
                     if needed_slot_per_week > 2:
                         for t in range(math.ceil(needed_slot_per_week / 2)):
+                            divide_value = (math.ceil(needed_slot_per_week / 2) - 1) * 12
                             if t != math.ceil(needed_slot_per_week / 2) - 1:
-                                full_contact_hours -= 12
-                                course["Contact hours"] = 12
+                                full_contact_hours -= divide_value
+                                course["Contact hours"] = divide_value
                                 list_courses_by_slot[c + "_" + str(t)] = course
                             else:
                                 course1["Contact hours"] = full_contact_hours
