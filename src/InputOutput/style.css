@@ -30,6 +30,12 @@ tr td{
   transition: 0.2s;
 }
 
+.EE {
+position: relative;
+float: right;
+height: 100%;
+}
+
 .CourseInfoOverlay {
   position: relative;
   top: 5%;
