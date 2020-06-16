@@ -9,3 +9,4 @@ src/InputOutput/newOutput.html
 src/InputOutput/Sample_One_Course.xlsx
 *.xlsx
 src/.idea/*
+src/InputOutput/schedule_info.js
