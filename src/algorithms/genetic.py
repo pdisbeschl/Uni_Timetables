@@ -270,10 +270,14 @@ class Genetic(Scheduler):
                     course = self.default_courses[course_id]
                     prog_id = course["Programme"]
                     room_id = list_rooms[c_room]
+                    lecturers = course['Lecturers']
+                    name = course['Course name']
                     self.schedule.setdefault(str(self.timeslots[count]), []).append(
-                        {"CourseID": course_id, "ProgID": prog_id, "RoomID": room_id})
+                        {"CourseID": course_id, "Name": name, "ProgID": prog_id, "RoomID": room_id,
+                         "Lecturers": lecturers})
                     schedule_result.setdefault(self.timeslots[count], []).append(
-                        {"CourseID": course_id, "ProgID": prog_id, "RoomID": room_id})
+                        {"CourseID": course_id, "Name": name, "ProgID": prog_id, "RoomID": room_id,
+                         "Lecturers": lecturers})
                     course['Contact hours'] -= 2
                 c_room += 1
             count += 1
@@ -295,6 +299,10 @@ class Genetic(Scheduler):
                 if holidays[dt] == 0:
                     for course in scheduled_courses:
                         course_id = course["CourseID"]
+                        prog_id = course["ProgID"]
+                        room_id = course["RoomID"]
+                        lecturers = course['Lecturers']
+                        name = course['Name']
 
                         if distribution_timeslot:
                             contact_hours = int(courses[course_id]["Contact hours"] / 2)
@@ -309,11 +317,13 @@ class Genetic(Scheduler):
                                 if list_slots_per_week[course_id] > 0:
                                     list_slots_per_week[course_id] -= 1
                                     self.schedule.setdefault(str(date), []).append(
-                                        {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
+                                        {"CourseID": course_id, "Name": name, "ProgID": prog_id, "RoomID": room_id,
+                                         "Lecturers": lecturers})
                                     courses[course_id]['Contact hours'] -= 2
                             else:
                                 self.schedule.setdefault(str(date), []).append(
-                                    {"CourseID": course_id, "ProgID": course["ProgID"], "RoomID": course["RoomID"]})
+                                    {"CourseID": course_id, "Name": name, "ProgID": prog_id, "RoomID": room_id,
+                                     "Lecturers": lecturers})
                                 courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 
