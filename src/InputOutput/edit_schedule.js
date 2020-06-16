@@ -1,6 +1,11 @@
 //Load the json schedule from the schedule_info.js file
 var schedule_json = schedule;
+var input_data = input_raw;
 var programmes = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1'];
+var course_colours = ['#FFB5E8', '#B28DFF', '#DCD3FF', '#AFF8D8', '#BFFCC6', '#FFC9DE', '#FF9CEE', '#C5A3FF', '#A79Aff', '#C4FAF8',
+               '#DBFFD6', '#FFABAB', '#FFCCF9', '#D5AAFF', '#B5B9FF', '#85E3FF', '#F3FFE3', '#FFBEBC', '#FCC2FF', '#ECD4FF',
+               '#97A2FF', '#ACE7FF', '#E7FFAC', '#FFCBC1', '#F6A6FF', '#FBE4FF', '#AFCBFF', '#6EB5FF', '#FFFFD1', '#FFF5BA'];
+var colour_palette = {};
 
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
@@ -19,6 +24,8 @@ window.addEventListener('load', function () {
                 }
             }
     }
+    loadColourPalette();
+    colourCourses();
 
     function load() {
         var someData_notJSON = JSON.parse(out.json);
@@ -27,7 +34,7 @@ window.addEventListener('load', function () {
 
     function getCourseInfo(cell) {
         document.getElementById("myNav").style.height = "0%";
-        resetSelected();
+        colourCourses();
 
         //Get the course id
         course_cell_id = cell.id.replace('room','course');
@@ -59,6 +66,7 @@ window.addEventListener('load', function () {
         //Show the overlay with the course information
         overlay = document.getElementById("CourseInfoOverlay")
         overlay.innerHTML = "";
+        $('#myNav').css('background-color', colour_palette[cid]);
         for(c in course) {
             para = document.createElement("p");
             para.style.width = "75%";
@@ -67,11 +75,26 @@ window.addEventListener('load', function () {
             overlay.appendChild(para);
         }
         setTimeout(function(){ document.getElementById("myNav").style.height = "25%"}, 200);
-
         //alert(cel.innerHTML);
         return course;
     }
 })
+
+function loadColourPalette() {
+    course_ids = Object.keys(input_data.CourseData);
+    for (let [index, course_key] of course_ids.entries()) {
+        colour_palette[course_key] = course_colours[index];
+    }
+
+}
+
+function colourCourses() {
+    resetSelected();
+    course_ids = Object.keys(input_data.CourseData);
+    for (let [index, course_key] of course_ids.entries()) {
+        $('.'+course_key).css("background-color", course_colours[index]);
+    }
+}
 
 function resetSelected() {
     for (var year in programmes) {
