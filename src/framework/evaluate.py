@@ -32,14 +32,14 @@ class Evaluate:
     metrics_file_path = "framework/evaluation_metrics.json"
     score = 0
 
-    def __init__(self, timetable, check_hard_constraints=True, silent=False):
+    def __init__(self, timetable, check_hard_constraints=True, silent=False, excel_file_path='./InputOutput/Sample.xlsx'):
         self.silent = silent
         self.read_metrics()
         self.timetable = timetable
 
         self.is_valid = True
 
-        self.constraints = ConstraintParser()
+        self.constraints = ConstraintParser(excel_file_path)
 
         if check_hard_constraints:
             self.check_hard_constraints()
@@ -105,7 +105,7 @@ class Evaluate:
                             self.conflict(c, '[CONFLICT] Conflict with lecturer %s on %s' % (lecturer, timeslot))
                 # Room size
                 if c['RoomID'] != '-1' and course_data['Number of students'] > self.constraints.get_rooms()[c['RoomID']]['Capacity']:
-                    self.conflict(c, '[CONFLICT] Conflict in room %s on %s' % (c['RoomID'], timeslot))
+                    self.conflict(c, '[CONFLICT] Conflict with capacity in room %s on %s' % (c['RoomID'], timeslot))
                 # Count to check contact hours
                 if c['CourseID'] not in courses.keys():
                     courses.setdefault(c['CourseID'], 2)

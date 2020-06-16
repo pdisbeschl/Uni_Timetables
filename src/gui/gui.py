@@ -199,7 +199,7 @@ class GUI:
         x = algorithms[selectedAlgorithm]
         
         x.generate_timetable()
-        eval = Evaluate(x.get_schedule())
+        eval = Evaluate(x.get_schedule(), True, False, excel_file_path)
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
         output = open(os.path.realpath(outputDir+'out.json'), "w")
