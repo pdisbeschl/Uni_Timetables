@@ -287,8 +287,8 @@ class Weekly_LS(Scheduler):
                             'RoomID': None } for gene, event in parents[0].items()}
             
             course_parent_chooser = {course_code: None for course_code in self.courses.keys()}
-            for course_code, parent in course_parent_chooser.items():
-                parent = round(np.random.uniform(0,1))
+            for course_code in course_parent_chooser.keys():
+                course_parent_chooser[course_code] = round(np.random.uniform(0,1))
                 
             
             # Perform crossover with the parents 
