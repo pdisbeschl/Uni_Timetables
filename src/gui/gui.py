@@ -78,9 +78,11 @@ def see_output2(out, period_info, outputDir):
     #programme = ['BAY1']  # FIXME This is for testing the JavaScript code. Makes the HTML easier to read - To be removed
     full_html = ''
     #For each programme add a table
-    for prog in programme:
+    for index, prog in enumerate(programme):
         html = copy.copy(html_original)
         html = html.replace('PROGRAMME',prog)
+        if index < len(programme)-1:
+            html = re.sub('OnceStart.*OnceEnd', '', html, flags=re.DOTALL)
         #Store result
         full_html += html
 
@@ -116,7 +118,6 @@ def see_output2(out, period_info, outputDir):
         else:
             aux+=1
             day = day + datetime.timedelta(days=1)
-    full_html = full_html.replace('DOWNLOAD', '<input type="button" id="download" value="Download schedule"/>')
     #specify timetable version
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces

@@ -10,15 +10,18 @@ var course_colours = ['#FFB5E8', '#B28DFF', '#DCD3FF', '#AFF8D8', '#BFFCC6', '#F
                '#DBFFD6', '#FFABAB', '#FFCCF9', '#D5AAFF', '#B5B9FF', '#85E3FF', '#F3FFE3', '#FFBEBC', '#FCC2FF', '#ECD4FF',
                '#97A2FF', '#ACE7FF', '#E7FFAC', '#FFCBC1', '#F6A6FF', '#FBE4FF', '#AFCBFF', '#6EB5FF', '#FFFFD1', '#FFF5BA'];
 //A dictionary which maps a course to the used colour
-var colour_palette = {};
+var colour_palette = {"":"#FFFFFF"};
+var selected = false;
+var selected_course;
 
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
     //Add a download button to the page which allows to export the (modified) schedule in json format
-    var btn = document.createElement("BUTTON");
-    btn.innerHTML = "Download";
-    btn.onclick = function () { download("schedule_info.js",JSON.stringify(schedule_json)); };
-    document.body.appendChild(btn);
+    //var btn = document.createElement("BUTTON");
+    //btn.innerHTML = "Download";
+    //btn.onclick = function () { download("schedule_info.js",JSON.stringify(schedule_json)); };
+    //document.body.appendChild(btn);
+    $("#download").click(function() { download("schedule_info.js",JSON.stringify(schedule_json));});
 
     //Initialise click events for all table entries that they respond to clicks (
     for (var year in programmes) {
@@ -36,6 +39,10 @@ window.addEventListener('load', function () {
     //Colours all the courses in the respective colour
     colourCourses();
 })
+
+function swap_courses(course) {
+
+}
 
 /**
 Upon clicking on a cell highlight the cell and show the information about the course
@@ -64,10 +71,11 @@ function getCourseInfo(cell) {
             }
         })
     }
-    //If we could not find a course then we don't want to do anything
-    if (course === undefined) {
-        return
+    //If we could not find a course or if we already selected one then we don't want to do anything
+    if (course === undefined || selected_course) {
+        //return
     }
+
     //If we clicked on the room we still want to colour the course and room cell of the clicked cell
     cells = document.getElementsByClassName(cell.classList[1]);
     for (var i = 0; i < cells.length; i++) {
@@ -101,8 +109,8 @@ function getCourseInfo(cell) {
             img = $('#myNav').prepend('<img class="EE" src="https://i.imgur.com/18aZSAB.jpg" onerror="this.style.display=\'none\'">')
     }, 200);
 
+    //selected_course = true;
 
-    //alert(cel.innerHTML);
     return course;
 }
 
@@ -114,13 +122,13 @@ function loadColourPalette() {
     for (let [index, course_key] of course_ids.entries()) {
         colour_palette[course_key] = course_colours[index];
     }
-
 }
 
 /*
 Iterate over all cells that have a course scheduled and colour the cells
 */
 function colourCourses() {
+    $('.cell').css("background-color", "#FFFFFF");
     course_ids = Object.keys(input_data.CourseData);
     for (let [index, course_key] of course_ids.entries()) {
         $('.'+course_key).css("background-color", course_colours[index]);
