@@ -18,7 +18,7 @@ from gui.gui import GUI
 
 if __name__ == '__main__':
     #####Run with GUI
-    #GUI()
+    GUI()
 
     #####Run without GUI
     # ILP = 0 
@@ -26,4 +26,13 @@ if __name__ == '__main__':
     # Tabu = 2
     # Random = 3
     #  Weekly = 4
-    GUI(alg=1)
+    #GUI(alg=0)
+
+    #### Load a timetable and get the score (from the json output)
+    '''
+    schedule = json.load(open('./examples/MA_AI-DSDM_Y1_p5.json','r'))
+    #schedule = json.load(open('./InputOutput/out.json','r'))
+    schedule = {str(k): v for k, v in schedule.items()}
+    print(schedule)
+    Evaluate(schedule, False)
+    '''
