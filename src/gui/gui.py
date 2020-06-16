@@ -72,6 +72,7 @@ def see_output2(out, period_info, outputDir):
                    '<link rel="stylesheet" type="text/css" href="style.css">\n'
                    '<script src="http://code.jquery.com/jquery-1.9.1.js"></script>\n' 
                    '<script src="schedule_info.js"></script>\n'
+                   '<script src="input_data.js"></script>\n'
                    '<script src="edit_schedule.js"></script>\n'
                    '</head>')
     programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
@@ -121,6 +122,7 @@ def see_output2(out, period_info, outputDir):
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces
     full_html = re.sub('<!--1.*','',full_html)
+    full_html = re.sub('> ~.*~ <','',full_html)
     full_html = re.sub('~_.*~','',full_html)
     #Write result
     out_file.write(full_html)
@@ -128,7 +130,9 @@ def see_output2(out, period_info, outputDir):
     #Copy required format files 
     if outputDir != './InputOutput/':
         shutil.copy('./InputOutput/style.css', outputDir+'style.css')
-        shutil.copy('./InputOutput/edit_schedule.js', outputDir+'edit_schedule.js')
+        shutil.copy('./InputOutput/input_data.js', outputDir + 'input_data.js')
+        shutil.copy('./InputOutput/edit_schedule.js', outputDir + 'edit_schedule.js')
+
     #Open browser
     url = "file://"+os.path.realpath(outputDir+'out.html')
     webbrowser.open(url,new=2)
@@ -197,7 +201,7 @@ class GUI:
                       Weekly(excel_file_path),Genetic(excel_file_path)]
         x = algorithms[selectedAlgorithm]
         x.generate_timetable()
-        eval = Evaluate(x.get_schedule())
+        eval = Evaluate(x.get_schedule(), True, False, excel_file_path)
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
         output = open(os.path.realpath(outputDir+'out.json'), "w")
