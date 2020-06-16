@@ -30,8 +30,8 @@ class Tabu(Scheduler):
     total_iterations = 100  # total number of iterations
     placements_to_move = 5  # number of placements to consider in neighborhood
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+        super().__init__(excel_file_path)
 
     def generate_timetable(self, initial_schedule=None):
         """

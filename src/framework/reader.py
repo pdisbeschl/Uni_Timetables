@@ -21,7 +21,7 @@ from bisect import bisect_left, bisect_right
 class ConstraintParser():
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self):
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
         #Dictionaries with information about the period, holidays, courses, rooms and lecturers
         self.period_info = {}
         self.courses = {}
@@ -29,12 +29,12 @@ class ConstraintParser():
         self.lecturers = {}
         self.holidays = {}
         self.free_timeslots = {}
-        self.read_excel()
+        self.read_excel(excel_file_path)
 
-    def read_excel(self):
+    def read_excel(self, excel_file_path):
         self.logFile.write('Reading hard constraints\n')
         #Load the excel file and transform them into dictionaries which we can use for the algorithms
-        xls = pd.ExcelFile(os.path.realpath('./InputOutput/Sample.xlsx'))
+        xls = pd.ExcelFile(os.path.realpath(excel_file_path))
         courses_df = pd.read_excel(xls, 'Courses')
         rooms_df = pd.read_excel(xls, 'Rooms')
         holidays_df = pd.read_excel(xls, 'Holidays')

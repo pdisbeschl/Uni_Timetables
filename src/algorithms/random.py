@@ -19,9 +19,9 @@ import numpy as np
 class Random(Scheduler):
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self):
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
         self.logFile.write('Initialising Random algorithm\n')
-        super().__init__()
+        super().__init__( excel_file_path)
 
     def generate_timetable(self, seed=None):
         if seed is None:
