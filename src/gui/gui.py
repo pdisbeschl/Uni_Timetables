@@ -65,8 +65,12 @@ def see_output2(out, period_info):
         html_original = html_original.replace('<!--0-->','\n'+div_1)
         html_original = html_original.replace('NUMWEEK',str(i))
     out_file =  open(os.path.realpath('./InputOutput/out.html'), "w")
-    out_file.write('<link rel="stylesheet" type="text/css" href="style.css">\n'
-                   '<script src="edit_schedule.js"></script>')
+    out_file.write('<head>\n'
+                   '<link rel="stylesheet" type="text/css" href="style.css">\n'
+                   '<script src="http://code.jquery.com/jquery-1.9.1.js"></script>\n' 
+                   '<script src="schedule_info.js"></script>\n'
+                   '<script src="edit_schedule.js"></script>\n'
+                   '</head>')
     programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
     #programme = ['BAY1']  # FIXME This is for testing the JavaScript code. Makes the HTML easier to read - To be removed
     full_html = ''
@@ -109,6 +113,7 @@ def see_output2(out, period_info):
         else:
             aux+=1
             day = day + datetime.timedelta(days=1)
+    full_html = full_html.replace('DOWNLOAD', '<input type="button" id="download" value="Download schedule"/>')
     #specify timetable version
     full_html = full_html.replace('_VERSION',version)
     #Remove empty spaces
@@ -178,14 +183,15 @@ class GUI:
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
         output = open(os.path.realpath('./InputOutput/out.json'), "w")
-        #out = pp.pformat(x.get_schedule())
-        out = json.dumps(x.get_schedule(), indent=4)
-        output.write(out)
-        out = x.get_schedule()
 
-        #see_output(x.get_schedule())
-        output.write(json.dumps(out, indent=4))
+        out = x.get_schedule()
+        output.write(json.dumps(out, indent = 4))
         see_output2(out, x.get_period_info())
+
+        output2 = open(os.path.realpath('./InputOutput/schedule_info.js'), "w")
+        json_out = json.dumps(out)
+        #Replace NaN with "NaN"
+        output2.write('var schedule = JSON.parse(\'' + json.dumps(out) + '\')')
 
     def refreshAll( self ):
         '''

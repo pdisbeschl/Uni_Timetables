@@ -37,6 +37,8 @@ class Evaluate:
         self.read_metrics()
         self.timetable = timetable
 
+        self.is_valid = True
+
         self.constraints = ConstraintParser()
 
         if check_hard_constraints:
@@ -55,6 +57,12 @@ class Evaluate:
         self.preferences = self.metrics['preferences']
         self.weights = self.metrics['weights']
 
+    def conflict(self, c, message):
+        if not self.silent:
+            print(message)
+        c["Conflict"] = True
+        self.is_valid = False
+
     def check_hard_constraints(self):
         if not self.silent:
             print('[INFO] Checking hard constraints ...')
@@ -67,37 +75,37 @@ class Evaluate:
             electives = {}
             lecturers = []
             for c in self.timetable[timeslot]:
+                c["Conflict"] = False
                 course_data = self.constraints.get_courses()[c['CourseID']]
-                # Programme conclicts (same programme twice in a timeslot)
+                # Programme conflicts (same programme twice in a timeslot)
                 if c['ProgID'] not in prog:
                     prog.append(c['ProgID'])
                 elif not course_data['Elective']:
-                    print(self.timetable[timeslot])
-                    raise Exception('Conflict in programme %s on %s' % (c['ProgID'], timeslot))
+                    self.conflict(c, '[CONFLICT] Conflict in programme %s on %s' % (c['ProgID'], timeslot))
                 if course_data['Elective']:
                     if c['ProgID'] not in electives.keys():
                         electives.setdefault(c['ProgID'], [])
                     if c['CourseID'] not in electives[c['ProgID']]:
                         electives[c['ProgID']].append(c['CourseID'])
                     else:
-                        raise Exception('Conflict in programme %s on %s' % (c['ProgID'], timeslot))
+                        self.conflict(c, '[CONFLICT] Conflict in programme %s on %s' % (c['ProgID'], timeslot))
                 # Room conflicts
                 if c['RoomID'] not in room or c['RoomID'] == '-1':
                     room.append(c['RoomID'])
                 else:
-                    raise Exception('Conflict in room %s on %s' % (c['RoomID'], timeslot))
+                    self.conflict(c, '[CONFLICT] Conflict in room %s on %s' % (c['RoomID'], timeslot))
                 # Lecturer conflicts
                 for lecturer in course_data['Lecturers'].split(';'):
                     if lecturer not in lecturers:
                         lecturers.append(lecturer)
                     else:
-                        raise Exception('Conflict with lecturer %s on %s' % (lecturer, timeslot))
+                        self.conflict(c, '[CONFLICT] Conflict with lecturer %s on %s' % (lecturer, timeslot))
                     if lecturer in self.constraints.get_lecturers():
                         if dt in self.constraints.get_lecturers()[lecturer]:
-                            raise Exception('Conflict with lecturer %s on %s' % (lecturer, timeslot))
+                            self.conflict(c, '[CONFLICT] Conflict with lecturer %s on %s' % (lecturer, timeslot))
                 # Room size
-                if c['RoomID'] != '-1'  and course_data['Number of students'] > self.constraints.get_rooms()[c['RoomID']]['Capacity']:
-                    raise Exception('Conflict in room %s on %s' % (c['RoomID'], timeslot))
+                if c['RoomID'] != '-1' and course_data['Number of students'] > self.constraints.get_rooms()[c['RoomID']]['Capacity']:
+                    self.conflict(c, '[CONFLICT] Conflict in room %s on %s' % (c['RoomID'], timeslot))
                 # Count to check contact hours
                 if c['CourseID'] not in courses.keys():
                     courses.setdefault(c['CourseID'], 2)
@@ -105,20 +113,20 @@ class Evaluate:
                     courses[c['CourseID']] += 2
                 # check holidays
                 if self.constraints.get_holidays()[dt] == 1:
-                    raise Exception('Conflict with holiday on %s' % timeslot)
+                    self.conflict(c, '[CONFLICT] Conflict with holiday on %s' % timeslot)
                 # check period
                 if dt < self.constraints.get_period_info()["StartDate"] or dt > self.constraints.get_period_info()["EndDate"]:
-                    raise Exception('Conflict with period date on %s' % timeslot)
+                    self.conflict(c, '[CONFLICT] Conflict with period date on %s' % timeslot)
         # check contact hours
         if not len(courses) == len(self.constraints.get_courses()):
-            raise Exception("Conflict in number of courses.")
+            self.conflict({}, "[CONFLICT] Conflict in number of courses.")
         for course in courses:
             if course not in self.constraints.get_courses():
-                raise Exception("Unknown course %s" % course)
+                self.conflict({}, "[CONFLICT] Unknown course %s" % course)
             if courses[course] != self.constraints.get_courses()[course]['Contact hours']:
-                raise Exception("Conflict in contact hours of course %s" % course)
+                self.conflict({}, "[CONFLICT] Conflict in contact hours of course %s" % course)
         if not self.silent:
-            print('[Success] No conflicts.')
+            print('[INFO] Finished checking hard constraints.\n')
 
     def init_counters(self, cases):
         """
@@ -149,6 +157,9 @@ class Evaluate:
         """
         Evaluate the schedule and calculate the score.
         """
+        if not self.silent:
+            print("[INFO] Evaluating schedule...")
+
         # initialize variables to evaluate max hours per day
         max_hours = [int(i) for i in self.preferences['max_hours_per_day']]
         max_hours_results = self.init_counters(max_hours)
@@ -219,7 +230,8 @@ class Evaluate:
                 dt = datetime.datetime.strptime(date, '%Y-%m-%d')
                 # day index for days off constraints
                 day_index = dt.weekday()
-
+                if day_index > 4:
+                    raise Exception("Courses on the weekend in %s" % timeslot)
                 # if a new week starts ...
                 if not dt.isocalendar()[1] == week_index:
                     if week_index > 0:
@@ -284,6 +296,8 @@ class Evaluate:
                           '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want a day off on %s.')
         self.add_to_score(break_length_results, 'break_length',
                           '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want a break of %s timeslots.')
+        if not self.silent:
+            print("[INFO] Finished evaluating.")
 
     def evaluate_regularity(self, weeks_per_course, weeks):
         """
@@ -320,3 +334,6 @@ class Evaluate:
 
     def get_score(self):
         return self.score
+
+    def is_valid(self):
+        return self.is_valid

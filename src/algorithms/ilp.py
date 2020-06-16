@@ -383,14 +383,14 @@ class ILP(Scheduler):
     """
     Allocates rooms under the assumption that each year group ("programme") has their own room and the capacity of each of these rooms is sufficient for this programme (this is the case normally).
     """
-    #TODO: Check if the names correctly correspond to the room codes
+    #TODO: Check if the names correctly correspond to the room codes -> they dont. Running it once would have shown that ;)
     def room_allocation(self, prog_id):
-        rooms = {'BAY1': {'Room Code':'C0.008', 'Full name':'Deep Space'}, #Sheep space?
-                 'BAY2': {'Room Code':'C0.016', 'Full name':'Cyber Space'},
-                 'BAY3': {'Room Code':'C0.020', 'Full name':'Search Space'},
-                 'MAAIY1': {'Room Code': 'C0.004', 'Full name': 'Eigenspace'},
-                 'MADSDMY1': {'Room Code':'C1.015', 'Full name':'Vector Space'},
-                 'Extra': {'Room Code':'C0.015', 'Full name':'Memory Space'}}
+        rooms = {'BAY1': {'Room Code':'C1', 'Full name':'Deep Space'}, #Sheep space?
+                 'BAY2': {'Room Code':'C2', 'Full name':'Cyber Space'},
+                 'BAY3': {'Room Code':'C3', 'Full name':'Search Space'},
+                 'MAAIY1': {'Room Code': 'C4', 'Full name': 'Eigenspace'},
+                 'MADSDMY1': {'Room Code':'C5', 'Full name':'Vector Space'},
+                 'Extra': {'Room Code':'C6', 'Full name':'Memory Space'}}
         return rooms[prog_id]['Room Code']
 
     """
