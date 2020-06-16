@@ -39,10 +39,8 @@ class Evaluate:
 
         self.is_valid = True
 
-        self.constraints = ConstraintParser(excel_file_path)
-
         if check_hard_constraints:
-            self.check_hard_constraints()
+            self.check_hard_constraints(excel_file_path)
         self.evaluation()
 
         if not self.silent:
@@ -63,7 +61,8 @@ class Evaluate:
         c["Conflict"] = True
         self.is_valid = False
 
-    def check_hard_constraints(self):
+    def check_hard_constraints(self, excel_file_path):
+        self.constraints = ConstraintParser(excel_file_path)
         if not self.silent:
             print('[INFO] Checking hard constraints ...')
         courses = {}
