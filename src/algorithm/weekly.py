@@ -31,9 +31,9 @@ from datetime import timedelta
 class Weekly(Scheduler):
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+    def __init__(self):
         self.logFile.write('Initialising Weekly algorithm\n')
-        super().__init__(excel_file_path)
+        super().__init__()
 
 
 
@@ -133,7 +133,7 @@ class Weekly(Scheduler):
                         continue
 
 
-                    self.schedule.setdefault(date, []).append({"CourseID": course_id, "Name": courses[course_id]['Course name'],"ProgID": course['ProgID'], "RoomID": course['RoomID'], "Lecturers": courses[course_id]['Lecturers']})
+                    self.schedule.setdefault(date, []).append({"CourseID" : course_id, "ProgID" : course["ProgID"], "RoomID" : course["RoomID"]})
                     courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 

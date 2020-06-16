@@ -16,14 +16,12 @@ Documented following PEP 257.
 import pandas as pd
 from datetime import datetime, timedelta
 import os
-from bisect import bisect_left
-import json
+from bisect import bisect_left, bisect_right
 
 class ConstraintParser():
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
-    input_data_json_path = './InputOutput/input_data.js'
 
-    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+    def __init__(self):
         #Dictionaries with information about the period, holidays, courses, rooms and lecturers
         self.period_info = {}
         self.courses = {}
@@ -31,28 +29,12 @@ class ConstraintParser():
         self.lecturers = {}
         self.holidays = {}
         self.free_timeslots = {}
-        self.read_excel(excel_file_path)
-        self.write_json()
+        self.read_excel()
 
-    def convert_timstamp_to_string(self, o):
-        if isinstance(o, pd._libs.tslibs.timestamps.Timestamp):
-            return str(o)
-
-    def write_json(self):
-        holiday_list = [h[0] for h in self.holidays.items() if h[1] == 1]
-        input_data = {'PeriodData':self.period_info, 'CourseData':self.courses, 'RoomData':self.rooms, 'LecturerData':self.lecturers,
-                      'Holidays':holiday_list, 'TimeslotData':self.free_timeslots}
-
-        with open(os.path.realpath(self.input_data_json_path), "w") as f:
-            input_json = json.dumps(input_data, default=self.convert_timstamp_to_string)
-            input_json = input_json.replace('NaN','"NaN"')
-            f.write('var input_raw = JSON.parse(\'' + input_json + '\')')
-
-
-    def read_excel(self, excel_file_path):
+    def read_excel(self):
         self.logFile.write('Reading hard constraints\n')
         #Load the excel file and transform them into dictionaries which we can use for the algorithms
-        xls = pd.ExcelFile(os.path.realpath(excel_file_path))
+        xls = pd.ExcelFile(os.path.realpath('./InputOutput/Sample.xlsx'))
         courses_df = pd.read_excel(xls, 'Courses')
         rooms_df = pd.read_excel(xls, 'Rooms')
         holidays_df = pd.read_excel(xls, 'Holidays')

@@ -13,7 +13,7 @@ Documented following PEP 257.
 """
 
 from framework.scheduler import Scheduler
-from algorithms.random import Random
+from algorithm.random import Random
 from framework.evaluate import Evaluate
 import os
 import numpy as np
@@ -30,8 +30,8 @@ class Tabu(Scheduler):
     total_iterations = 100  # total number of iterations
     placements_to_move = 5  # number of placements to consider in neighborhood
 
-    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
-        super().__init__(excel_file_path)
+    def __init__(self):
+        super().__init__()
 
     def generate_timetable(self, initial_schedule=None):
         """
@@ -42,14 +42,12 @@ class Tabu(Scheduler):
             random = Random()
             random.generate_timetable()
             initial_schedule = random.get_schedule()
-            self.evaluate(initial_schedule)
         # sort initial schedule to make it easier to compare
         for k in initial_schedule.keys():
             initial_schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
         # initialize variables
         best_schedule = initial_schedule
-        # also check hard constraints here just to be sure
-        best_schedule_value = self.evaluate(best_schedule, True)
+        best_schedule_value = self.evaluate(best_schedule)
         tabu_list = [best_schedule]
         best_candidate = best_schedule
         # follow basic tabu search algorithm
@@ -116,9 +114,9 @@ class Tabu(Scheduler):
                 # do not put lecture in timeslot it originally was in
                 if timeslot_name == current_timeslot_name:
                     continue
-                timeslot = copy.deepcopy(schedule[timeslot_name])
+                timeslot = schedule[timeslot_name]
                 # check if lecture can be put in the timeslot
-                possible, lecture_to_append = self.is_possible_placement(copy.deepcopy(lecture), timeslot, timeslot_name)
+                possible, lecture_to_append = self.is_possible_placement(lecture, timeslot, timeslot_name)
                 if possible:
                     # put it there
                     schedule[timeslot_name].append(lecture_to_append)
@@ -146,7 +144,7 @@ class Tabu(Scheduler):
             # Check if programme already has another course in the timeslot
             if lecture["ProgID"] == other_lecture["ProgID"]:
                 # exclude electives
-                if not (course_data["Elective"] and other_course_data["Elective"]) or lecture["CourseID"] == other_lecture["CourseID"]:
+                if not course_data["Elective"] or not other_course_data["Elective"]:
                     return False, lecture
             # Check if any of the lecturers is not available there
             for lecturer in course_data["Lecturers"].split(";"):
@@ -159,7 +157,7 @@ class Tabu(Scheduler):
                         if time == datetime.datetime.strptime(timeslot_name, '%Y-%m-%d %H:%M:%S'):
                             return False, lecture
         # Check room constraint
-        booked_rooms = [c["RoomID"] for c in timeslot]
+        booked_rooms = set([c["RoomID"] for c in timeslot])
         # Check if originally planned room is free
         if lecture["RoomID"] in booked_rooms:
             # if not check if another room is free
@@ -174,9 +172,9 @@ class Tabu(Scheduler):
                 return False, lecture
         return True, lecture
 
-    def evaluate(self, schedule, check_hard_constraints=False):
+    def evaluate(self, schedule):
         """
         Evaluates a schedule assuming that no hard constraint is violated.
         """
-        e = Evaluate(schedule, check_hard_constraints, True)
+        e = Evaluate(schedule, True)
         return e.get_score()

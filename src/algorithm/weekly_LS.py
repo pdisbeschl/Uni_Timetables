@@ -32,6 +32,12 @@ import random
 
 class Weekly_LS(Scheduler):
 #    logFile = open(os.path.realpath('./Logs/log.txt'), "a")
+    population_size = 10
+    tournament_size = 5
+    LS_iter_init = 20
+    LS_iter_GA = 10
+    GA_iter = 10
+    only_local_search = False
 
     def __init__(self):
 #        self.logFile.write('Initialising Weekly algorithm\n')
@@ -80,11 +86,11 @@ class Weekly_LS(Scheduler):
     This is a very very hacky brute force algorithm to generate a simple feasible thing """
     def create_greedy_chrom(self, events, room_time_avb, room_times, courses):
         chrom_greedy = {}
-        
+        sched_temp = {t: [] for t in self.timeslots}
         # make a schedule in a greedy way
         for i,event in enumerate(events):
             print("Processing " + event["CourseID"])
-            course = event["CourseInfo"]
+            course_info = event["CourseInfo"]
             course_id = event["CourseID"]
             # try to put in first available room-time
             for rt_key, room_time in room_time_avb.items():
@@ -94,7 +100,7 @@ class Weekly_LS(Scheduler):
                 
                 #Check if the lecturer is already teaching a course at that time
                 # if clash, go to next room-time combo
-                if self.has_lecturer_conflict(chrom_greedy, courses, timeslot, course):
+                if self.has_lecturer_conflict(chrom_greedy, courses, timeslot, course_info) or self.has_prog_conflict2(sched_temp, timeslot, course_id, course_info):
                     continue
                 
                 # remove room-time from the list
@@ -103,6 +109,9 @@ class Weekly_LS(Scheduler):
                 
                 # update chromosome
                 chrom_greedy["Gen"+str(i)] = {"CourseID": course_id, "TimeSlot":timeslot, "RoomID":room_id}
+                # update schedule
+                sched_temp[timeslot].append({'CourseID':course_id, 'Gene_no':"Gen"+str(i),
+                                              'ProgID': event['CourseInfo']['Programme'], 'RoomID': room_id})
                 break
         return chrom_greedy, room_times
     
@@ -110,11 +119,12 @@ class Weekly_LS(Scheduler):
     This is a very very hacky brute force algorithm to generate a simple feasible thing """
     def create_random_chrom(self,room_time_avb, room_times):
         chrom = {}
+        sched_temp = {t: [] for t in self.timeslots}
         
         # make a schedule in a greedy way
         for i,event in enumerate(self.all_events):
             print("Processing " + event["CourseID"])
-            course = event["CourseInfo"]
+            course_info = event["CourseInfo"]
             course_id = event["CourseID"]
             allocated = False
             while not allocated:
@@ -125,7 +135,7 @@ class Weekly_LS(Scheduler):
                 
                 #Check if the lecturer is already teaching a course at that time
                 # if clash, go to next room-time combo
-                if self.has_lecturer_conflict(chrom, self.courses, timeslot, course):
+                if self.has_lecturer_conflict(chrom, self.courses, timeslot, course_info) or self.has_prog_conflict2(sched_temp, timeslot, course_id, course_info):
                     continue
                 
                 # remove room-time from the list
@@ -135,6 +145,8 @@ class Weekly_LS(Scheduler):
                 
                 # update chromosome
                 chrom["Gen"+str(i)] = {"CourseID": course_id, "TimeSlot":timeslot, "RoomID":room_id}
+                sched_temp[timeslot].append({'CourseID':course_id, 'Gene_no':"Gen"+str(i),
+                                              'ProgID': event['CourseInfo']['Programme'], 'RoomID': room_id})
                 break
         return chrom, room_times
     
@@ -232,6 +244,10 @@ class Weekly_LS(Scheduler):
             # new position of the before removed event [0]:room_id, [1]:timeslot
             insert_loc = insert_locs[np.argmax(scores_new[event_index,:])]
 #            print("Moved: " + str(timeslot_before) + str(event_insert) + ", To: " + str(insert_loc))
+            if self.has_lecturer_conflict2(schedule, insert_loc[1], event_insert):
+                print("ERROR")
+            elif self.has_prog_conflict(schedule, insert_loc[1], event_insert):
+                print("ERROR")
             # change room of event
             event_insert['RoomID'] = insert_loc[0]
             # insert in schedule
@@ -253,8 +269,8 @@ class Weekly_LS(Scheduler):
         
         return individual
     
-    def genetic_alg(self, population, num_iter, mutate_prob):
-        def crossover(population, selection = 'tournament', tournament_size=5):
+    def genetic_alg(self, population, num_iter):
+        def crossover(population, selection = 'tournament', tournament_size=self.tournament_size):
             candidates = list(population.keys())
             parents = []
                 
@@ -270,14 +286,20 @@ class Weekly_LS(Scheduler):
             child = {gene: {'CourseID': event['CourseID'], 'TimeSlot': None,
                             'RoomID': None } for gene, event in parents[0].items()}
             
+            course_parent_chooser = {course_code: None for course_code in self.courses.keys()}
+            for course_code, parent in course_parent_chooser.items():
+                parent = round(np.random.uniform(0,1))
+                
+            
             # Perform crossover with the parents 
             for gene, event in child.items():
-                if np.random.uniform(0,1) < 0.5:
+                if course_parent_chooser[event['CourseID']] == 0:
                     event['TimeSlot'] = parents[0][gene]['TimeSlot']
                 else:
                     event['TimeSlot'] = parents[1][gene]['TimeSlot']
             
             _,available_rt = self.get_room_times(self.get_timeslots())
+            
             # Allocate rooms to the courses (now: greedy)
             for event in child.values():
                 allocated = False
@@ -303,7 +325,7 @@ class Weekly_LS(Scheduler):
                      'Schedule': schedule, 'Score': self.evaluate(schedule)}
             
             # Perform local search on child
-            child = self.local_search(child)
+            child = self.local_search(child, self.LS_iter_GA)
             
             # determine worst individual
             worst = None
@@ -348,22 +370,25 @@ class Weekly_LS(Scheduler):
         sched = self.chrom_to_schedule(chrom)
         population['Individual 1']= {'Chromosome':chrom, 'Availables': avb, 
                            'Score':self.evaluate(sched), 'Schedule': sched}
-        # Add random chromosomes
-        for i in range(9):
-            chrom, avb = self.create_random_chrom(copy.deepcopy(room_time_avb),
-                                                    copy.deepcopy(rooms_times))
-            sched = self.chrom_to_schedule(chrom)
-            population['Individual ' + str(i+2)] = {'Chromosome':chrom, 'Availables': avb, 
-                           'Score':self.evaluate(sched), 'Schedule': sched}
         
+        if not self.only_local_search:
+            # Add random chromosomes
+            for i in range(self.population_size - 1):
+                chrom, avb = self.create_random_chrom(copy.deepcopy(room_time_avb),
+                                                        copy.deepcopy(rooms_times))
+                sched = self.chrom_to_schedule(chrom)
+                population['Individual ' + str(i+2)] = {'Chromosome':chrom, 'Availables': avb, 
+                               'Score':self.evaluate(sched), 'Schedule': sched}
+#        
         # Apply local search on every individual 
         for individ_num, individual in population.items():
             print("Local search for " + individ_num)
-            individual = self.local_search(individual,20)
+            individual = self.local_search(individual,self.LS_iter_init)
             individual['Chromosome'] = self.schedule_to_chrom(individual)
-            
-        # Perform Genetic Algorithm
-        population = self.genetic_alg(population, 10, 0.5)
+        
+        if not self.only_local_search:
+            # Perform Genetic Algorithm
+            population = self.genetic_alg(population, self.GA_iter)
         
         # Choose best individual for final schedule
         best_score = -999
@@ -418,6 +443,19 @@ class Weekly_LS(Scheduler):
                 for lecturer in scheduled_course['Lecturers'].split(';'):
                     if lecturer in course['Lecturers']:
                         return True
+        return False
+    
+    def has_prog_conflict2(self, schedule, timeslot, course_id, course_info):
+        courses = self.hard_constraints.get_courses()
+        if timeslot not in schedule.keys():
+            return False
+        #Iterate over all scheduled courses in a timeslot
+        for scheduled_course_info in schedule[timeslot]:
+            scheduled_course = courses[scheduled_course_info['CourseID']]
+            # Check if the students of the currently 'to-be-planned course' are already in a class (Excluding Electives!)
+            if scheduled_course['Programme'] == course_info['Programme']:
+                if courses[course_id]['Elective']==0 or scheduled_course['Elective'] == 0:
+                    return True
         return False
     
     def has_prog_conflict(self, schedule, timeslot, course):
