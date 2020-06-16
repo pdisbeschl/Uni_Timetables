@@ -9,7 +9,7 @@ author: Paul Disbeschl & PP ;P
 author: Guillermo Quintana Pelayo
 author: Camilla Lummerzheim
 
-Documented following PEP 257.
+sDocumented following PEP 257.
 """
 #Assumptions: 36 h per course / 7 = 5.2 hours per course per week
 #   Assume Everybody's available
@@ -23,6 +23,11 @@ from datetime import timedelta
 import math
 import copy
 import numpy as np
+import random
+from framework.evaluate import Evaluate
+from algorithm.tabu import Tabu
+import sys
+import datetime
 import random
 
 class Weekly_LS(Scheduler):
@@ -103,11 +108,11 @@ class Weekly_LS(Scheduler):
     
         """
     This is a very very hacky brute force algorithm to generate a simple feasible thing """
-    def create_random_chrom(self, events, room_time_avb, room_times, courses):
+    def create_random_chrom(self,room_time_avb, room_times):
         chrom = {}
         
         # make a schedule in a greedy way
-        for i,event in enumerate(events):
+        for i,event in enumerate(self.all_events):
             print("Processing " + event["CourseID"])
             course = event["CourseInfo"]
             course_id = event["CourseID"]
@@ -120,7 +125,7 @@ class Weekly_LS(Scheduler):
                 
                 #Check if the lecturer is already teaching a course at that time
                 # if clash, go to next room-time combo
-                if self.has_lecturer_conflict(chrom, courses, timeslot, course):
+                if self.has_lecturer_conflict(chrom, self.courses, timeslot, course):
                     continue
                 
                 # remove room-time from the list
@@ -133,162 +138,242 @@ class Weekly_LS(Scheduler):
                 break
         return chrom, room_times
     
-    def chrom_to_schedule(self, chrom, timeslots, courses):
+    def chrom_to_schedule(self, chrom):
         schedule = {}
-        for t in timeslots:
+        for t in self.timeslots:
             schedule[t] = []
         # translate chromosome into schedule
         for gene_no, gene in chrom.items():
             timeslot = gene["TimeSlot"]
             course_id = gene["CourseID"]
-            prog_id = courses[gene["CourseID"]]["Programme"]
+            prog_id = self.courses[gene["CourseID"]]["Programme"]
             room_id = gene["RoomID"]
             schedule[timeslot].append({"CourseID" : course_id
                                     , "ProgID" : prog_id, "RoomID" : room_id,
                                     "Gene_no": gene_no})
         return schedule
     
-    def local_search(self, individual, num_iter = 100):
-        def worst_removal(individual,q=1):
+    def schedule_to_chrom(self, individual):
+        chrom = {}
+        schedule = individual['Schedule']
+        for timeslot, events in schedule.items():
+            for i,event in enumerate(events):
+                gene_key = event['Gene_no']
+                gene = {'CourseID': event['CourseID'],
+                        'TimeSlot': timeslot,
+                        'RoomID': event['RoomID']}
+                chrom[gene_key] = gene
+        return chrom
+    
+    def local_search(self, individual, num_iter = 10, num_neighbors = 5):
+        ############### DESTROY & REPAIR OPERATORS############################
+        def worst_removal(individual,q=2):
             p = 6
-            cost_before = individual['Score']
+            score_before = individual['Score']
             # copy of the schedule, such that it is LOCAL!!
             schedule = copy.deepcopy(individual['Schedule'])
-            cost_diff = []
+            score_diff = []
             removed = []
             while q > 0:
                 event_list = []
-                delta_costs = []
+                delta_scores = []
                 for timeslot, events in schedule.items():
                     events_copy = copy.deepcopy(events)
                     for i,event in enumerate(events_copy):
                         event_copy = copy.deepcopy(event)
                         events.remove(event_copy)
-                        delta_cost = np.random.uniform(0,1) ############
-                        delta_costs.append(delta_cost)
+                        delta_score = score_before - self.evaluate(schedule)
+                        delta_scores.append(delta_score)
                         events.append(event_copy)
                         event_list.append((timeslot,event_copy))
                 
                 # find which event to remove
-                index_sorted = sorted(range(len(delta_costs)), key=lambda k: delta_costs[k])
+                index_sorted = sorted(range(len(delta_scores)), key=lambda k: delta_scores[k])
                 y = np.random.uniform(0,1)
                 event_removed = event_list[index_sorted[math.floor(y**p*len(event_list))]]
                 removed.append(event_removed)
-                cost_diff.append(delta_costs[index_sorted[math.floor(y**p*len(event_list))]])
+                score_diff.append(delta_scores[index_sorted[math.floor(y**p*len(event_list))]])
                 # remove from schedule copy
                 schedule[event_removed[0]].remove(event_removed[1])
                 q -= 1
             # update individual
             individual['Schedule'] = schedule
-            individual['Score'] = cost_before - sum(cost_diff) #######
+            individual['Score'] = score_before - sum(score_diff)
             # r[0] = timeslot, r[1] = event
             for r in removed:
-                individual['Chromosome'][r[1]['Gene_no']] = None
                 individual['Availables'][r[1]['RoomID']].append(r[0])
             return removed, individual
         
         def greedy_insertion(removed, individual):
             schedule = copy.deepcopy(individual['Schedule'])
-            cost_before = individual['Score']
-            cost_diff = []
+            scores_new = []
             insert_locs = []
-            for i in range(len(removed)):
-                cost_diff.append([])
+            for i, event in enumerate(removed):
+                scores_new.append([])
                 for room_id, timeslots in individual['Availables'].items():
+                    # if there are available timeslots in the room room_id
                     if len(timeslots) > 0:
                         for timeslot in timeslots:
                             if i == 0:
                                 insert_locs.append((room_id, timeslot))
-                            schedule[timeslot].append(removed[i][1])
-                            cost_diff[i].append(999 - cost_before) ################
-                            schedule[timeslot].remove(removed[i][1])
-            cost_diff = np.array(cost_diff)
-            min_costs = np.amin(cost_diff,axis=1)
-            event_index = np.argmin(min_costs)
+                            # check if insertion is viable
+                            if not self.has_lecturer_conflict2(schedule, timeslot, event[1]) and not self.has_prog_conflict(schedule, timeslot, event[1]):
+                                schedule[timeslot].append(event[1])
+                                scores_new[i].append(self.evaluate(schedule))
+                                schedule[timeslot].remove(event[1])
+                            else:
+                                scores_new[i].append(float('inf')*-1)
+                            
+            scores_new = np.array(scores_new)
+            best_scores = np.amax(scores_new,axis=1)
+            event_index = np.argmax(best_scores)
             event_insert = removed[event_index][1]
+            timeslot_before = removed[event_index][0]
             # new position of the before removed event [0]:room_id, [1]:timeslot
-            insert_loc = insert_locs[np.argmin(cost_diff[event_index,:])]
+            insert_loc = insert_locs[np.argmax(scores_new[event_index,:])]
+#            print("Moved: " + str(timeslot_before) + str(event_insert) + ", To: " + str(insert_loc))
             # change room of event
             event_insert['RoomID'] = insert_loc[0]
             # insert in schedule
             schedule[insert_loc[1]].append(event_insert)
             individual['Schedule'] = schedule
-            individual['Chromosome'][event_insert['Gene_no']] = ({'CourseID': event_insert['CourseID'],
-                      'RoomID': insert_loc[0], 'TimeSlot': insert_loc[1]})
+#            individual['Chromosome'][event_insert['Gene_no']] = ({'CourseID': event_insert['CourseID'],
+#                      'RoomID': insert_loc[0], 'TimeSlot': insert_loc[1]})
             individual['Availables'][insert_loc[0]].remove(insert_loc[1])
-            individual['Score'] += min_costs[event_index] # cost update
+            individual['Score'] = best_scores[event_index] # score update
             removed.remove(removed[event_index])
             return removed, individual
-        
+        #######################################################################
         for i in range(num_iter):
-            removed, individual_r = worst_removal(individual, 2)
+            print("LS iteration: " + str(i+1) + "/" +  str(num_iter))
+            removed, individual = worst_removal(individual)
             while len(removed) > 0:
-                removed, individual_r = greedy_insertion(removed, individual_r)
-            
-        return individual_r
-            
+                removed, individual = greedy_insertion(removed, individual)
+        individual['Chromosome'] = self.schedule_to_chrom(individual)
         
+        return individual
+    
+    def genetic_alg(self, population, num_iter, mutate_prob):
+        def crossover(population, selection = 'tournament', tournament_size=5):
+            candidates = list(population.keys())
+            parents = []
+                
+            # Tournament selection
+            if selection == 'tournament':
+                while len(parents) < 2:
+                    tour_selection = random.sample(candidates, tournament_size)
+                    scores = [population[individual]['Score'] for individual in tour_selection]
+                    parent = tour_selection[np.argmax(scores)]
+                    parents.append(population[parent]['Chromosome'])
+                    candidates.remove(parent)
+            
+            child = {gene: {'CourseID': event['CourseID'], 'TimeSlot': None,
+                            'RoomID': None } for gene, event in parents[0].items()}
+            
+            # Perform crossover with the parents 
+            for gene, event in child.items():
+                if np.random.uniform(0,1) < 0.5:
+                    event['TimeSlot'] = parents[0][gene]['TimeSlot']
+                else:
+                    event['TimeSlot'] = parents[1][gene]['TimeSlot']
+            
+            _,available_rt = self.get_room_times(self.get_timeslots())
+            # Allocate rooms to the courses (now: greedy)
+            for event in child.values():
+                allocated = False
+                while not allocated:
+                    for room, timeslots in available_rt.items():
+                        # check if timeslot in room is available
+                        if event['TimeSlot'] in timeslots:
+                            event['RoomID'] = room
+                            timeslots.remove(event['TimeSlot'])
+                            allocated = True
+                            break
+                    if not allocated:
+                        print("ALL ROOMS ARE UNAVAILABLE FOR TIMESLOT")
+            return child, available_rt
+            
+            
+        for i in range(num_iter):
+            print("GA iteration: " + str(i+1) + "/" + str(num_iter))
+            # MAKE CHILD
+            child, available_rt = crossover(population)
+            schedule = self.chrom_to_schedule(child)
+            child = {'Chromosome': child, 'Availables': available_rt, 
+                     'Schedule': schedule, 'Score': self.evaluate(schedule)}
+            
+            # Perform local search on child
+            child = self.local_search(child)
+            
+            # determine worst individual
+            worst = None
+            worst_score = 9999
+            for indiv_num, individual in population.items():
+                if individual['Score'] < worst_score:
+                    worst = indiv_num
+                    worst_score = individual['Score']
+            
+            # replace worst individual
+            print(worst,worst_score)
+            population[worst] = child
+            
+            
+            
+        return population
+            
         
     
     def generate_weekly_timetable(self,weekly_courses):
         #The final json shedule in the format: {BAY1: {Timeslot: CouseID, Timeslot:CourseID}, BAY2:{...}...}
         #Create a clone of the courses that we can manipulate
+        self.courses = weekly_courses
+        self.all_events, self.programmes = self.get_events_programmes(self.courses)
         
+        self.timeslots = self.get_timeslots()
         
-        # create events for each course: each event is max 2 contact hours
-        # events with 1 hour duration still take full timeslot
-        all_events = []
-        programmes = []
-        for course_id, course in weekly_courses.items():
-            if course["Programme"] not in programmes:
-                programmes.append(course["Programme"])
-            for i in range(math.ceil(course["Contact hours"]/2)):
-                all_events.append({"CourseID": course_id, "CourseInfo": course})
-                
+        self.times, self.days = self.get_times_days(self.timeslots)
         
-        # create dictionary of all timeslots and rooms combinations
-        timeslots = copy.deepcopy(self.hard_constraints.get_free_timeslots())[0:20]
-        timeslots_str = [str(t) for t in timeslots]
-        timeslots = timeslots_str
-        times = []
-        days = []
-        for t in timeslots:
-            if t[0:10] not in days:
-                days.append(t[0:10]) 
-            if t[-8:] not in times:
-                times.append(t[-8:])
-        rooms = self.hard_constraints.get_rooms()
-        rooms_times = {}
-        rt_avb = {}
-        for room_id, room_info in rooms.items():
-            rooms_times[room_id] = copy.deepcopy(timeslots)
-            for t in timeslots:
-                rt_avb[room_id+"_"+t] = {"RoomID":room_id,"TimeSlot":t}
-        room_time_avb = copy.deepcopy(rt_avb)
+        room_time_avb, rooms_times = self.get_room_times(self.timeslots)
+        
+        print(self.courses)
         
         # a population is a list of chromosomes. Each chromosome represents a 
         # solution
-        population = []        
+        population = {}     
         # a chromosome is a dictionary with genes, where each gene is a dictionary
         # with {courseID, timeslot, roomID}
-        chrom,avb = self.create_greedy_chrom(all_events, copy.deepcopy(room_time_avb),
+        # Initialize one chromosome using greedy algorithm
+        chrom,avb = self.create_greedy_chrom(self.all_events, copy.deepcopy(room_time_avb),
                                                     copy.deepcopy(rooms_times), weekly_courses)
-        sched = self.chrom_to_schedule(chrom, timeslots, weekly_courses)
-        population.append({'Chromosome':chrom, 'Availables': avb, 
-                           'Score':float('nan'), 'Schedule': sched})
-        for i in range(39):
-            chrom, avb = self.create_random_chrom(all_events, copy.deepcopy(room_time_avb),
-                                                    copy.deepcopy(rooms_times), weekly_courses)
-            sched = self.chrom_to_schedule(chrom, timeslots, weekly_courses)
-            population.append({'Chromosome':chrom, 'Availables': avb, 
-                           'Score':float('nan'), 'Schedule': sched})
-    
-        individual = population[0]
-        individual = self.local_search(individual)
+        sched = self.chrom_to_schedule(chrom)
+        population['Individual 1']= {'Chromosome':chrom, 'Availables': avb, 
+                           'Score':self.evaluate(sched), 'Schedule': sched}
+        # Add random chromosomes
+        for i in range(9):
+            chrom, avb = self.create_random_chrom(copy.deepcopy(room_time_avb),
+                                                    copy.deepcopy(rooms_times))
+            sched = self.chrom_to_schedule(chrom)
+            population['Individual ' + str(i+2)] = {'Chromosome':chrom, 'Availables': avb, 
+                           'Score':self.evaluate(sched), 'Schedule': sched}
         
+        # Apply local search on every individual 
+        for individ_num, individual in population.items():
+            print("Local search for " + individ_num)
+            individual = self.local_search(individual,20)
+            individual['Chromosome'] = self.schedule_to_chrom(individual)
+            
+        # Perform Genetic Algorithm
+        population = self.genetic_alg(population, 10, 0.5)
         
+        # Choose best individual for final schedule
+        best_score = -999
+        best_indiv = float('nan')
         
-        chrom_final = individual['Chromosome']
+        for individ_num,individual in population.items():
+            if individual['Score'] > best_score:
+                best_score = individual['Score']
+                best_indiv = individ_num
+        chrom_final = population[best_indiv]['Chromosome']
         # translate chromosome into schedule
         for gene_no, gene in chrom_final.items():
             timeslot = gene["TimeSlot"]
@@ -297,8 +382,10 @@ class Weekly_LS(Scheduler):
             room_id = gene["RoomID"]
             self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id+
                 "("+str(weekly_courses[course_id]['Elective'])+")", "ProgID" : prog_id, "RoomID" : room_id})
-
-
+        
+        for individual in population.values():
+            print(self.evaluate(individual['Schedule']))
+        return population
     """
     Creates a schedule per program: per day and per timeslot will be either empty
     or a scheduled course
@@ -316,6 +403,7 @@ class Weekly_LS(Scheduler):
                 if courses[gene["CourseID"]]["Programme"] == programme:
                     schedules[programme][gene["TimeSlot"][0:10]][gene["TimeSlot"][-8:]] = gene
         return schedules
+    
     ########################### HARD CONSTRAINTS ##############################
     """
     Hard constraint 1: lecturer can only give one class per timeslot
@@ -331,45 +419,80 @@ class Weekly_LS(Scheduler):
                     if lecturer in course['Lecturers']:
                         return True
         return False
-    ########################### SOFT CONSTRAINTS ##############################
-    """
-    Soft constraint 1: Total number of contact hours on a day must not exceed 4?
-    Returns true if violated
-    """
-    def exceeds_max_hours(self, schedules, max_contact_hours, courses):
-        # check for each day and each programme if there are more than max_contact_hours
-        penalty_counter = 0
-        for program, schedule in schedules.items():
-            # look for each day if there is a violation
-            for day, day_schedule in schedule.items():
-                contact_hours = 0
-                elective_counter = {}
-                for time, event in day_schedule.items():                        
-                    if event is not None:
-                        if event["CourseID"] not in elective_counter.keys() and courses[event["CourseID"]]["Elective"] == 1:
-                            elective_counter[event["CourseID"]] = 0
-                        # update hour counter if compulsory course
-                        if courses[event["CourseID"]]["Elective"] == 0:
-                            contact_hours += 2
-                        else:
-                            elective_counter[event["CourseID"]] += 2
-                            
-                # can only do this if there are scheduled electives on this day:
-                # contact hours of compulsory + max num. of hours scheduled electives
-                if bool(elective_counter):
-                    contact_hours = contact_hours + max(list(elective_counter.values()))
-                    
-                # update penalty counter if it exceeds maximum contact hours
-                if contact_hours > max_contact_hours:
-                    penalty_counter += 1
-                    #print("program:" + program + ", violation on day:" + day)
-                
-                
-            
     
+    def has_prog_conflict(self, schedule, timeslot, course):
+        courses = self.hard_constraints.get_courses()
+        if timeslot not in schedule.keys():
+            return False
+        #Iterate over all scheduled courses in a timeslot
+        for scheduled_course_info in schedule[timeslot]:
+            scheduled_course = courses[scheduled_course_info['CourseID']]
+            # Check if the students of the currently 'to-be-planned course' are already in a class (Excluding Electives!)
+            if scheduled_course['Programme'] == course['ProgID']:
+                if courses[course['CourseID']]['Elective']==0 or scheduled_course['Elective'] == 0:
+                    return True
+        return False
+
+    def has_lecturer_conflict2(self, schedule, timeslot, course):
+        courses = self.hard_constraints.get_courses()
+        if timeslot not in schedule.keys():
+            return False
+        #Iterate over all scheduled courses in a timeslot
+        for scheduled_course_info in schedule[timeslot]:
+            scheduled_course = courses[scheduled_course_info['CourseID']]
+            #For each scheduled course in the timeslot, iterate over all lecturers
+            for lecturer in scheduled_course['Lecturers'].split(';'):
+                # For each scheduled course in the timeslot, check if the lecturer of the current course is already teaching a course
+                if lecturer in courses[course['CourseID']]['Lecturers']:
+                    return True
+        return False
+    
+    def get_events_programmes(self, weekly_courses):
+        # create events for each course: each event is max 2 contact hours
+        # events with 1 hour duration still take full timeslot
+        all_events = []
+        programmes = []
+        for course_id, course in weekly_courses.items():
+            if course["Programme"] not in programmes:
+                programmes.append(course["Programme"])
+            for i in range(math.ceil(course["Contact hours"]/2)):
+                all_events.append({"CourseID": course_id, "CourseInfo": course})
+        return all_events, programmes
                 
-
-
+    def get_timeslots(self):    
+        # create dictionary of all timeslots and rooms combinations
+        timeslots = copy.deepcopy(self.hard_constraints.get_free_timeslots())[0:20]
+        timeslots_str = [str(t) for t in timeslots]
+        return timeslots_str
+    
+    def get_times_days(self, timeslots):
+        times = []
+        days = []
+        for t in timeslots:
+            if t[0:10] not in days:
+                days.append(t[0:10]) 
+            if t[-8:] not in times:
+                times.append(t[-8:])
+        return times, days
+    
+    def get_room_times(self, timeslots):
+        rooms = self.hard_constraints.get_rooms()
+        rooms_times = {}
+        rt_avb = {}
+        for room_id, room_info in rooms.items():
+            rooms_times[room_id] = copy.deepcopy(timeslots)
+            for t in timeslots:
+                rt_avb[room_id+"_"+t] = {"RoomID":room_id,"TimeSlot":t}
+        room_time_avb = copy.deepcopy(rt_avb)
+        rooms_times = copy.deepcopy(rooms_times)
+        return room_time_avb, rooms_times
 
     def get_schedule(self):
         return self.schedule
+    
+    def evaluate(self, schedule):
+        """
+        Evaluates a schedule assuming that no hard constraint is violated.
+        """
+        e = Evaluate(schedule, True)
+        return e.get_score()

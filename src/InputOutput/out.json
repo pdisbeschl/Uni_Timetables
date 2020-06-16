@@ -1,73 +1,29 @@
 {
+    "2019-09-02 11:00:00": [
+        {
+            "CourseID": "KEN1110(0)",
+            "ProgID": "BAY1",
+            "RoomID": "C1"
+        }
+    ],
     "2019-09-02 13:30:00": [
         {
             "CourseID": "KEN1110(0)",
             "ProgID": "BAY1",
             "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN4113(0)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C2"
         }
     ],
-    "2019-09-05 11:00:00": [
-        {
-            "CourseID": "KEN1110(0)",
-            "ProgID": "BAY1",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN1120(0)",
-            "ProgID": "BAY1",
-            "RoomID": "C1"
-        }
-    ],
-    "2019-09-04 16:00:00": [
-        {
-            "CourseID": "KEN1110(0)",
-            "ProgID": "BAY1",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN3140(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C1"
-        }
-    ],
-    "2019-09-04 13:30:00": [
-        {
-            "CourseID": "KEN1120(0)",
-            "ProgID": "BAY1",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN2130(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN4222(1)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C3"
-        }
-    ],
-    "2019-09-02 11:00:00": [
+    "2019-09-02 16:00:00": [
         {
             "CourseID": "KEN1120(0)",
             "ProgID": "BAY1",
             "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN2120(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C1"
         }
     ],
-    "2019-09-03 13:30:00": [
+    "2019-09-03 11:00:00": [
         {
-            "CourseID": "KEN1130(0)",
-            "ProgID": "BAY1",
+            "CourseID": "KEN4115(0)",
+            "ProgID": "MAAIY1",
             "RoomID": "C1"
         },
         {
@@ -76,16 +32,165 @@
             "RoomID": "C3"
         },
         {
-            "CourseID": "KEN2560(1)",
+            "CourseID": "KEN3130(1)",
             "ProgID": "BAY3",
             "RoomID": "C2"
         }
     ],
+    "2019-09-03 13:30:00": [
+        {
+            "CourseID": "KEN4115(0)",
+            "ProgID": "MAAIY1",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN2560(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C2"
+        },
+        {
+            "CourseID": "KEN1130(0)",
+            "ProgID": "BAY1",
+            "RoomID": "C3"
+        }
+    ],
     "2019-09-03 16:00:00": [
+        {
+            "CourseID": "KEN4123(0)",
+            "ProgID": "MAAIY1",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN2111(1)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C2"
+        },
+        {
+            "CourseID": "KEN3140(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C4"
+        },
+        {
+            "CourseID": "KEN4221(1)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C5"
+        },
+        {
+            "CourseID": "KEN1130(0)",
+            "ProgID": "BAY1",
+            "RoomID": "C6"
+        },
+        {
+            "CourseID": "KEN2130(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C3"
+        }
+    ],
+    "2019-09-04 11:00:00": [
+        {
+            "CourseID": "KEN2560(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN2110(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C2"
+        }
+    ],
+    "2019-09-04 13:30:00": [
+        {
+            "CourseID": "KEN2120(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN3234(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C2"
+        }
+    ],
+    "2019-09-04 16:00:00": [
+        {
+            "CourseID": "KEN2110(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN3234(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C2"
+        },
+        {
+            "CourseID": "KEN3300(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C3"
+        }
+    ],
+    "2019-09-05 11:00:00": [
         {
             "CourseID": "KEN1130(0)",
             "ProgID": "BAY1",
             "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN3236(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C2"
+        },
+        {
+            "CourseID": "KEN3130(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C3"
+        },
+        {
+            "CourseID": "KEN4113(0)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C4"
+        },
+        {
+            "CourseID": "KEN2120(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C5"
+        }
+    ],
+    "2019-09-05 13:30:00": [
+        {
+            "CourseID": "KEN1110(0)",
+            "ProgID": "BAY1",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN3130(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C3"
+        },
+        {
+            "CourseID": "KEN4222(1)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C4"
+        },
+        {
+            "CourseID": "KEN2120(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C5"
+        },
+        {
+            "CourseID": "KEN3236(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C2"
+        }
+    ],
+    "2019-09-05 16:00:00": [
+        {
+            "CourseID": "KEN3236(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN1120(0)",
+            "ProgID": "BAY1",
+            "RoomID": "C2"
         },
         {
             "CourseID": "KEN1300(0)",
@@ -93,115 +198,23 @@
             "RoomID": "C3"
         },
         {
-            "CourseID": "KEN4115(0)",
-            "ProgID": "MAAIY1",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-05 13:30:00": [
+            "CourseID": "KEN3140(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C4"
+        },
         {
-            "CourseID": "KEN1130(0)",
-            "ProgID": "BAY1",
-            "RoomID": "C1"
+            "CourseID": "KEN2110(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C5"
         },
         {
             "CourseID": "KEN4222(1)",
             "ProgID": "MADSDMY1",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-03 08:30:00": [
-        {
-            "CourseID": "KEN2110(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN3130(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C3"
-        },
-        {
-            "CourseID": "KEN4130(0)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C1"
-        }
-    ],
-    "2019-09-06 13:30:00": [
-        {
-            "CourseID": "KEN2110(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C3"
-        },
-        {
-            "CourseID": "KEN2120(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN4115(0)",
-            "ProgID": "MAAIY1",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-05 08:30:00": [
-        {
-            "CourseID": "KEN2110(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN2300(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C3"
-        },
-        {
-            "CourseID": "KEN3236(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-02 08:30:00": [
-        {
-            "CourseID": "KEN2120(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C3"
-        },
-        {
-            "CourseID": "KEN3234(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN4221(1)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C1"
+            "RoomID": "C6"
         }
     ],
     "2019-09-06 08:30:00": [
         {
-            "CourseID": "KEN2130(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN3130(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C3"
-        },
-        {
-            "CourseID": "KEN3300(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-02 16:00:00": [
-        {
-            "CourseID": "KEN2130(0)",
-            "ProgID": "BAY2",
-            "RoomID": "C2"
-        },
-        {
             "CourseID": "KEN2560(1)",
             "ProgID": "BAY3",
             "RoomID": "C1"
@@ -209,84 +222,63 @@
         {
             "CourseID": "KEN2111(1)",
             "ProgID": "MADSDMY1",
-            "RoomID": "C3"
-        }
-    ],
-    "2019-09-04 08:30:00": [
+            "RoomID": "C2"
+        },
         {
-            "CourseID": "KEN2300(0)",
+            "CourseID": "KEN2130(0)",
             "ProgID": "BAY2",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN4113(0)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C2"
-        }
-    ],
-    "2019-09-03 11:00:00": [
-        {
-            "CourseID": "KEN3234(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN4221(1)",
-            "ProgID": "MADSDMY1",
-            "RoomID": "C2"
+            "RoomID": "C3"
         }
     ],
     "2019-09-06 11:00:00": [
         {
-            "CourseID": "KEN2560(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN3130(1)",
-            "ProgID": "BAY3",
+            "CourseID": "KEN2130(0)",
+            "ProgID": "BAY2",
             "RoomID": "C1"
         },
         {
-            "CourseID": "KEN3236(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C3"
-        }
-    ],
-    "2019-09-05 16:00:00": [
-        {
-            "CourseID": "KEN3140(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C1"
-        },
-        {
-            "CourseID": "KEN3236(1)",
-            "ProgID": "BAY3",
+            "CourseID": "KEN1120(0)",
+            "ProgID": "BAY1",
             "RoomID": "C2"
         }
     ],
-    "2019-09-04 11:00:00": [
+    "2019-09-06 13:30:00": [
         {
-            "CourseID": "KEN3140(1)",
-            "ProgID": "BAY3",
-            "RoomID": "C2"
-        },
-        {
-            "CourseID": "KEN2111(1)",
+            "CourseID": "KEN4221(1)",
             "ProgID": "MADSDMY1",
             "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN2300(0)",
+            "ProgID": "BAY2",
+            "RoomID": "C2"
+        },
+        {
+            "CourseID": "KEN3140(1)",
+            "ProgID": "BAY3",
+            "RoomID": "C3"
         }
     ],
     "2019-09-06 16:00:00": [
         {
             "CourseID": "KEN4123(0)",
             "ProgID": "MAAIY1",
+            "RoomID": "C1"
+        },
+        {
+            "CourseID": "KEN2300(0)",
+            "ProgID": "BAY2",
             "RoomID": "C2"
         },
         {
-            "CourseID": "KEN4123(0)",
-            "ProgID": "MAAIY1",
-            "RoomID": "C1"
+            "CourseID": "KEN4130(0)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C3"
+        },
+        {
+            "CourseID": "KEN4113(0)",
+            "ProgID": "MADSDMY1",
+            "RoomID": "C4"
         }
     ]
 }
