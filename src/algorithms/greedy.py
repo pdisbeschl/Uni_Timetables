@@ -18,9 +18,9 @@ import json, os
 class Greedy(Scheduler):
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self):
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
         self.logFile.write('Initialising Greedy algorithm\n')
-        super().__init__()
+        super().__init__(excel_file_path)
 
     """
     This is a very very hacky brute force algorithm to generate a simple feasible """

@@ -31,8 +31,8 @@ idea:
 
 
 class Genetic(Scheduler):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+        super().__init__(excel_file_path)
         self.population = []
         self.population_size = 10
         self.individual_size = 20 * 8
@@ -46,6 +46,7 @@ class Genetic(Scheduler):
         self.courses = self.divide_courses_to_slot()
 
     def generate_timetable(self):
+        print("Running genetic...")
         self.create_population()
         pop = self.population
         final_idx = 0
@@ -55,7 +56,7 @@ class Genetic(Scheduler):
         # num of constraints * courses
         if check_soft_constraints:
             max_fit = 6 * len(self.courses) + 1
-            self.generations *= 2
+            self.generations += 1000
         else:
             max_fit = 5 * len(self.courses)
 
@@ -65,32 +66,34 @@ class Genetic(Scheduler):
             for i in pop:
                 score = self.fitness(i, check_soft_constraints)
                 list_fitness_pop.append(score)
-            # TODO: test only remove for when done
-            for i in range(1):
-                parent1, parent2 = self.selection()
-                # parent1, parent2 = self.selection1(list_fitness_pop)
-                individual1_new, individual2_new = self.crossover(parent1, parent2)
-                individual1_new = self.mutation(individual1_new)
-                individual2_new = self.mutation(individual2_new)
 
-                # check if new generations are better or not.
-                # If yes replace weakest individuals from previous generation with new generations
-                if self.fitness(individual1_new) > self.fitness(pop[np.argmin(list_fitness_pop)]):
-                    pop[np.argmin(list_fitness_pop)] = individual1_new
-                    list_fitness_pop[np.argmin(list_fitness_pop)] = self.fitness(individual1_new)
-                if self.fitness(individual2_new) > self.fitness(pop[np.argmin(list_fitness_pop)]):
-                    pop[np.argmin(list_fitness_pop)] = individual2_new
-                    list_fitness_pop[np.argmin(list_fitness_pop)] = self.fitness(individual2_new)
+            parent1, parent2 = self.selection()
+            # parent1, parent2 = self.selection1(list_fitness_pop)
+            individual1_new, individual2_new = self.crossover(parent1, parent2)
+            individual1_new = self.mutation(individual1_new)
+            individual2_new = self.mutation(individual2_new)
+
+            # check if new generations are better or not.
+            # If yes replace weakest individuals from previous generation with new generations
+            if self.fitness(individual1_new) > self.fitness(pop[np.argmin(list_fitness_pop)]):
+                pop[np.argmin(list_fitness_pop)] = individual1_new
+                list_fitness_pop[np.argmin(list_fitness_pop)] = self.fitness(individual1_new)
+            if self.fitness(individual2_new) > self.fitness(pop[np.argmin(list_fitness_pop)]):
+                pop[np.argmin(list_fitness_pop)] = individual2_new
+                list_fitness_pop[np.argmin(list_fitness_pop)] = self.fitness(individual2_new)
 
             final_idx = np.argmax(list_fitness_pop)
 
             count += 1
             if self.fitness(pop[final_idx]) >= 5 * len(self.courses):
-                print("gen {} best fit: {}/{} rate {:.2f}% (maybe satisfy all hard constraints)".format(
-                    count, self.fitness(pop[final_idx]), max_fit, self.fitness(pop[final_idx]) / max_fit * 100))
+                print("gen {}/{} best fit: {}/{} rate {:.2f}% (maybe satisfy all hard constraints)".format(
+                    count, self.generations, self.fitness(pop[final_idx]), max_fit,
+                    self.fitness(pop[final_idx]) / max_fit * 100))
             else:
-                print("gen {} best fit: {}/{} rate {:.2f}%".format(
-                    count, self.fitness(pop[final_idx]), max_fit, self.fitness(pop[final_idx]) / max_fit * 100))
+                print("gen {}/{} best fit: {}/{} rate {:.2f}%".format(
+                    count, self.generations, self.fitness(pop[final_idx]), max_fit,
+                    self.fitness(pop[final_idx]) / max_fit * 100))
+
         print("done!")
         print("fail {}".format(max_fit - self.fitness(pop[final_idx])))
         result = pop[final_idx]
@@ -117,23 +120,6 @@ class Genetic(Scheduler):
                 individual1_new[ind1_idx] = ind1_course_id
                 individual2_new[ind2_idx] = ind2_course_id
         return individual1_new, individual2_new
-
-    # TODO: test only remove when done
-    # mutation without freeslot
-    def mutation1(self, individual):
-        individual_m = individual.copy()
-        for i in range(self.individual_size):
-            if random.random() < self.mutation_probability and individual_m[i] != 0:
-                courses_id = np.where(individual_m != 0)
-                while True:
-                    slected_id = random.randint(1, len(courses_id[0]))
-                    if slected_id != individual_m[i]:
-                        break
-                m_id = individual_m[i]
-                individual_m[i] = slected_id
-                courses_m_idx = np.where(individual_m == slected_id)[0][0]
-                individual_m[courses_m_idx] = m_id
-        return individual_m
 
     def mutation(self, individual):
         individual_m = individual.copy()
@@ -358,8 +344,6 @@ class Genetic(Scheduler):
         end_slot = start_slot + 24
 
         gen_course_id = list_courses[int(gen) - 1]
-        gen_course = courses[gen_course_id]
-
         needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
         if (pos + 8 * (needed_slot_per_week - 1)) > end_slot:
             return True
@@ -375,8 +359,6 @@ class Genetic(Scheduler):
         end_slot = start_slot + 24
 
         gen_course_id = list_courses[int(gen) - 1]
-        gen_course = courses[gen_course_id]
-
         needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
         for i in range(pos + 8, end_slot + 1, 8):
             needed_slot_per_week -= 1
@@ -415,7 +397,6 @@ class Genetic(Scheduler):
                 start_slot = (idx % 8) + math.floor(idx / 32) * 32
                 end_slot = start_slot + 24
                 gen_course_id = list_courses[int(value) - 1]
-                gen_course = courses[gen_course_id]
                 needed_slot_per_week = self.calculate_need_slot_per_week(gen_course_id)
                 needed_slot_per_week -= 1
                 for i in range(idx + 8, end_slot + 1, 8):

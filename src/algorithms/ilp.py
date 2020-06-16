@@ -22,8 +22,8 @@ A class to build a schedule computed bz an ILP
 class ILP(Scheduler):
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self):
-        super().__init__()
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+        super().__init__( excel_file_path)
         #Get the evaluation metrics
         metrics_file_path = "framework/evaluation_metrics.json"
         with open(os.path.realpath(metrics_file_path), "r") as f:
@@ -40,7 +40,7 @@ class ILP(Scheduler):
         #Enable/Supresses output from the ILP
         self.model.verbose = 1
         #Allow all cores to be used for faster runtime
-        self.model.threads = -1
+        #self.model.threads = -1 #FIXME this line causes trouble when using the ILP with the GUI
 
     """
     Method which is called to generate the timetable

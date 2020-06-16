@@ -29,9 +29,11 @@ import pprint
 import os 
 import re
 import copy
+import shutil
 from json2html import *
 import webbrowser
 
+''' FIXME needs rework 
 def see_output(out):
     new_out = {}
     for i in out.keys():
@@ -42,8 +44,9 @@ def see_output(out):
         f.write(json2html.convert(json=json.dumps([new_out], indent=4)))
     url = "file://"+os.path.realpath('./InputOutput/out.html')
     webbrowser.open(url,new=2)
+'''
 
-def see_output2(out, period_info):
+def see_output2(out, period_info, outputDir):
     version = '0.1' #FIXME change to add up with new versions
     fixed_out = {}
     for i in out.keys():
@@ -64,7 +67,7 @@ def see_output2(out, period_info):
     for i in range(1,num_weeks):
         html_original = html_original.replace('<!--0-->','\n'+div_1)
         html_original = html_original.replace('NUMWEEK',str(i))
-    out_file =  open(os.path.realpath('./InputOutput/out.html'), "w")
+    out_file =  open(os.path.realpath(outputDir+'out.html'), "w")
     out_file.write('<head>\n'
                    '<link rel="stylesheet" type="text/css" href="style.css">\n'
                    '<script src="http://code.jquery.com/jquery-1.9.1.js"></script>\n' 
@@ -122,8 +125,12 @@ def see_output2(out, period_info):
     #Write result
     out_file.write(full_html)
     out_file.close()
+    #Copy required format files 
+    if outputDir != './InputOutput/':
+        shutil.copy('./InputOutput/style.css', outputDir+'style.css')
+        shutil.copy('./InputOutput/edit_schedule.js', outputDir+'edit_schedule.js')
     #Open browser
-    url = "file://"+os.path.realpath('./InputOutput/out.html')
+    url = "file://"+os.path.realpath(outputDir+'out.html')
     webbrowser.open(url,new=2)
 
 def fill_table_classes(full_html, period_info):
@@ -164,31 +171,42 @@ class GUI:
     def setup_buttons(self):
         self.form.pushButton.clicked.connect(self.generate_gui)
         self.form.browseButtonInput.clicked.connect(self.browseFile)
+        self.form.browseButtonOutput.clicked.connect(self.browseDir)
 
     def generate_gui(self):
-        self.generate(self.form.algComboBox.currentIndex())
+        alg = self.form.algComboBox.currentIndex()
+        if self.inputFile == '' and self.outputDir == '':
+            self.generate(alg)
+        elif self.outputDir == '':
+            self.generate(alg, self.inputFile)
+        elif self.inputFile == '':
+            self.generate(alg, outputDir=self.outputDir)
+        else:
+            print(self.outputDir)
+            self.generate(alg, self.inputFile, self.outputDir)
     
-    def generate(self, alg):
+    def generate(self, alg, excel_file_path='./InputOutput/Sample.xlsx', outputDir='./InputOutput/'):
         #alg = str(self.form.algComboBox.currentText())¡
         selectedAlgorithm = alg
         print("Calling main")
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')
 
-        algorithms = [ILP(), Greedy(), Tabu(), Random(), Weekly(),Genetic()]
+        algorithms = [ILP(excel_file_path), Greedy(excel_file_path),
+                      Tabu(excel_file_path), Random(excel_file_path),
+                      Weekly(excel_file_path),Genetic(excel_file_path)]
         x = algorithms[selectedAlgorithm]
-        
         x.generate_timetable()
-        eval = Evaluate(x.get_schedule(),check_hard_constraints=True)
+        eval = Evaluate(x.get_schedule())
         print(eval.get_score())
         pp = pprint.PrettyPrinter(depth=6)
-        output = open(os.path.realpath('./InputOutput/out.json'), "w")
+        output = open(os.path.realpath(outputDir+'out.json'), "w")
 
         out = x.get_schedule()
         output.write(json.dumps(out, indent = 4))
-        see_output2(out, x.get_period_info())
+        see_output2(out, x.get_period_info(), outputDir)
 
-        output2 = open(os.path.realpath('./InputOutput/schedule_info.js'), "w")
+        output2 = open(os.path.realpath(outputDir+'schedule_info.js'), "w")
         json_out = json.dumps(out)
         #Replace NaN with "NaN"
         output2.write('var schedule = JSON.parse(\'' + json.dumps(out) + '\')')
@@ -218,3 +236,9 @@ class GUI:
                 print( "setting file name: " + fileName )
                 self.inputFile = fileName
                 self.refreshAll()
+
+    def browseDir(self):
+        dialog = QtWidgets.QFileDialog()
+        self.outputDir = dialog.getExistingDirectory(None, "Select Folder")+'/'
+        print( "setting output dir: " + self.outputDir )
+        self.refreshAll()

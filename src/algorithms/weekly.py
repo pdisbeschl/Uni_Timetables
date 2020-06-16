@@ -31,9 +31,9 @@ from datetime import timedelta
 class Weekly(Scheduler):
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
 
-    def __init__(self):
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
         self.logFile.write('Initialising Weekly algorithm\n')
-        super().__init__()
+        super().__init__(excel_file_path)
 
 
 
