@@ -30,9 +30,9 @@ if __name__ == '__main__':
 
     #### Load a timetable and get the score (from the json output)
     '''
-    schedule = json.load(open('./examples/MA_AI-DSDM_Y1_p5.json','r'))
+    schedule = json.load(open('./examples/Phase2-2019.json','r'))
     #schedule = json.load(open('./InputOutput/out.json','r'))
     schedule = {str(k): v for k, v in schedule.items()}
     print(schedule)
-    Evaluate(schedule, False)
+    Evaluate(schedule, True, False, './examples/Phase2-2019.xlsx')
     '''
