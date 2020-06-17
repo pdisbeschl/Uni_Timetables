@@ -12,7 +12,10 @@ var course_colours = ['#FFB5E8', '#B28DFF', '#DCD3FF', '#AFF8D8', '#BFFCC6', '#F
 //A dictionary which maps a course to the used colour
 var colour_palette = {"":"#FFFFFF"};
 var swap = false;
+//cell, timeslot, course
 var selected_course;
+//Map that maps courses courses and if they have a conflict
+var conflictMap = {};
 
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
@@ -41,7 +44,9 @@ window.addEventListener('load', function () {
 /*
 Click the swap menu button
 */
-function set_swap_courses_true(course) {
+function set_swap_courses_true() {
+    findConflicts(selected_course);
+    colourCoursesGradient();
     swap = true;
 }
 
@@ -74,10 +79,13 @@ function swap_courses(cell) {
     colourCourses();
 
     $(".overlay").css('max-height', '0%');
+    selected_course = undefined;
     swap = false;
 }
 
-
+/*
+Updates the cell content and classes when swapping two cells
+*/
 function updateCell(cell1, course1, cell2, course2) {
     room_cell_id1 = cell1.id.replace('course','room');
     room_cell_id2 = cell2.id.replace('course','room');
@@ -140,6 +148,82 @@ function removeCourseFromSchedule(timeslot, course) {
     return c;
 }
 
+/*
+Iterate over the schedule and find conflicts, colouring them in the respective colour
+*/
+function findConflicts(course_info) {
+    if (selected_course === undefined) {
+        return
+    }
+    //Get all the elements in the schedule that we have.
+
+    /*
+    Case1: We clicked on a cell which has a course in it:
+        For every cell we want to extract the teacher and the year. If the year is the same as the selected one and there
+        is a course scheduled then we flag the cell as unavailable.
+        If the year is not the same we check if the teacher is the same as from the selected cell
+    Case2: We clicked on an empty cell:
+        We can ignore the year check since it has no course scheduled
+        We need
+    */
+    conflictMap = {};
+    [current_cell, current_timeslot, current_course] = selected_course
+    cells = $('.cell')
+
+    for (i = 0; i < cells.length; i++) {
+        //We want to ignore the room cells
+        if (cells[i].id.includes('room')) {
+            continue;
+        }
+        iter_cell = cells[i];
+        [iter_cell, iter_timeslot, iter_course] = getCourseInfo(iter_cell)
+        room_cell_id = iter_cell.id.replace('course','room');
+
+        //We only need to check for the timeslots of the year. We can check if a lecturer is scheduled htrough the json data
+        if(iter_cell.dataset.year != current_cell.dataset.year) {
+            continue;
+        }
+
+        //Can we move the course in the current timeslot to the selected timeslot
+        if (hasLecturerOverlap(current_timeslot, iter_course)) {
+            conflictMap[room_cell_id] = 2;
+            continue;
+        }
+
+        //Can we move the selected course to the current timeslot
+        if (hasLecturerOverlap(iter_timeslot, current_course)) {
+            conflictMap[room_cell_id] = 1;
+            continue;
+        }
+
+        else {
+            conflictMap[room_cell_id] = 0;
+        }
+    }
+}
+
+/**
+
+**/
+function hasLecturerOverlap(timeslot, course) {
+    if(schedule_json[timeslot] === undefined || course === undefined) {
+        return false;
+    }
+    else {
+        for(j = 0; j < schedule_json[timeslot].length; j++) {
+            if(schedule_json[timeslot][j]["ProgID"] != course["ProgID"]) {
+                console.log("Test")
+                lecturers = schedule_json[timeslot][j]["Lecturers"].split(';');
+                for(k = 0; k < lecturers.length; k++) {
+                    if(course["Lecturers"].includes(lecturers[k]))
+                        return true;
+                }
+            }
+        }
+    }
+    return false;
+}
+
 /**
 Upon clicking on a cell highlight the cell and show the information about the course
 **/
@@ -199,6 +283,9 @@ function selectCourse(cell) {
     return
 }
 
+/**
+Returns the clicked cell, the timeslot of that cell and the course as in the schedule
+**/
 function getCourseInfo(cell) {
     //Get the course id - If we clicked on a room cell we just redirect to the course cell
     course_cell_id = cell.id.replace('room','course');
@@ -239,12 +326,39 @@ function loadColourPalette() {
 Iterate over all cells that have a course scheduled and colour the cells
 */
 function colourCourses() {
-    $('.cell').css("background-color", "#FFFFFF");
+    cells = $('.cell');
+    for (i = 0; i < cells.length; i++) {
+        $(cells[i]).css("background", "#FFFFFF");
+    }
     course_ids = Object.keys(input_data.CourseData);
     for (let [index, course_key] of course_ids.entries()) {
         $('.'+course_key).css("background-color", course_colours[index]);
     }
 }
+
+/*
+Iterate over all cells of the year and colour them with a gradient indicating if they cause a conflict
+*/
+function colourCoursesGradient() {
+///We should iterate over all the cells. If they have the same year we want to colour them in the colour they already have and add a red or green gradient
+    cells = $('.cell');
+    for (i = 0; i < cells.length; i++) {
+        current_colour = $(cells[i]).css("background-color");
+        if(conflictMap[cells[i].id] == undefined || cells[i].dataset.year != selected_course[0].dataset.year)
+            continue
+        if(conflictMap[cells[i].id] == 0) {
+            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(0,255,0,1) 100%)'});
+        }
+        else if(conflictMap[cells[i].id] == 1) {
+            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(255,0,0,1) 100%)'});
+        }
+        else if(conflictMap[cells[i].id] == 2) {
+            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(255,165,0) 100%)'});
+        }
+
+    }
+}
+
 
 /**
 Shade a colour by a given amount
@@ -277,6 +391,8 @@ function closeNav() {
         $(".overlay").css('height', 'auto');
     }, 200);
     swap = false;
+    selected_course = undefined;
+    colourCourses();
 }
 
 /**
