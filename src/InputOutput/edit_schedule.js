@@ -184,6 +184,11 @@ function findConflicts(course_info) {
             continue;
         }
 
+        if(isHoliday(iter_timeslot)) {
+            conflictMap[room_cell_id] = 3;
+            continue;
+        }
+
         //Can we move the course in the current timeslot to the selected timeslot
         if (hasLecturerOverlap(current_timeslot, iter_course)) {
             conflictMap[room_cell_id] = 2;
@@ -200,6 +205,16 @@ function findConflicts(course_info) {
             conflictMap[room_cell_id] = 0;
         }
     }
+}
+
+
+function isHoliday(timeslot) {
+    for(j = 0; j < input_data["Holidays"].length; j++) {
+        day = timeslot.split(' ')[0];
+        if(input_data["Holidays"][j].includes(day))
+            return true;
+    }
+    return false
 }
 
 /**
@@ -354,6 +369,9 @@ function colourCoursesGradient() {
         }
         else if(conflictMap[cells[i].id] == 2) {
             $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(255,165,0) 100%)'});
+        }
+        else if(conflictMap[cells[i].id] == 3) {
+            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(100,65,165,1) 100%)'});
         }
 
     }
