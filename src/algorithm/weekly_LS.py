@@ -35,8 +35,9 @@ class Weekly_LS(Scheduler):
     population_size = 10
     tournament_size = 5
     LS_iter_init = 20
+    prob_mutate = 0.75
     LS_iter_GA = 10
-    GA_iter = 10
+    GA_iter = 50
     only_local_search = False
 
     def __init__(self):
@@ -176,100 +177,102 @@ class Weekly_LS(Scheduler):
                         'RoomID': event['RoomID']}
                 chrom[gene_key] = gene
         return chrom
+######################## DESTROY & REPAIR OPERATORS ###########################
+    def worst_removal(self, individual,q=2):
+        p = 6
+        score_before = individual['Score']
+        # copy of the schedule, such that it is LOCAL!!
+        schedule = copy.deepcopy(individual['Schedule'])
+        score_diff = []
+        removed = []
+        while q > 0:
+            event_list = []
+            delta_scores = []
+            for timeslot, events in schedule.items():
+                events_copy = copy.deepcopy(events)
+                for i,event in enumerate(events_copy):
+                    event_copy = copy.deepcopy(event)
+                    events.remove(event_copy)
+                    delta_score = score_before - self.evaluate(schedule)
+                    delta_scores.append(delta_score)
+                    events.append(event_copy)
+                    event_list.append((timeslot,event_copy))
+            
+            # find which event to remove
+            index_sorted = sorted(range(len(delta_scores)), key=lambda k: delta_scores[k])
+            y = np.random.uniform(0,1)
+            event_removed = event_list[index_sorted[math.floor(y**p*len(event_list))]]
+            removed.append(event_removed)
+            score_diff.append(delta_scores[index_sorted[math.floor(y**p*len(event_list))]])
+            # remove from schedule copy
+            schedule[event_removed[0]].remove(event_removed[1])
+            q -= 1
+        # update individual
+        individual['Schedule'] = schedule
+        individual['Score'] = score_before - sum(score_diff)
+        # r[0] = timeslot, r[1] = event
+        for r in removed:
+            individual['Availables'][r[1]['RoomID']].append(r[0])
+        return removed, individual
     
-    def local_search(self, individual, num_iter = 10, num_neighbors = 5):
-        ############### DESTROY & REPAIR OPERATORS############################
-        def worst_removal(individual,q=2):
-            p = 6
-            score_before = individual['Score']
-            # copy of the schedule, such that it is LOCAL!!
-            schedule = copy.deepcopy(individual['Schedule'])
-            score_diff = []
-            removed = []
-            while q > 0:
-                event_list = []
-                delta_scores = []
-                for timeslot, events in schedule.items():
-                    events_copy = copy.deepcopy(events)
-                    for i,event in enumerate(events_copy):
-                        event_copy = copy.deepcopy(event)
-                        events.remove(event_copy)
-                        delta_score = score_before - self.evaluate(schedule)
-                        delta_scores.append(delta_score)
-                        events.append(event_copy)
-                        event_list.append((timeslot,event_copy))
-                
-                # find which event to remove
-                index_sorted = sorted(range(len(delta_scores)), key=lambda k: delta_scores[k])
-                y = np.random.uniform(0,1)
-                event_removed = event_list[index_sorted[math.floor(y**p*len(event_list))]]
-                removed.append(event_removed)
-                score_diff.append(delta_scores[index_sorted[math.floor(y**p*len(event_list))]])
-                # remove from schedule copy
-                schedule[event_removed[0]].remove(event_removed[1])
-                q -= 1
-            # update individual
-            individual['Schedule'] = schedule
-            individual['Score'] = score_before - sum(score_diff)
-            # r[0] = timeslot, r[1] = event
-            for r in removed:
-                individual['Availables'][r[1]['RoomID']].append(r[0])
-            return removed, individual
-        
-        def greedy_insertion(removed, individual):
-            schedule = copy.deepcopy(individual['Schedule'])
-            scores_new = []
-            insert_locs = []
-            for i, event in enumerate(removed):
-                scores_new.append([])
-                for room_id, timeslots in individual['Availables'].items():
-                    # if there are available timeslots in the room room_id
-                    if len(timeslots) > 0:
-                        for timeslot in timeslots:
-                            if i == 0:
-                                insert_locs.append((room_id, timeslot))
-                            # check if insertion is viable
-                            if not self.has_lecturer_conflict2(schedule, timeslot, event[1]) and not self.has_prog_conflict(schedule, timeslot, event[1]):
-                                schedule[timeslot].append(event[1])
-                                scores_new[i].append(self.evaluate(schedule))
-                                schedule[timeslot].remove(event[1])
-                            else:
-                                scores_new[i].append(float('inf')*-1)
-                            
-            scores_new = np.array(scores_new)
-            best_scores = np.amax(scores_new,axis=1)
-            event_index = np.argmax(best_scores)
-            event_insert = removed[event_index][1]
-            timeslot_before = removed[event_index][0]
-            # new position of the before removed event [0]:room_id, [1]:timeslot
-            insert_loc = insert_locs[np.argmax(scores_new[event_index,:])]
-#            print("Moved: " + str(timeslot_before) + str(event_insert) + ", To: " + str(insert_loc))
-            if self.has_lecturer_conflict2(schedule, insert_loc[1], event_insert):
-                print("ERROR")
-            elif self.has_prog_conflict(schedule, insert_loc[1], event_insert):
-                print("ERROR")
-            # change room of event
-            event_insert['RoomID'] = insert_loc[0]
-            # insert in schedule
-            schedule[insert_loc[1]].append(event_insert)
-            individual['Schedule'] = schedule
+    def greedy_insertion(self, removed, individual):
+        schedule = copy.deepcopy(individual['Schedule'])
+        scores_new = []
+        insert_locs = []
+        for i, event in enumerate(removed):
+            scores_new.append([])
+            for room_id, timeslots in individual['Availables'].items():
+                # if there are available timeslots in the room room_id
+                if len(timeslots) > 0:
+                    for timeslot in timeslots:
+                        if i == 0:
+                            insert_locs.append((room_id, timeslot))
+                        # check if insertion is viable
+                        if not self.has_lecturer_conflict2(schedule, timeslot, event[1]) and not self.has_prog_conflict(schedule, timeslot, event[1]):
+                            schedule[timeslot].append(event[1])
+                            scores_new[i].append(self.evaluate(schedule))
+                            schedule[timeslot].remove(event[1])
+                        else:
+                            scores_new[i].append(float('inf')*-1)
+                        
+        scores_new = np.array(scores_new)
+        best_scores = np.amax(scores_new,axis=1)
+        event_index = np.argmax(best_scores)
+        event_insert = removed[event_index][1]
+        timeslot_before = removed[event_index][0]
+        # new position of the before removed event [0]:room_id, [1]:timeslot
+        insert_loc = insert_locs[np.argmax(scores_new[event_index,:])]
+#           print("Moved: " + str(timeslot_before) + str(event_insert) + ", To: " + str(insert_loc))
+        if self.has_lecturer_conflict2(schedule, insert_loc[1], event_insert):
+            print("ERROR")
+        elif self.has_prog_conflict(schedule, insert_loc[1], event_insert):
+            print("ERROR")
+        # change room of event
+        event_insert['RoomID'] = insert_loc[0]
+        # insert in schedule
+        schedule[insert_loc[1]].append(event_insert)
+        individual['Schedule'] = schedule
 #            individual['Chromosome'][event_insert['Gene_no']] = ({'CourseID': event_insert['CourseID'],
 #                      'RoomID': insert_loc[0], 'TimeSlot': insert_loc[1]})
-            individual['Availables'][insert_loc[0]].remove(insert_loc[1])
-            individual['Score'] = best_scores[event_index] # score update
-            removed.remove(removed[event_index])
-            return removed, individual
-        #######################################################################
+        individual['Availables'][insert_loc[0]].remove(insert_loc[1])
+        individual['Score'] = best_scores[event_index] # score update
+        removed.remove(removed[event_index])
+        return removed, individual
+###############################################################################
+        
+    def local_search(self, individual, num_iter = 10, num_neighbors = 5):
+        
         for i in range(num_iter):
             print("LS iteration: " + str(i+1) + "/" +  str(num_iter))
-            removed, individual = worst_removal(individual)
+            removed, individual = self.worst_removal(individual)
             while len(removed) > 0:
-                removed, individual = greedy_insertion(removed, individual)
+                removed, individual = self.greedy_insertion(removed, individual)
         individual['Chromosome'] = self.schedule_to_chrom(individual)
         
         return individual
     
-    def genetic_alg(self, population, num_iter):
+    def genetic_alg(self, population, num_iter, prob_mutate):
+        ############################ CROSSOVER ################################
         def crossover(population, selection = 'tournament', tournament_size=self.tournament_size):
             candidates = list(population.keys())
             parents = []
@@ -286,9 +289,13 @@ class Weekly_LS(Scheduler):
             child = {gene: {'CourseID': event['CourseID'], 'TimeSlot': None,
                             'RoomID': None } for gene, event in parents[0].items()}
             
+            prgrm_parent_chooser = {prog: None for prog in self.programmes}
+            for program in prgrm_parent_chooser.keys():
+                prgrm_parent_chooser[program] = round(np.random.uniform(0,1))
+                
             course_parent_chooser = {course_code: None for course_code in self.courses.keys()}
             for course_code in course_parent_chooser.keys():
-                course_parent_chooser[course_code] = round(np.random.uniform(0,1))
+                course_parent_chooser[course_code] = prgrm_parent_chooser[self.courses[course_code]['Programme']]
                 
             
             # Perform crossover with the parents 
@@ -314,8 +321,32 @@ class Weekly_LS(Scheduler):
                     if not allocated:
                         print("ALL ROOMS ARE UNAVAILABLE FOR TIMESLOT")
             return child, available_rt
+        #######################################################################
+        ############################### MUTATION ##############################
+        def mutate(child):
+            prog_remove = random.choice(self.programmes)
+            print("MUTATE " + prog_remove)
+             # copy of the schedule, such that it is LOCAL!!
+            schedule = copy.deepcopy(child['Schedule'])
+            removed = []
+            # remove all courses from chosen program
+            for timeslot, events in schedule.items():
+                for i,event in enumerate(events):
+                    if event['ProgID'] == prog_remove:
+                        removed.append((timeslot,events.pop(i)))
+            for r in removed:
+                child['Availables'][r[1]['RoomID']].append(r[0])
+            child['Score'] = self.evaluate(schedule)
+            child['Schedule'] = schedule
+            
+            # re-allocate removed courses with greedy insertion
+            while len(removed) > 0:
+                removed, child = self.greedy_insertion(removed, child)
+            
+            return child #mutated!
             
             
+        ########################## GENETIC ALG ################################    
         for i in range(num_iter):
             print("GA iteration: " + str(i+1) + "/" + str(num_iter))
             # MAKE CHILD
@@ -323,6 +354,10 @@ class Weekly_LS(Scheduler):
             schedule = self.chrom_to_schedule(child)
             child = {'Chromosome': child, 'Availables': available_rt, 
                      'Schedule': schedule, 'Score': self.evaluate(schedule)}
+            
+            # Mutate child with probability prob_mutate
+            if np.random.uniform(0,1) < prob_mutate:
+                child = mutate(child)
             
             # Perform local search on child
             child = self.local_search(child, self.LS_iter_GA)
@@ -388,7 +423,7 @@ class Weekly_LS(Scheduler):
         
         if not self.only_local_search:
             # Perform Genetic Algorithm
-            population = self.genetic_alg(population, self.GA_iter)
+            population = self.genetic_alg(population, self.GA_iter, self.prob_mutate)
         
         # Choose best individual for final schedule
         best_score = -999
@@ -399,6 +434,9 @@ class Weekly_LS(Scheduler):
                 best_score = individual['Score']
                 best_indiv = individ_num
         chrom_final = population[best_indiv]['Chromosome']
+        
+        schedule_final = population[best_indiv]['Schedule']
+        
         # translate chromosome into schedule
         for gene_no, gene in chrom_final.items():
             timeslot = gene["TimeSlot"]
@@ -407,6 +445,8 @@ class Weekly_LS(Scheduler):
             room_id = gene["RoomID"]
             self.schedule.setdefault(timeslot, []).append({"CourseID" : course_id+
                 "("+str(weekly_courses[course_id]['Elective'])+")", "ProgID" : prog_id, "RoomID" : room_id})
+                    
+        self.copy_schedule(schedule_final)
         
         for individual in population.values():
             print(self.evaluate(individual['Schedule']))
@@ -484,6 +524,28 @@ class Weekly_LS(Scheduler):
                 if lecturer in courses[course['CourseID']]['Lecturers']:
                     return True
         return False
+    
+    def copy_schedule(self, week_schedule):
+        period_end = self.hard_constraints.period_info["EndDate"]
+        week_counter = 1
+        first_lecture = datetime.datetime.strptime(next(iter(week_schedule.keys())), '%Y-%m-%d %H:%M:%S')
+        courses = self.courses
+        while first_lecture + timedelta(days= 7 * week_counter) < period_end:
+            for date, scheduled_courses in week_schedule.items():
+                date_temp = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M:%S') + timedelta(days= 7 * week_counter)
+
+                for course in scheduled_courses:
+                    course_id = course["CourseID"]
+
+                    # Check, if the lecturer is already teaching a course at that time
+                    if self.has_lecturer_conflict2(self.schedule, str(date_temp), course):
+                        continue
+
+
+                    self.schedule.setdefault(str(date_temp), []).append({"CourseID" : course_id, 
+                                            "ProgID" : course["ProgID"], "RoomID" : course["RoomID"]})
+                    courses[course_id]['Contact hours'] -= 2
+            week_counter += 1
     
     def get_events_programmes(self, weekly_courses):
         # create events for each course: each event is max 2 contact hours
