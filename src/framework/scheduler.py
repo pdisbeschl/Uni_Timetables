@@ -51,6 +51,9 @@ class Scheduler(metaclass=ABCMeta):
     def get_period_info(self):
         return self.hard_constraints.get_period_info()
 
+    def get_schedule_input_data(self):
+        return self.hard_constraints.get_json();
+
     """
     Tries to compute the runtime based on the start_time and stop_time.
     If either time is not defined, return -1

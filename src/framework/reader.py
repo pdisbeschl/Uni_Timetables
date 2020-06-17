@@ -21,7 +21,6 @@ import json
 
 class ConstraintParser():
     logFile = open(os.path.realpath('./Logs/log.txt'), "a")
-    input_data_json_path = './InputOutput/input_data.js'
 
     def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
         #Dictionaries with information about the period, holidays, courses, rooms and lecturers
@@ -32,21 +31,19 @@ class ConstraintParser():
         self.holidays = {}
         self.free_timeslots = {}
         self.read_excel(excel_file_path)
-        self.write_json()
 
     def convert_timstamp_to_string(self, o):
         if isinstance(o, pd._libs.tslibs.timestamps.Timestamp):
             return str(o)
 
-    def write_json(self):
+    def get_json(self):
         holiday_list = [h[0] for h in self.holidays.items() if h[1] == 1]
         input_data = {'PeriodData':self.period_info, 'CourseData':self.courses, 'RoomData':self.rooms, 'LecturerData':self.lecturers,
                       'Holidays':holiday_list, 'TimeslotData':self.free_timeslots}
 
-        with open(os.path.realpath(self.input_data_json_path), "w") as f:
-            input_json = json.dumps(input_data, default=self.convert_timstamp_to_string)
-            input_json = input_json.replace('NaN','"NaN"')
-            f.write('var input_raw = JSON.parse(\'' + input_json + '\')')
+        input_json = json.dumps(input_data, default=self.convert_timstamp_to_string)
+        input_json = input_json.replace('NaN','"NaN"')
+        return input_json #f.write('var input_raw = JSON.parse(\'' + input_json + '\')')
 
 
     def read_excel(self, excel_file_path):

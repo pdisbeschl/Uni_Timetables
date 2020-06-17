@@ -72,7 +72,6 @@ def see_output2(out, period_info, outputDir):
                    '<link rel="stylesheet" type="text/css" href="style.css">\n'
                    '<script src="http://code.jquery.com/jquery-1.9.1.js"></script>\n' 
                    '<script src="schedule_info.js"></script>\n'
-                   '<script src="input_data.js"></script>\n'
                    '<script src="edit_schedule.js"></script>\n'
                    '</head>')
     programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
@@ -131,7 +130,6 @@ def see_output2(out, period_info, outputDir):
     #Copy required format files 
     if outputDir != './InputOutput/':
         shutil.copy('./InputOutput/style.css', outputDir+'style.css')
-        shutil.copy('./InputOutput/input_data.js', outputDir + 'input_data.js')
         shutil.copy('./InputOutput/edit_schedule.js', outputDir + 'edit_schedule.js')
 
     #Open browser
@@ -207,13 +205,15 @@ class GUI:
         output = open(os.path.realpath(outputDir+'out.json'), "w")
 
         out = x.get_schedule()
+        input_data = x.get_schedule_input_data();
         output.write(json.dumps(out, indent = 4))
         see_output2(out, x.get_period_info(), outputDir)
 
         output2 = open(os.path.realpath(outputDir+'schedule_info.js'), "w")
         json_out = json.dumps(out)
         #Replace NaN with "NaN"
-        output2.write('var schedule = JSON.parse(\'' + json.dumps(out) + '\')')
+        output2.write('var schedule  = JSON.parse(\'' + json.dumps(out) + '\')\n'
+                      'var input_raw = JSON.parse(\'' + input_data + '\')');
 
     def refreshAll( self ):
         '''
