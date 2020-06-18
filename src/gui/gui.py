@@ -32,6 +32,7 @@ import copy
 import shutil
 from json2html import *
 import webbrowser
+from pandas import Timestamp
 
 ''' FIXME needs rework 
 def see_output(out):
@@ -175,6 +176,7 @@ class GUI:
         self.form.pushButton.clicked.connect(self.generate_gui)
         self.form.browseButtonInput.clicked.connect(self.browseFile)
         self.form.browseButtonOutput.clicked.connect(self.browseDir)
+        self.form.action_Open_schedule_from_JSON.triggered.connect(self.openSchedule)
 
     def generate_gui(self):
         alg = self.form.algComboBox.currentIndex()
@@ -207,6 +209,7 @@ class GUI:
         out = x.get_schedule()
         input_data = x.get_schedule_input_data();
         output.write(json.dumps(out, indent = 4))
+        print('pi: '+str(x.get_period_info()))
         see_output2(out, x.get_period_info(), outputDir)
 
         output2 = open(os.path.realpath(outputDir+'schedule_info.js'), "w")
@@ -246,3 +249,24 @@ class GUI:
         self.outputDir = dialog.getExistingDirectory(None, "Select Folder")+'/'
         print( "setting output dir: " + self.outputDir )
         self.refreshAll()
+    
+    def openSchedule(self):
+            ''' 
+            Called when the user presses the Browse button for the input
+            '''
+            #print( "Browse button pressed" )
+            
+            options = QtWidgets.QFileDialog.Options()
+            options |= QtWidgets.QFileDialog.DontUseNativeDialog
+            fileName, _ = QtWidgets.QFileDialog.getOpenFileName(
+                            None,
+                            "QFileDialog.getOpenFileName()",
+                            "",
+                            "JSON files (*.json);;All Files (*)",
+                            options=options)
+            if fileName:
+                print( "Open schedule: " + fileName )
+                schedule = json.load(open(fileName,'r',encoding='utf-8'))
+                workingDir='./InputOutput/'
+                period_info = {'StartDate':Timestamp('2019-09-02 00:00:00'),'EndDate':Timestamp('2019-10-26 00:00:00')} #TODO make the js save this info so that it isn't hardcoded here
+                see_output2(schedule, period_info, workingDir)

@@ -20,7 +20,7 @@ var conflictMap = {};
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
     closeNav();
-    $("#download").click(function() { download("schedule_info.js",JSON.stringify(schedule_json));});
+    $("#download").click(function() { download("schedule_info.json",JSON.stringify(schedule_json));});
     $("#SwapButton").click(function() { set_swap_courses_true();});
 
     //Initialise click events for all table entries that they respond to clicks (
