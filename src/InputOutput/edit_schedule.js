@@ -26,6 +26,7 @@ window.addEventListener('load', function () {
 
     $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
+    $(".AdditionalInfoButton").click(function() { addTextField(this);});
 
     //Initialise click events for all table entries that they respond to clicks (
     for (var year in programmes) {
@@ -473,4 +474,15 @@ function download(filename) {
   element.click();
 
   document.body.removeChild(element);
+}
+
+/**
+Add a textfield which holds additional information
+**/
+function addTextField(button) {
+    info_box = document.getElementById('additional-info_' + button.dataset.year);
+    var textfield = document.createElement("input");
+    info_box.prepend(textfield);
+    $(textfield).css("width", "100%");
+    $(textfield).addClass("info-field");
 }

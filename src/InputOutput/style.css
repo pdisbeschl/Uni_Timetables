@@ -106,4 +106,13 @@ tr td{
     .no-print, .no-print * {
         display: none !important;
     }
+
+    .info-field {
+      border: none !important;
+      display: inline !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      padding: none !important;
+    }
 }
+
