@@ -131,7 +131,7 @@ def see_output2(out, period_info, outputDir):
     #Copy required format files 
     if outputDir != './InputOutput/':
         shutil.copy('./InputOutput/style.css', outputDir+'style.css')
-        shutil.copy('./InputOutput/edit_schedule.js', outputDir + 'edit_schedule.js')
+        shutil.copy('./InputOutput/schedule_info.js', outputDir + 'schedule_info.js')
 
     #Open browser
     url = "file://"+os.path.realpath(outputDir+'out.html')

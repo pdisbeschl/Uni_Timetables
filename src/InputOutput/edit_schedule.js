@@ -20,7 +20,8 @@ var conflictMap = {};
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
     closeNav();
-    $("#download").click(function() { download("schedule_info.json",JSON.stringify(schedule_json));});
+    download_string = JSON.stringify(schedule_json) + "\n" + JSON.stringify(input_data);
+    $("#download").click(function() { download("schedule_info.json",download_string);});
     $("#SwapButton").click(function() { set_swap_courses_true();});
 
     //Initialise click events for all table entries that they respond to clicks (
@@ -45,6 +46,9 @@ window.addEventListener('load', function () {
 Click the swap menu button
 */
 function set_swap_courses_true() {
+    if (swap) {
+        return;
+    }
     findConflicts(selected_course);
     colourCoursesGradient();
     swap = true;
