@@ -20,8 +20,8 @@ var conflictMap = {};
 //Wait until the html is loaded and fully generated
 window.addEventListener('load', function () {
     closeNav();
-    download_string = JSON.stringify(schedule_json) + "\n" + JSON.stringify(input_data);
-    $("#download").click(function() { download("schedule_info.json",download_string);});
+
+    $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
 
     //Initialise click events for all table entries that they respond to clicks (
@@ -420,9 +420,10 @@ function closeNav() {
 /**
 Download the (modified) schedule as a json file which can save intermediate progress
 **/
-function download(filename, text) {
+function download(filename) {
+  download_string = JSON.stringify(schedule_json) + "\n" + JSON.stringify(input_data);
   var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(download_string));
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
