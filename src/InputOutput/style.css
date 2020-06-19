@@ -97,3 +97,13 @@ tr td{
   font-size: 60px;
   z-index:100;
 }
+
+.page-break {
+  page-break-after:always;
+}
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+}

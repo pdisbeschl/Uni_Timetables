@@ -21,6 +21,9 @@ var conflictMap = {};
 window.addEventListener('load', function () {
     closeNav();
 
+    //Make sure colours are printed
+    document.body.setAttribute("style","-webkit-print-color-adjust: exact");
+
     $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
 
@@ -188,35 +191,74 @@ function findConflicts(course_info) {
             continue;
         }
 
-        if(isHoliday(iter_timeslot)) {
+        if(isLecturerUnavailable(room_cell_id, iter_timeslot, current_course)) {
+            conflictMap[room_cell_id] = 5;
+        }
+
+        if(isLecturerUnavailable(room_cell_id, current_timeslot, iter_course)) {
+            conflictMap[room_cell_id] = 4;
+        }
+
+
+        if(isHoliday(room_cell_id, iter_timeslot)) {
             conflictMap[room_cell_id] = 3;
-            continue;
         }
 
         //Can we move the course in the current timeslot to the selected timeslot
-        if (hasLecturerOverlap(current_timeslot, iter_course)) {
+        if (hasLecturerOverlap(room_cell_id, current_timeslot, iter_course)) {
             conflictMap[room_cell_id] = 2;
-            continue;
         }
 
         //Can we move the selected course to the current timeslot
-        if (hasLecturerOverlap(iter_timeslot, current_course)) {
+        if (hasLecturerOverlap(room_cell_id, iter_timeslot, current_course)) {
             conflictMap[room_cell_id] = 1;
             continue;
         }
 
-        else {
+        if (conflictMap[room_cell_id] === undefined) {
             conflictMap[room_cell_id] = 0;
         }
     }
 }
 
+/**
+Check if a lecturer is unavailable at a timeslot
+**/
+function isLecturerUnavailable(i_cell, timeslot, course) {
+    if (course === undefined) {
+        return false
+    }
+    lecturers = course["Lecturers"].split(';');
+    for(j = 0; j < lecturers.length; j++) {
+        lecturer = lecturers[j].replace(/\s/g,'');
+        if(input_data["LecturerData"][lecturer] !== undefined) {
+            unavailable_dates = input_data["LecturerData"][lecturer];
+            for(k = 0; k < unavailable_dates.length; k++) {
+                if(timeslot == unavailable_dates[k]) {
+                    room = document.getElementById(i_cell)
+                    current_tooltip = $(room).attr('title');
+                    if(current_tooltip === undefined)
+                        current_tooltip = "";
+                    $(room).attr('title', current_tooltip + "\n" + lecturer + " is not available on " + timeslot);
+                    return true
+                }
+            }
+        }
+    }
+    return false
+}
 
-function isHoliday(timeslot) {
+function isHoliday(i_cell, timeslot) {
+    day = timeslot.split(' ')[0];
     for(j = 0; j < input_data["Holidays"].length; j++) {
-        day = timeslot.split(' ')[0];
-        if(input_data["Holidays"][j].includes(day))
+        if(input_data["Holidays"][j].includes(day)) {
+            room = document.getElementById(i_cell)
+            current_tooltip = $(room).attr('title');
+            if(current_tooltip === undefined)
+                current_tooltip = "";
+            $(room).attr('title', current_tooltip + "\n" + timeslot + " is a holiday");
             return true;
+        }
     }
     return false
 }
@@ -224,18 +266,23 @@ function isHoliday(timeslot) {
 /**
 
 **/
-function hasLecturerOverlap(timeslot, course) {
+function hasLecturerOverlap(i_cell, timeslot, course) {
     if(schedule_json[timeslot] === undefined || course === undefined) {
         return false;
     }
     else {
         for(j = 0; j < schedule_json[timeslot].length; j++) {
             if(schedule_json[timeslot][j]["ProgID"] != course["ProgID"]) {
-                console.log("Test")
                 lecturers = schedule_json[timeslot][j]["Lecturers"].split(';');
                 for(k = 0; k < lecturers.length; k++) {
-                    if(course["Lecturers"].includes(lecturers[k]))
+                    if(course["Lecturers"].includes(lecturers[k])) {
+                        room = document.getElementById(i_cell)
+                        current_tooltip = $(room).attr('title');
+                        if(current_tooltip === undefined)
+                            current_tooltip = "";
+                        $(room).attr('title', current_tooltip + "\n" + lecturers[k] + " is a already teaching " + schedule_json[timeslot][j]["CourseID"] + " on the " + timeslot);
                         return true;
+                    }
                 }
             }
         }
@@ -348,6 +395,7 @@ function colourCourses() {
     cells = $('.cell');
     for (i = 0; i < cells.length; i++) {
         $(cells[i]).css("background", "#FFFFFF");
+        $(cells[i]).removeAttr('title');
     }
     course_ids = Object.keys(input_data.CourseData);
     for (let [index, course_key] of course_ids.entries()) {
@@ -361,23 +409,16 @@ Iterate over all cells of the year and colour them with a gradient indicating if
 function colourCoursesGradient() {
 ///We should iterate over all the cells. If they have the same year we want to colour them in the colour they already have and add a red or green gradient
     cells = $('.cell');
+    //0 - green = free; 1 - red selected teacher teaches at other timeslot;  2 - orange other teacher teaches at selected timeslot
+    //3 - purple = holiday; 4 - cyan = selected teacher is unav. at other timeslot; 5 - blue = other teacher is unav. at selected timeslot
+    conflict_colours = ["#00ff00", "#ff0000", "#ffa600", "#ff00ff", "#00ffff", "#0000ff"];
     for (i = 0; i < cells.length; i++) {
         current_colour = $(cells[i]).css("background-color");
         if(conflictMap[cells[i].id] == undefined || cells[i].dataset.year != selected_course[0].dataset.year)
             continue
-        if(conflictMap[cells[i].id] == 0) {
-            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(0,255,0,1) 100%)'});
+        else {
+            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, '+ conflict_colours[conflictMap[cells[i].id]] + ' 100%)'});
         }
-        else if(conflictMap[cells[i].id] == 1) {
-            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(255,0,0,1) 100%)'});
-        }
-        else if(conflictMap[cells[i].id] == 2) {
-            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(255,165,0) 100%)'});
-        }
-        else if(conflictMap[cells[i].id] == 3) {
-            $(cells[i]).css({background: 'linear-gradient(45deg, ' + current_colour + ' 0%,' + current_colour + ' 80%, rgba(100,65,165,1) 100%)'});
-        }
-
     }
 }
 
