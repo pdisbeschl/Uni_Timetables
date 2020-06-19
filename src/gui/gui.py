@@ -90,11 +90,11 @@ def see_output2(out, period_info, outputDir):
     full_html = fill_table_classes(full_html, period_info)
 
     week = 0
-    day = period_info['StartDate']
+    day = Timestamp(period_info['StartDate'])
     aux = 0
     courses = set()
     #Insert values from json
-    while day < period_info['EndDate']:
+    while day < Timestamp(period_info['EndDate']):
     #for day in fixed_out:
         if str(day.date()) in fixed_out:
             for timeslot in fixed_out[str(day.date())]:
@@ -139,8 +139,8 @@ def see_output2(out, period_info, outputDir):
 
 def fill_table_classes(full_html, period_info):
     week = 0
-    day = period_info['StartDate']
-    while day <= period_info['EndDate']:
+    day = Timestamp(period_info['StartDate'])
+    while day <= Timestamp(period_info['EndDate']):
         #Check if weekday
         if day.weekday() < 5:
             cell_id = str(day.date())
@@ -266,7 +266,8 @@ class GUI:
                             options=options)
             if fileName:
                 print( "Open schedule: " + fileName )
-                schedule = json.load(open(fileName,'r',encoding='utf-8'))
+                f = open(fileName,'r',encoding='utf-8')
+                schedule = json.loads(f.readline())
+                period_info = json.loads(f.readline())['PeriodData']
                 workingDir='./InputOutput/'
-                period_info = {'StartDate':Timestamp('2019-09-02 00:00:00'),'EndDate':Timestamp('2019-10-26 00:00:00')} #TODO make the js save this info so that it isn't hardcoded here
                 see_output2(schedule, period_info, workingDir)
