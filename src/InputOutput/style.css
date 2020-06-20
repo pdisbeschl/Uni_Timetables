@@ -157,6 +157,11 @@ tr td{
         display: none !important;
     }
 
+    .no-print-course, .no-print-course * {
+        opacity: 0;
+    }
+
+
     .info-field {
       border: none !important;
       display: inline !important;

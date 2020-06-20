@@ -111,9 +111,12 @@ function saveEditedCourse() {
         $(room_cell).addClass(cid);
     }
 
+    set_print_cells(document.getElementById("print").checked);
+
     delete formMap["RID"]
     delete formMap["CourseID"]
     delete formMap["Colour"]
+    delete formMap["print"]
 
     //Update the plandata of the course
     input_data["CourseData"][cid] = formMap;
@@ -121,6 +124,23 @@ function saveEditedCourse() {
 
     closeEditMenu();
     colourCourses();
+}
+
+function set_print_cells(printing) {
+    cells = $('.cell')
+
+    for (i = 0; i < cells.length; i++) {
+        if(cells[i].classList.contains(selected_course[2]["CourseID"])) {
+            if(printing) {
+                $(cells[i]).removeClass("no-print-course");
+            }
+            else {
+                $(cells[i]).removeClass(selected_course[2]["CourseID"]);
+                $(cells[i]).addClass("no-print-course");
+                $(cells[i]).addClass(selected_course[2]["CourseID"]);
+            }
+        }
+    }
 }
 
 /*
@@ -185,7 +205,9 @@ function buildEditMenuFields(course) {
 
     inputfield = document.createElement("input");
     inputfield.setAttribute('type', 'text');
-    inputfield.setAttribute('placeholder', course["RoomID"]);
+    let room_id = selected_course[0].id.replace('course', 'room')
+    let room_cell = document.getElementById(room_id);
+    inputfield.setAttribute('placeholder', room_cell.innerHTML);
     inputfield.setAttribute('id', "RID");
     inputfield.setAttribute('class', 'editInput');
     dataForm.appendChild(inputfield);
@@ -220,6 +242,22 @@ function buildEditMenuFields(course) {
         inputfield.setAttribute('class', 'editInput');
         dataForm.appendChild(inputfield);
     }
+
+    //Create Print checkbox
+    textfield = document.createElement("label");
+    t = document.createTextNode("Print course");
+    textfield.setAttribute("for", "Colour");
+    textfield.appendChild(t);
+    textfield.setAttribute('class', 'editLabel');
+    dataForm.appendChild(textfield);
+
+    inputfield = document.createElement("INPUT");
+    inputfield.setAttribute("type", "checkbox");
+    currently_printing = "no-print" in selected_course[0].classList
+    inputfield.checked = !currently_printing;
+    inputfield.setAttribute('id', "print");
+    dataForm.appendChild(inputfield);
+
 }
 
 //Close the edit menu
