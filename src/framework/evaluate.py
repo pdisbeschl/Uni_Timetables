@@ -288,13 +288,13 @@ class Evaluate:
         # add results to final score
         self.evaluate_regularity(weeks_per_course, week_counter)
         self.add_to_score(max_hours_results, 'max_hours_per_day',
-                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want at most %s hours/day.')
+                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.2f%% of people who want at most %s hours/day.')
         self.add_to_score(starting_times_results, 'starting_time',
-                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want to start at %s.')
+                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.2f%% of people who want to start at %s.')
         self.add_to_score(days_off_results, 'day_off',
-                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want a day off on %s.')
+                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.2f%% of people who want a day off on %s.')
         self.add_to_score(break_length_results, 'break_length',
-                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.3f%% of people who want a break of %s timeslots.')
+                          '[RESULT] %i days (separately for each programme) out of %i satisfy the %.2f%% of people who want a break of %s timeslots.')
         if not self.silent:
             print("[INFO] Finished evaluating.")
 
@@ -326,8 +326,8 @@ class Evaluate:
         add = (regular_lectures / all_lectures) * self.preferences['same_schedule_every_week']['true'] * self.weights[
             'same_schedule_every_week']
         if not self.silent:
-            print('[RESULT] %i lectures out of %i satisfy the %.3f%% of people who want the same schedule every week.' % (
-                regular_lectures, all_lectures, self.preferences['same_schedule_every_week']['true']))
+            print('[RESULT] %i lectures out of %i satisfy the %.2f%% of people who want the same schedule every week.' % (
+                regular_lectures, all_lectures, self.preferences['same_schedule_every_week']['true'] * 100))
             print('[RESULT] This adds %.5f to the score.' % add)
         self.score += add
 

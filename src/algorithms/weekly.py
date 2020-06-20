@@ -91,7 +91,7 @@ class Weekly(Scheduler):
                 #Iterate over all timeslots
                 for timeslot in week_timeslots:
                     #Check if the programme (year group) isn't already in another class
-                    if self.has_prog_conflict(week_schedule, weekly_courses, timeslot, course):
+                    if self.has_prog_conflict(week_schedule, weekly_courses, timeslot, course, course_id):
                         continue
 
                     #Check, if the lecturer is already teaching a course at that time
@@ -125,8 +125,16 @@ class Weekly(Scheduler):
             for date, scheduled_courses in week_schedule.items():
                 date = date + timedelta(days= 7 * week_counter)
 
+                # lectures cannot be scheduled on holidays
+                if self.hard_constraints.get_holidays()[date.replace(hour=0, minute=0)] == 1:
+                    continue
+
                 for course in scheduled_courses:
                     course_id = course["CourseID"]
+
+                    # continue if all lectures of the course are already scheduled
+                    if courses[course_id]['Contact hours'] == 0:
+                        continue
 
                     # Check, if the lecturer is already teaching a course at that time
                     if self.has_lecturer_conflict(self.schedule, courses, date, courses[course_id]):
@@ -137,11 +145,40 @@ class Weekly(Scheduler):
                     courses[course_id]['Contact hours'] -= 2
             week_counter += 1
 
+        # put remaining timeslots wherever they fit
+        for course_id in courses:
+            while courses[course_id]['Contact hours'] > 0:
+                contact_hours = courses[course_id]['Contact hours']
+                # Iterate over all timeslots
+                for timeslot in self.hard_constraints.get_free_timeslots():
+                    # Check if the programme (year group) isn't already in another class
+                    if self.has_prog_conflict(self.schedule, courses, timeslot, courses[course_id], course_id):
+                        continue
+
+                    # Check, if the lecturer is already teaching a course at that time
+                    if self.has_lecturer_conflict(self.schedule, courses, timeslot, courses[course_id]):
+                        continue
+
+                    # Look for a random free room for the given timeslot
+                    room_id = self.find_free_room(self.schedule, courses[course_id], timeslot,  self.hard_constraints.get_rooms().copy())
+                    if room_id == None:
+                        continue
+
+                    self.schedule.setdefault(timeslot, []).append(
+                        {"CourseID": course_id, "Name": courses[course_id]['Course name'], "ProgID": courses[course_id]['Programme'],
+                         "RoomID": room_id, "Lecturers": courses[course_id]['Lecturers']})
+                    courses[course_id]['Contact hours'] -= 2
+                    break
+
+                # If we could not place the course, throw an exception
+                if contact_hours == courses[course_id]['Contact hours']:
+                    raise Exception('Cannot brute force a schedule for the given constraints')
+
     """
     The following method checks to see if there is no conflict between classes of the same programme (year-group).
     Idea: Programmes can't be scheduled at the same time unless the classes are electives.
     """
-    def has_prog_conflict(self, week_schedule, courses, timeslot, course):
+    def has_prog_conflict(self, week_schedule, courses, timeslot, course, course_id):
         if timeslot not in week_schedule.keys():
             return False
         #Iterate over all scheduled courses in a timeslot
@@ -149,7 +186,8 @@ class Weekly(Scheduler):
             scheduled_course = courses[scheduled_course_info['CourseID']]
             # Check if the students of the currently 'to-be-planned course' are already in a class (Excluding Electives!)
             if scheduled_course['Programme'] == course['Programme']:
-                if course['Elective']==0:
+                if course['Elective'] == 0 or scheduled_course['Elective'] == 0 or course_id == scheduled_course_info[
+                    'CourseID']:
                     return True
         return False
 

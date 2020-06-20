@@ -25,7 +25,9 @@ if __name__ == '__main__':
     # Greedy = 1
     # Tabu = 2
     # Random = 3
-    #  Weekly = 4
+    # Weekly = 4
+    # Genetic = 5
+    # Weekly Tabu = 6
     #GUI(alg=0)
 
     #### Load a timetable and get the score (from the json output)

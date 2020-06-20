@@ -1,5 +1,5 @@
 """
-Weekly Timetable scheduler (based off of the tabu search algorithm)
+Timetable scheduler (based off of the tabu search algorithm)
 ===================
 
 author: Huy Ngo
@@ -15,7 +15,6 @@ Documented following PEP 257.
 from framework.scheduler import Scheduler
 from algorithms.random import Random
 from framework.evaluate import Evaluate
-import os
 import numpy as np
 import copy
 import sys
@@ -23,10 +22,9 @@ import datetime
 
 
 class Tabu(Scheduler):
-    logFile = open(os.path.realpath('./Logs/log.txt'), "a")
     iteration = 0  # number of current iteration
     # TODO test which values work best
-    max_tabu_size = 10  # max size of the tabu list
+    max_tabu_size = 50  # max size of the tabu list
     total_iterations = 100  # total number of iterations
     placements_to_move = 5  # number of placements to consider in neighborhood
 
@@ -48,8 +46,7 @@ class Tabu(Scheduler):
             initial_schedule[k].sort(key=lambda kv: (kv["CourseID"], kv["CourseID"]))
         # initialize variables
         best_schedule = initial_schedule
-        # also check hard constraints here just to be sure
-        best_schedule_value = self.evaluate(best_schedule, True)
+        best_schedule_value = self.evaluate(best_schedule, False)
         tabu_list = [best_schedule]
         best_candidate = best_schedule
         # follow basic tabu search algorithm
