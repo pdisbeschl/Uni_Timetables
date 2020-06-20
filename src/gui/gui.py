@@ -210,14 +210,15 @@ class GUI:
         out = x.get_schedule()
         input_data = x.get_schedule_input_data();
         output.write(json.dumps(out, indent = 4))
-        print('pi: '+str(x.get_period_info()))
-        see_output2(out, x.get_period_info(), outputDir)
 
         output2 = open(os.path.realpath(outputDir+'schedule_info.js'), "w")
         json_out = json.dumps(out)
         #Replace NaN with "NaN"
         output2.write('var schedule  = JSON.parse(\'' + json.dumps(out) + '\')\n'
                       'var input_raw = JSON.parse(\'' + input_data + '\')');
+
+        see_output2(out, x.get_period_info(), outputDir)
+
 
     def refreshAll( self ):
         '''
