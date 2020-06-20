@@ -27,6 +27,7 @@ window.addEventListener('load', function () {
     $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
     $("#EditButton").click(function() { loadCourseEditMenu();});
+    $("#DeleteButton").click(function() { deleteCourse();});
     $("#closeEditMenu").click(function() { closeEditMenu();});
     $("#SaveEdit").click(function() { saveEditedCourse();});
     $(".AdditionalInfoButton").click(function() { addTextField(this);});
@@ -48,6 +49,21 @@ window.addEventListener('load', function () {
     //Colours all the courses in the respective colour
     colourCourses();
 })
+
+function deleteCourse() {
+    if (selected_course[2] === undefined) {
+        return
+    }
+
+    removeCourseFromSchedule(selected_course[1],selected_course[2]);
+    let room_id = selected_course[0].id.replace('course', 'room')
+    let room_cell = document.getElementById(room_id);
+    room_cell.innerHTML = "";
+    selected_course[0].innerHTML = "";
+    $(selected_course[0]).removeClass(selected_course[2]["CourseID"]);
+    $(room_cell).removeClass(selected_course[2]["CourseID"]);
+    colourCourses();
+}
 
 function saveEditedCourse() {
     form = document.getElementById("CourseData").elements;
