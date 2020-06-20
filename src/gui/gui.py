@@ -100,7 +100,9 @@ def see_output2(out, period_info, outputDir):
         if str(day.date()) in fixed_out:
             for timeslot in fixed_out[str(day.date())]:
                 for course in fixed_out[str(day.date())][timeslot]:
-                    full_html = full_html.replace('~_%s_%s_%s_COURSE_%s~'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
+                    full_html = full_html.replace('~C_%s_%s_%s_COURSE_%s~'%(aux,week,timeslot,course['ProgID']),course['CourseID'])
+                    cell_text = course['CellText'] if "CellText" in course.keys() else course['CourseID']
+                    full_html = full_html.replace('~_%s_%s_%s_COURSE_%s~'%(aux,week,timeslot,course['ProgID']),cell_text)
                     t = [int(i) for i in timeslot.split(':')]
                     lecture_time = day + datetime.timedelta(hours=t[0], minutes=t[1])
                     full_html = full_html.replace('~_%s_%s_%s_ROOM_%s~'%(aux,week,timeslot,course['ProgID']),course['RoomID'])#str(lecture_time))
@@ -125,7 +127,7 @@ def see_output2(out, period_info, outputDir):
     #Remove empty spaces
     full_html = re.sub('<!--1.*','',full_html)
     full_html = re.sub('> ~.*~ <','',full_html)
-    full_html = re.sub('~_.*~','',full_html)
+    full_html = re.sub('~.*~','',full_html)
     #Write result
     out_file.write(full_html)
     out_file.close()

@@ -40,12 +40,12 @@ tr td{
   position: fixed;
   top: 32.5%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));
   transition: width 0.5s 0.5s, height 0.5s;
   overflow: hidden;
   border: solid black 2px;
   border-radius: 25px;
-
+  margin-top: 1.5%;
 }
 
 #closeEditMenu {
@@ -56,8 +56,11 @@ tr td{
   display: inline-block;
 }
 
-#CourseData {
-  margin-top: 10%;
+#SaveEdit {
+  display: inline-block;
+  margin-left: 50%;
+  transform: translate(calc(-50% + 0.5px));
+  width: 20%;
 }
 
 #editMenuTimeslot {
@@ -68,13 +71,13 @@ tr td{
 }
 
 .editLabel {
-  width:15%;
+  width:25%;
   display: inline-block;
   margin: 8px 5%;
 }
 
 .editInput {
-  width:65%;
+  width:55%;
   display: inline-block;
   margin: 8px 5%;
 }

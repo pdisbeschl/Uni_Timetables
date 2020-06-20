@@ -10,7 +10,7 @@ var course_colours = ['#FFB5E8', '#B28DFF', '#DCD3FF', '#AFF8D8', '#BFFCC6', '#F
                '#DBFFD6', '#FFABAB', '#FFCCF9', '#D5AAFF', '#B5B9FF', '#85E3FF', '#F3FFE3', '#FFBEBC', '#FCC2FF', '#ECD4FF',
                '#97A2FF', '#ACE7FF', '#E7FFAC', '#FFCBC1', '#F6A6FF', '#FBE4FF', '#AFCBFF', '#6EB5FF', '#FFFFD1', '#FFF5BA'];
 //A dictionary which maps a course to the used colour
-var colour_palette = {"":"#FFFFFF"};
+var colour_palette = {"cell":"#FFFFFF"};
 var swap = false;
 //cell, timeslot, course
 var selected_course;
@@ -22,12 +22,13 @@ window.addEventListener('load', function () {
     closeNav();
 
     //Make sure colours are printed
-    document.body.setAttribute("style","-webkit-print-color-adjust: exact");
+    document.body.setAttribute("style","-webkit-print-color-adjust: exact; margin-bottom: 15%");
 
     $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
     $("#EditButton").click(function() { loadCourseEditMenu();});
     $("#closeEditMenu").click(function() { closeEditMenu();});
+    $("#SaveEdit").click(function() { saveEditedCourse();});
     $(".AdditionalInfoButton").click(function() { addTextField(this);});
 
     //Initialise click events for all table entries that they respond to clicks (
@@ -48,29 +49,149 @@ window.addEventListener('load', function () {
     colourCourses();
 })
 
+function saveEditedCourse() {
+    form = document.getElementById("CourseData").elements;
+    let formMap = {}
+
+    for (i = 0; i < form.length; i++) {
+        if(form[i].value == "") {
+            formMap[form[i].id] = form[i].placeholder;
+        }
+        else {
+            formMap[form[i].id] = form[i].value;
+        }
+    }
+    //Replace the course entry
+    if(selected_course[2] !== undefined) {
+        cid = selected_course[2]["CourseID"];
+    }
+    else {
+        cid = formMap["CourseID"];
+    }
+    selected_course[0].innerHTML = formMap["CourseID"]
+
+    //Replace the
+    let room_id = selected_course[0].id.replace('course', 'room')
+    let room_cell = document.getElementById(room_id);
+    room_cell.innerHTML = formMap["RID"];
+
+    //Update the roomid of the scheduled course
+    //removeCourseFromSchedule(selected_course[1], selected_course[2]);
+    editedCourse = {};
+    editedCourse["Conflict"] = false;
+    editedCourse["CourseID"] = formMap["CourseID"];
+    editedCourse["Lecturers"] = formMap["Lecturers"];
+    editedCourse["Name"] = formMap["Course name"];
+    editedCourse["ProgID"] = formMap["Programme"];
+    editedCourse["RoomID"] = formMap["RID"];
+
+    removeCourseFromSchedule(selected_course[1], editedCourse);
+    addCourseToSchedule(selected_course[1], editedCourse);
+
+    colour_palette[cid] = formMap["Colour"];
+
+    if(selected_course[2] === undefined) {
+        $(selected_course[0]).addClass(cid);
+        $(room_cell).addClass(cid);
+    }
+
+    delete formMap["RID"]
+    delete formMap["CourseID"]
+    delete formMap["Colour"]
+
+    //Update the plandata of the course
+    input_data["CourseData"][cid] = formMap;
+    input_data["CourseColours"] = colour_palette;
+
+    closeEditMenu();
+    colourCourses();
+}
+
 /*
 When the edit course button is clicked we want to show the course edit menu
 */
 function loadCourseEditMenu() {
-    course = selected_course[2]
+    let course
+    if(selected_course[2] === undefined) {
+        course = input_data["CourseData"][Object.keys(input_data["CourseData"])[0]];
+    }
+    else {
+        course = input_data["CourseData"][selected_course[2]["CourseID"]];
+    }
+    buildEditMenuFields(course);
+    if(selected_course[2] === undefined) {
+        form = document.getElementById("CourseData").elements;
+        for (i = 0; i < form.length; i++) {
+            form[i].placeholder = "";
+        }
+    }
 
     //Setup animation for the menu
     let editMenu = document.getElementById("EditCourse")
     $(editMenu).css('visibility', 'unset');
     $(editMenu).css('transition', 'width 0.25s ease-out, height 0.25s ease-in 0.25s');
-    $(editMenu).css('height', '60%');
-    $(editMenu).css('width', '35%');
-    $(editMenu).css('background-color', colour_palette[course["CourseID"]]);
+    $(editMenu).css('height', '65%');
+    $(editMenu).css('width', '30%');
+    $(editMenu).css('background-color', colour_palette[selected_course[2]["CourseID"]]);
 
+}
+
+function buildEditMenuFields(course) {
     textfield_timeslot = document.getElementById("editMenuTimeslot");
     textfield_timeslot.innerHTML = selected_course[1];
 
     let dataForm = document.getElementById("CourseData");
     dataForm.innerHTML = "";
+    cid = selected_course[0].innerHTML.replace(/\s/g,'')
+
+    //Create Course field
+    textfield = document.createElement("label");
+    let t = document.createTextNode("Course Code (text)");
+    textfield.setAttribute("for", "CID");
+    textfield.appendChild(t);
+    textfield.setAttribute('class', 'editLabel');
+    dataForm.appendChild(textfield);
+
+    inputfield = document.createElement("input");
+    inputfield.setAttribute('type', 'text');
+    inputfield.setAttribute('placeholder', cid);
+    inputfield.setAttribute('id', "CourseID");
+    inputfield.setAttribute('class', 'editInput');
+    dataForm.appendChild(inputfield);
+
+    //Create Room Field
+    textfield = document.createElement("label");
+    t = document.createTextNode("RoomID");
+    textfield.setAttribute("for", "RoomID");
+    textfield.appendChild(t);
+    textfield.setAttribute('class', 'editLabel');
+    dataForm.appendChild(textfield);
+
+    inputfield = document.createElement("input");
+    inputfield.setAttribute('type', 'text');
+    inputfield.setAttribute('placeholder', course["RoomID"]);
+    inputfield.setAttribute('id', "RID");
+    inputfield.setAttribute('class', 'editInput');
+    dataForm.appendChild(inputfield);
+
+    //Create Color Field
+    textfield = document.createElement("label");
+    t = document.createTextNode("Course Colour");
+    textfield.setAttribute("for", "Colour");
+    textfield.appendChild(t);
+    textfield.setAttribute('class', 'editLabel');
+    dataForm.appendChild(textfield);
+
+    inputfield = document.createElement("input");
+    inputfield.setAttribute('type', 'color');
+    inputfield.setAttribute('id', "Colour");
+    inputfield.setAttribute('value', colour_palette[cid]);
+    inputfield.setAttribute('class', 'editInput');
+    dataForm.appendChild(inputfield);
 
     for(c in course) {
         textfield = document.createElement("label");
-        let t = document.createTextNode(c);
+        t = document.createTextNode(c);
         textfield.setAttribute("for", c);
         textfield.appendChild(t);
         textfield.setAttribute('class', 'editLabel');
@@ -354,6 +475,13 @@ function selectCourse(cell) {
     [cell, timeslot, course] = getCourseInfo(cell);
     selected_course = [cell, timeslot, course];
 
+    if(course === undefined) {
+        $("#EditButton").text("New Course");
+    }
+    else {
+        $("#EditButton").text("Edit");
+    }
+
     colourCourses();
 
 
@@ -376,10 +504,10 @@ function selectCourse(cell) {
         para.appendChild(info_entry);
         overlay.appendChild(para);
 
-        for(c in course) {
+        for(c in input_data["CourseData"][cid]) {
             para = document.createElement("p");
             //para.style.width = "75%";
-            info_entry = document.createTextNode(c + ': ' + course[c]);
+            info_entry = document.createTextNode(c + ': ' + input_data["CourseData"][cid][c]);
             para.appendChild(info_entry);
             overlay.appendChild(para);
         }
@@ -408,7 +536,7 @@ function getCourseInfo(cell) {
     //Get the course id - If we clicked on a room cell we just redirect to the course cell
     course_cell_id = cell.id.replace('room','course');
     course_cell = document.getElementById(course_cell_id);
-    cid = course_cell.textContent;
+    cid = course_cell.classList[course_cell.classList.length-1]//textContent;
     cid = cid.replace(/\s/g,'');
 
     //Get the timeslot that was clicked
@@ -434,6 +562,10 @@ function getCourseInfo(cell) {
 Fills the colour_palette dictionary with a <course,colour> for every course
 */
 function loadColourPalette() {
+    if (input_data["CourseColours"] !== undefined) {
+        colour_palette = input_data["CourseColours"];
+        return
+    }
     course_ids = Object.keys(input_data.CourseData);
     for (let [index, course_key] of course_ids.entries()) {
         colour_palette[course_key] = course_colours[index];
@@ -445,13 +577,14 @@ Iterate over all cells that have a course scheduled and colour the cells
 */
 function colourCourses() {
     cells = $('.cell');
+    let colour;
     for (i = 0; i < cells.length; i++) {
         $(cells[i]).css("background", "#FFFFFF");
         $(cells[i]).removeAttr('title');
     }
     course_ids = Object.keys(input_data.CourseData);
     for (let [index, course_key] of course_ids.entries()) {
-        $('.'+course_key).css("background-color", course_colours[index]);
+        $('.'+course_key).css("background-color", colour_palette[course_key]);
     }
 }
 
