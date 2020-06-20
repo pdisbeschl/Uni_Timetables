@@ -26,6 +26,8 @@ window.addEventListener('load', function () {
 
     $("#download").click(function() { download("schedule_info.json");});
     $("#SwapButton").click(function() { set_swap_courses_true();});
+    $("#EditButton").click(function() { loadCourseEditMenu();});
+    $("#closeEditMenu").click(function() { closeEditMenu();});
     $(".AdditionalInfoButton").click(function() { addTextField(this);});
 
     //Initialise click events for all table entries that they respond to clicks (
@@ -45,6 +47,54 @@ window.addEventListener('load', function () {
     //Colours all the courses in the respective colour
     colourCourses();
 })
+
+/*
+When the edit course button is clicked we want to show the course edit menu
+*/
+function loadCourseEditMenu() {
+    course = selected_course[2]
+
+    //Setup animation for the menu
+    let editMenu = document.getElementById("EditCourse")
+    $(editMenu).css('visibility', 'unset');
+    $(editMenu).css('transition', 'width 0.25s ease-out, height 0.25s ease-in 0.25s');
+    $(editMenu).css('height', '60%');
+    $(editMenu).css('width', '35%');
+    $(editMenu).css('background-color', colour_palette[course["CourseID"]]);
+
+    textfield_timeslot = document.getElementById("editMenuTimeslot");
+    textfield_timeslot.innerHTML = selected_course[1];
+
+    let dataForm = document.getElementById("CourseData");
+    dataForm.innerHTML = "";
+
+    for(c in course) {
+        textfield = document.createElement("label");
+        let t = document.createTextNode(c);
+        textfield.setAttribute("for", c);
+        textfield.appendChild(t);
+        textfield.setAttribute('class', 'editLabel');
+        dataForm.appendChild(textfield);
+
+        inputfield = document.createElement("input");
+        inputfield.setAttribute('type', 'text');
+        inputfield.setAttribute('placeholder', course[c]);
+        inputfield.setAttribute('id', c);
+        inputfield.setAttribute('class', 'editInput');
+        dataForm.appendChild(inputfield);
+    }
+}
+
+//Close the edit menu
+function closeEditMenu() {
+    //Setup animation for the menu
+    $("#EditCourse").css('transition', 'width 0.25s ease-in 0.25s, height 0.25s ease-out');
+    $("#EditCourse").css('height', '5%');
+    $("#EditCourse").css('width', '0%');
+    setTimeout(function(){
+    $("#EditCourse").css('visibility', 'hidden');
+    }, 500);
+}
 
 /*
 Click the swap menu button
@@ -295,6 +345,7 @@ function hasLecturerOverlap(i_cell, timeslot, course) {
 Upon clicking on a cell highlight the cell and show the information about the course
 **/
 function selectCourse(cell) {
+    closeEditMenu();
     //If we clicked the swap button we want to swap the course with another course
     if (swap) {
         return
