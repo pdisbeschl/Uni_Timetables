@@ -1,0 +1,3705 @@
+('C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+ '(2)\\src\\target\\PyInstaller\\Quokkas\\PYZ-00.pyz',
+ [('multiprocessing.popen_fork',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\popen_fork.py',
+   'PYMODULE'),
+  ('multiprocessing.connection',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_sharer',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\resource_sharer.py',
+   'PYMODULE'),
+  ('multiprocessing.process',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\process.py',
+   'PYMODULE'),
+  ('xmlrpc.client',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xmlrpc\\client.py',
+   'PYMODULE'),
+  ('xmlrpc',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xmlrpc\\__init__.py',
+   'PYMODULE'),
+  ('decimal',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\decimal.py',
+   'PYMODULE'),
+  ('_pydecimal',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_pydecimal.py',
+   'PYMODULE'),
+  ('numbers',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\numbers.py',
+   'PYMODULE'),
+  ('hmac',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\hmac.py',
+   'PYMODULE'),
+  ('multiprocessing.context',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\context.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_forkserver',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\popen_forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_posix',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\popen_spawn_posix.py',
+   'PYMODULE'),
+  ('multiprocessing.semaphore_tracker',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\semaphore_tracker.py',
+   'PYMODULE'),
+  ('multiprocessing.forkserver',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.sharedctypes',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\sharedctypes.py',
+   'PYMODULE'),
+  ('multiprocessing.heap',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\heap.py',
+   'PYMODULE'),
+  ('ctypes',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\__init__.py',
+   'PYMODULE'),
+  ('ctypes.wintypes',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\wintypes.py',
+   'PYMODULE'),
+  ('ctypes._endian',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\_endian.py',
+   'PYMODULE'),
+  ('multiprocessing.pool',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\pool.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\dummy\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy.connection',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\dummy\\connection.py',
+   'PYMODULE'),
+  ('queue',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\queue.py',
+   'PYMODULE'),
+  ('multiprocessing.queues',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\queues.py',
+   'PYMODULE'),
+  ('multiprocessing.synchronize',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\synchronize.py',
+   'PYMODULE'),
+  ('multiprocessing.managers',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\managers.py',
+   'PYMODULE'),
+  ('multiprocessing.reduction',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\reduction.py',
+   'PYMODULE'),
+  ('multiprocessing.util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\util.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_win32',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\popen_spawn_win32.py',
+   'PYMODULE'),
+  ('multiprocessing.spawn',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\spawn.py',
+   'PYMODULE'),
+  ('runpy',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\runpy.py',
+   'PYMODULE'),
+  ('multiprocessing',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\multiprocessing\\__init__.py',
+   'PYMODULE'),
+  ('win32com',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\__init__.py',
+   'PYMODULE'),
+  ('win32com.server.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\server\\util.py',
+   'PYMODULE'),
+  ('win32com.server.dispatcher',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\server\\dispatcher.py',
+   'PYMODULE'),
+  ('win32traceutil',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\win32traceutil.py',
+   'PYMODULE'),
+  ('win32com.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\util.py',
+   'PYMODULE'),
+  ('win32con',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\win32con.py',
+   'PYMODULE'),
+  ('win32com.server.exception',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\server\\exception.py',
+   'PYMODULE'),
+  ('winerror',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\winerror.py',
+   'PYMODULE'),
+  ('win32com.server.policy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\server\\policy.py',
+   'PYMODULE'),
+  ('win32com.client',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\__init__.py',
+   'PYMODULE'),
+  ('win32com.client.makepy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\makepy.py',
+   'PYMODULE'),
+  ('pywin.dialogs.status',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\status.py',
+   'PYMODULE'),
+  ('pywin.mfc.thread',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\thread.py',
+   'PYMODULE'),
+  ('pywin.mfc.object',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\object.py',
+   'PYMODULE'),
+  ('pywin.mfc.dialog',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\dialog.py',
+   'PYMODULE'),
+  ('pywin.mfc.window',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\window.py',
+   'PYMODULE'),
+  ('pywin.mfc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\mfc\\__init__.py',
+   'PYMODULE'),
+  ('pywin.dialogs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\__init__.py',
+   'PYMODULE'),
+  ('pywin',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\__init__.py',
+   'PYMODULE'),
+  ('win32com.client.gencache',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\gencache.py',
+   'PYMODULE'),
+  ('win32com.client.selecttlb',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\selecttlb.py',
+   'PYMODULE'),
+  ('pywin.dialogs.list',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\Pythonwin\\pywin\\dialogs\\list.py',
+   'PYMODULE'),
+  ('commctrl',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\commctrl.py',
+   'PYMODULE'),
+  ('win32com.client.genpy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\genpy.py',
+   'PYMODULE'),
+  ('win32com.client.CLSIDToClass',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\CLSIDToClass.py',
+   'PYMODULE'),
+  ('win32com.client.dynamic',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\dynamic.py',
+   'PYMODULE'),
+  ('win32com.client.build',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\build.py',
+   'PYMODULE'),
+  ('pywintypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\pywintypes.py',
+   'PYMODULE'),
+  ('distutils.sysconfig',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\sysconfig.py',
+   'PYMODULE'),
+  ('distutils',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('distutils.archive_util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\archive_util.py',
+   'PYMODULE'),
+  ('distutils.dir_util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\dir_util.py',
+   'PYMODULE'),
+  ('distutils.file_util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\file_util.py',
+   'PYMODULE'),
+  ('distutils.dep_util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\dep_util.py',
+   'PYMODULE'),
+  ('distutils.spawn',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\spawn.py',
+   'PYMODULE'),
+  ('distutils.debug',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\debug.py',
+   'PYMODULE'),
+  ('distutils.ccompiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('distutils.fancy_getopt',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\fancy_getopt.py',
+   'PYMODULE'),
+  ('distutils.util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\util.py',
+   'PYMODULE'),
+  ('distutils.filelist',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\filelist.py',
+   'PYMODULE'),
+  ('lib2to3.refactor',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\refactor.py',
+   'PYMODULE'),
+  ('lib2to3.btm_matcher',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\btm_matcher.py',
+   'PYMODULE'),
+  ('lib2to3.btm_utils',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\btm_utils.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.grammar',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\grammar.py',
+   'PYMODULE'),
+  ('lib2to3.pygram',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pygram.py',
+   'PYMODULE'),
+  ('lib2to3.pytree',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pytree.py',
+   'PYMODULE'),
+  ('lib2to3',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\__init__.py',
+   'PYMODULE'),
+  ('lib2to3.patcomp',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\patcomp.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.parse',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\parse.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.literals',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\literals.py',
+   'PYMODULE'),
+  ('lib2to3.fixer_util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\fixer_util.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.token',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\token.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.tokenize',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\tokenize.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.driver',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\driver.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2.pgen',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\pgen.py',
+   'PYMODULE'),
+  ('lib2to3.pgen2',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lib2to3\\pgen2\\__init__.py',
+   'PYMODULE'),
+  ('distutils.log',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\log.py',
+   'PYMODULE'),
+  ('distutils.text_file',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\text_file.py',
+   'PYMODULE'),
+  ('_osx_support',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_osx_support.py',
+   'PYMODULE'),
+  ('distutils.errors',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\errors.py',
+   'PYMODULE'),
+  ('win32com.server',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\server\\__init__.py',
+   'PYMODULE'),
+  ('win32com.universal',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\universal.py',
+   'PYMODULE'),
+  ('win32com.client.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32com\\client\\util.py',
+   'PYMODULE'),
+  ('imp',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\imp.py',
+   'PYMODULE'),
+  ('pythoncom',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pythoncom.py',
+   'PYMODULE'),
+  ('pkg_resources',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.six',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\six.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.pyparsing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\pyparsing.py',
+   'PYMODULE'),
+  ('uuid',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\uuid.py',
+   'PYMODULE'),
+  ('ctypes.util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\util.py',
+   'PYMODULE'),
+  ('ctypes.macholib.dyld',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\macholib\\dyld.py',
+   'PYMODULE'),
+  ('ctypes.macholib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\macholib\\__init__.py',
+   'PYMODULE'),
+  ('ctypes.macholib.dylib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\macholib\\dylib.py',
+   'PYMODULE'),
+  ('ctypes.macholib.framework',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ctypes\\macholib\\framework.py',
+   'PYMODULE'),
+  ('netbios',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32\\lib\\netbios.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.requirements',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.specifiers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.appdirs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\appdirs.py',
+   'PYMODULE'),
+  ('win32com.shell.shellcon',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32comext\\shell\\shellcon.py',
+   'PYMODULE'),
+  ('win32com.shell',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32comext\\shell\\__init__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.markers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.__about__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('pkg_resources._vendor.packaging._structures',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('__main__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\scripts\\pyinstaller.exe\\__main__.py',
+   'PYMODULE'),
+  ('PyInstaller.__main__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\__main__.py',
+   'PYMODULE'),
+  ('PyInstaller.building.build_main',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\build_main.py',
+   'PYMODULE'),
+  ('PyInstaller.building',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\config.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32.winmanifest',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\winmanifest.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32.winresource',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\winresource.py',
+   'PYMODULE'),
+  ('xml.dom.minidom',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\minidom.py',
+   'PYMODULE'),
+  ('xml.dom.pulldom',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\pulldom.py',
+   'PYMODULE'),
+  ('xml.sax.handler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\handler.py',
+   'PYMODULE'),
+  ('xml.sax',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax.expatreader',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\expatreader.py',
+   'PYMODULE'),
+  ('xml.sax._exceptions',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\saxutils.py',
+   'PYMODULE'),
+  ('urllib.request',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\urllib\\request.py',
+   'PYMODULE'),
+  ('getpass',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\getpass.py',
+   'PYMODULE'),
+  ('nturl2path',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\nturl2path.py',
+   'PYMODULE'),
+  ('ftplib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ftplib.py',
+   'PYMODULE'),
+  ('netrc',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\netrc.py',
+   'PYMODULE'),
+  ('http.cookiejar',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('urllib.response',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\urllib\\response.py',
+   'PYMODULE'),
+  ('urllib.error',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\urllib\\error.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('xml.dom.expatbuilder',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\expatbuilder.py',
+   'PYMODULE'),
+  ('xml.dom.NodeFilter',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\NodeFilter.py',
+   'PYMODULE'),
+  ('xml.dom.xmlbuilder',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\xmlbuilder.py',
+   'PYMODULE'),
+  ('xml.dom.minicompat',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\minicompat.py',
+   'PYMODULE'),
+  ('xml.dom.domreg',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\domreg.py',
+   'PYMODULE'),
+  ('xml.dom',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\dom\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32.versioninfo',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\versioninfo.py',
+   'PYMODULE'),
+  ('pefile',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pefile.py',
+   'PYMODULE'),
+  ('ordlookup',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\ordlookup\\__init__.py',
+   'PYMODULE'),
+  ('ordlookup.oleaut32',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\ordlookup\\oleaut32.py',
+   'PYMODULE'),
+  ('ordlookup.ws2_32',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\ordlookup\\ws2_32.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32.icon',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\icon.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.win32.winutils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\win32\\winutils.py',
+   'PYMODULE'),
+  ('site',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\fake-modules\\site.py',
+   'PYMODULE'),
+  ('PyInstaller.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.configure',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\configure.py',
+   'PYMODULE'),
+  ('PyInstaller.archive.pyz_crypto',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\archive\\pyz_crypto.py',
+   'PYMODULE'),
+  ('PyInstaller.archive',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\archive\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.depend.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\depend\\utils.py',
+   'PYMODULE'),
+  ('PyInstaller.depend.dylib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\depend\\dylib.py',
+   'PYMODULE'),
+  ('macholib.MachO',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\MachO.py',
+   'PYMODULE'),
+  ('macholib.ptypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\ptypes.py',
+   'PYMODULE'),
+  ('macholib.mach_o',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\mach_o.py',
+   'PYMODULE'),
+  ('macholib.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\util.py',
+   'PYMODULE'),
+  ('macholib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph.modulegraph',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\modulegraph.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph._compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\_compat.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph.zipio',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\zipio.py',
+   'PYMODULE'),
+  ('altgraph',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\altgraph\\__init__.py',
+   'PYMODULE'),
+  ('altgraph.ObjectGraph',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\altgraph\\ObjectGraph.py',
+   'PYMODULE'),
+  ('altgraph.GraphUtil',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\altgraph\\GraphUtil.py',
+   'PYMODULE'),
+  ('altgraph.Graph',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\altgraph\\Graph.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\util.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.lib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.building.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\utils.py',
+   'PYMODULE'),
+  ('PyInstaller.building.toc_conversion',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\toc_conversion.py',
+   'PYMODULE'),
+  ('PyInstaller.building.osx',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\osx.py',
+   'PYMODULE'),
+  ('PyInstaller.building.imphook',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\imphook.py',
+   'PYMODULE'),
+  ('PyInstaller.building.imphookapi',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\imphookapi.py',
+   'PYMODULE'),
+  ('PyInstaller.building.datastruct',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\datastruct.py',
+   'PYMODULE'),
+  ('PyInstaller.building.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\api.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.osx',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\osx.py',
+   'PYMODULE'),
+  ('PyInstaller.archive.writers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\archive\\writers.py',
+   'PYMODULE'),
+  ('PyInstaller.loader.pyimod02_archive',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\loader\\pyimod02_archive.py',
+   'PYMODULE'),
+  ('PyInstaller.loader',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\loader\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.depend.analysis',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\depend\\analysis.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.hooks',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\hooks\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.hooks.win32',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\hooks\\win32.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.hooks.qt',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\hooks\\qt.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.hooks.gi',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\hooks\\gi.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.hooks.django',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\hooks\\django.py',
+   'PYMODULE'),
+  ('PyInstaller.lib.modulegraph.find_modules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\lib\\modulegraph\\find_modules.py',
+   'PYMODULE'),
+  ('xml.etree',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\etree\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree.ElementPath',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\etree\\ElementPath.py',
+   'PYMODULE'),
+  ('PyInstaller.depend.bindepend',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\depend\\bindepend.py',
+   'PYMODULE'),
+  ('macholib.dyld',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\dyld.py',
+   'PYMODULE'),
+  ('macholib.framework',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\framework.py',
+   'PYMODULE'),
+  ('macholib.dylib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\macholib\\dylib.py',
+   'PYMODULE'),
+  ('PyInstaller.depend',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\depend\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.misc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\misc.py',
+   'PYMODULE'),
+  ('PyInstaller.building.makespec',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\makespec.py',
+   'PYMODULE'),
+  ('PyInstaller.building.templates',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\building\\templates.py',
+   'PYMODULE'),
+  ('distutils.version',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\version.py',
+   'PYMODULE'),
+  ('PyInstaller.compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\compat.py',
+   'PYMODULE'),
+  ('win32ctypes.pywin32.win32api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\pywin32\\win32api.py',
+   'PYMODULE'),
+  ('win32ctypes.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\core\\__init__.py',
+   'PYMODULE'),
+  ('win32ctypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\__init__.py',
+   'PYMODULE'),
+  ('win32ctypes.version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\version.py',
+   'PYMODULE'),
+  ('cffi',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\__init__.py',
+   'PYMODULE'),
+  ('cffi.error',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\error.py',
+   'PYMODULE'),
+  ('cffi.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\api.py',
+   'PYMODULE'),
+  ('cffi.recompiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\recompiler.py',
+   'PYMODULE'),
+  ('distutils.command.build_ext',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('distutils.command',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('distutils._msvccompiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\_msvccompiler.py',
+   'PYMODULE'),
+  ('concurrent.futures',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\concurrent\\futures\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures.thread',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\concurrent\\futures\\thread.py',
+   'PYMODULE'),
+  ('concurrent.futures.process',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\concurrent\\futures\\process.py',
+   'PYMODULE'),
+  ('concurrent.futures._base',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\concurrent\\futures\\_base.py',
+   'PYMODULE'),
+  ('concurrent',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\concurrent\\__init__.py',
+   'PYMODULE'),
+  ('distutils.extension',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\extension.py',
+   'PYMODULE'),
+  ('distutils.core',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\core.py',
+   'PYMODULE'),
+  ('distutils.config',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\config.py',
+   'PYMODULE'),
+  ('cgi',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\cgi.py',
+   'PYMODULE'),
+  ('configparser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\configparser.py',
+   'PYMODULE'),
+  ('distutils.cmd',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\cmd.py',
+   'PYMODULE'),
+  ('distutils.dist',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\dist.py',
+   'PYMODULE'),
+  ('distutils.versionpredicate',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\versionpredicate.py',
+   'PYMODULE'),
+  ('distutils.msvc9compiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\msvc9compiler.py',
+   'PYMODULE'),
+  ('cffi.cffi_opcode',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\cffi_opcode.py',
+   'PYMODULE'),
+  ('cffi.verifier',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\verifier.py',
+   'PYMODULE'),
+  ('cffi.lock',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\lock.py',
+   'PYMODULE'),
+  ('cffi.pkgconfig',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\pkgconfig.py',
+   'PYMODULE'),
+  ('cffi.vengine_cpy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\vengine_cpy.py',
+   'PYMODULE'),
+  ('cffi.vengine_gen',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\vengine_gen.py',
+   'PYMODULE'),
+  ('cffi.ffiplatform',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\ffiplatform.py',
+   'PYMODULE'),
+  ('setuptools',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.requirements',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('html.parser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\html\\parser.py',
+   'PYMODULE'),
+  ('_markupbase',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_markupbase.py',
+   'PYMODULE'),
+  ('setuptools.extern',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\extern\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.__about__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__about__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.markers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_compat.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.six',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\six.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._structures',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('setuptools._vendor.pyparsing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\pyparsing.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.specifiers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('setuptools.msvc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\msvc.py',
+   'PYMODULE'),
+  ('numpy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\__init__.py',
+   'PYMODULE'),
+  ('numpy._pytesttester',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\_pytesttester.py',
+   'PYMODULE'),
+  ('numpy.distutils.cpuinfo',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\cpuinfo.py',
+   'PYMODULE'),
+  ('numpy.distutils.compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\compat.py',
+   'PYMODULE'),
+  ('numpy.distutils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.fcompiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\fcompiler\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.config_compiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\config_compiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.command',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.egg_info',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\egg_info.py',
+   'PYMODULE'),
+  ('setuptools.command.egg_info',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\egg_info.py',
+   'PYMODULE'),
+  ('setuptools.glob',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\glob.py',
+   'PYMODULE'),
+  ('setuptools.unicode_utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\unicode_utils.py',
+   'PYMODULE'),
+  ('setuptools.command.bdist_egg',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\bdist_egg.py',
+   'PYMODULE'),
+  ('setuptools.command',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\__init__.py',
+   'PYMODULE'),
+  ('setuptools.command.install_scripts',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\install_scripts.py',
+   'PYMODULE'),
+  ('setuptools.command.easy_install',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\easy_install.py',
+   'PYMODULE'),
+  ('setuptools.wheel',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\wheel.py',
+   'PYMODULE'),
+  ('setuptools.package_index',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\package_index.py',
+   'PYMODULE'),
+  ('setuptools.py33compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\py33compat.py',
+   'PYMODULE'),
+  ('setuptools.archive_util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\archive_util.py',
+   'PYMODULE'),
+  ('setuptools.py27compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\py27compat.py',
+   'PYMODULE'),
+  ('setuptools.sandbox',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\sandbox.py',
+   'PYMODULE'),
+  ('distutils.command.build_scripts',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\build_scripts.py',
+   'PYMODULE'),
+  ('distutils.command.install',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\install.py',
+   'PYMODULE'),
+  ('distutils.command.install_scripts',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\install_scripts.py',
+   'PYMODULE'),
+  ('distutils.command.bdist',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\bdist.py',
+   'PYMODULE'),
+  ('setuptools.command.setopt',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\setopt.py',
+   'PYMODULE'),
+  ('setuptools.command.sdist',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\sdist.py',
+   'PYMODULE'),
+  ('setuptools.command.py36compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\py36compat.py',
+   'PYMODULE'),
+  ('distutils.command.sdist',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.develop',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\develop.py',
+   'PYMODULE'),
+  ('setuptools.command.develop',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\develop.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_clib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\install_clib.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.bdist_rpm',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('distutils.command.bdist_rpm',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('setuptools.command.bdist_rpm',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\install.py',
+   'PYMODULE'),
+  ('setuptools.command.install',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\command\\install.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_headers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\install_headers.py',
+   'PYMODULE'),
+  ('distutils.command.install_headers',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\install_headers.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.install_data',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\install_data.py',
+   'PYMODULE'),
+  ('distutils.command.install_data',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\install_data.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.sdist',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_scripts',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build_scripts.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_clib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build_clib.py',
+   'PYMODULE'),
+  ('distutils.command.build_clib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\build_clib.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_ext',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('numpy.distutils.system_info',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\system_info.py',
+   'PYMODULE'),
+  ('numpy.f2py',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\__init__.py',
+   'PYMODULE'),
+  ('numpy.f2py.diagnose',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\diagnose.py',
+   'PYMODULE'),
+  ('numpy.f2py.f2py_testing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\f2py_testing.py',
+   'PYMODULE'),
+  ('numpy.f2py.f2py2e',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\f2py2e.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_src',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build_src.py',
+   'PYMODULE'),
+  ('numpy.distutils.conv_template',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\conv_template.py',
+   'PYMODULE'),
+  ('numpy.distutils.from_template',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\from_template.py',
+   'PYMODULE'),
+  ('numpy.f2py.auxfuncs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\auxfuncs.py',
+   'PYMODULE'),
+  ('numpy.f2py.f90mod_rules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\f90mod_rules.py',
+   'PYMODULE'),
+  ('numpy.f2py.rules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\rules.py',
+   'PYMODULE'),
+  ('numpy.f2py.use_rules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\use_rules.py',
+   'PYMODULE'),
+  ('numpy.f2py.common_rules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\common_rules.py',
+   'PYMODULE'),
+  ('numpy.f2py.func2subr',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\func2subr.py',
+   'PYMODULE'),
+  ('numpy.f2py.crackfortran',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\crackfortran.py',
+   'PYMODULE'),
+  ('fileinput',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\fileinput.py',
+   'PYMODULE'),
+  ('numpy.f2py.cb_rules',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\cb_rules.py',
+   'PYMODULE'),
+  ('numpy.f2py.capi_maps',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\capi_maps.py',
+   'PYMODULE'),
+  ('numpy.f2py.cfuncs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\cfuncs.py',
+   'PYMODULE'),
+  ('numpy.f2py.__version__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\f2py\\__version__.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build_py',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build_py.py',
+   'PYMODULE'),
+  ('distutils.command.build_py',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\build_py.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.build',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\build.py',
+   'PYMODULE'),
+  ('distutils.command.build',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\build.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\config.py',
+   'PYMODULE'),
+  ('numpy.distutils.command.autodist',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\command\\autodist.py',
+   'PYMODULE'),
+  ('numpy.distutils.mingw32ccompiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\mingw32ccompiler.py',
+   'PYMODULE'),
+  ('distutils.msvccompiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\msvccompiler.py',
+   'PYMODULE'),
+  ('distutils.unixccompiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('distutils.cygwinccompiler',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\cygwinccompiler.py',
+   'PYMODULE'),
+  ('distutils.command.config',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\distutils\\command\\config.py',
+   'PYMODULE'),
+  ('numpy.distutils.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\core.py',
+   'PYMODULE'),
+  ('numpy.distutils.numpy_distribution',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\numpy_distribution.py',
+   'PYMODULE'),
+  ('numpy.distutils.extension',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\extension.py',
+   'PYMODULE'),
+  ('numpy.distutils.fcompiler.environment',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\fcompiler\\environment.py',
+   'PYMODULE'),
+  ('numpy.distutils.exec_command',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\exec_command.py',
+   'PYMODULE'),
+  ('numpy.distutils.misc_util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\misc_util.py',
+   'PYMODULE'),
+  ('curses',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\curses\\__init__.py',
+   'PYMODULE'),
+  ('curses.has_key',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\curses\\has_key.py',
+   'PYMODULE'),
+  ('numpy.distutils.__config__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\__config__.py',
+   'PYMODULE'),
+  ('numpy.distutils.npy_pkg_config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\npy_pkg_config.py',
+   'PYMODULE'),
+  ('numpy.distutils.unixccompiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.ccompiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils._shell_utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\_shell_utils.py',
+   'PYMODULE'),
+  ('pipes',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pipes.py',
+   'PYMODULE'),
+  ('numpy.distutils.lib2def',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\lib2def.py',
+   'PYMODULE'),
+  ('numpy.distutils.log',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\distutils\\log.py',
+   'PYMODULE'),
+  ('numpy.testing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.nosetester',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\nosetester.py',
+   'PYMODULE'),
+  ('numpy.testing._private.noseclasses',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\noseclasses.py',
+   'PYMODULE'),
+  ('numpy.testing._private.decorators',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\decorators.py',
+   'PYMODULE'),
+  ('numpy.testing._private.parameterized',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\parameterized.py',
+   'PYMODULE'),
+  ('numpy.testing._private',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\testing\\_private\\utils.py',
+   'PYMODULE'),
+  ('numpy.core.fromnumeric',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\fromnumeric.py',
+   'PYMODULE'),
+  ('numpy.core._methods',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_methods.py',
+   'PYMODULE'),
+  ('numpy.core._exceptions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_exceptions.py',
+   'PYMODULE'),
+  ('numpy.core._asarray',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_asarray.py',
+   'PYMODULE'),
+  ('numpy.core.umath',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\umath.py',
+   'PYMODULE'),
+  ('numpy.core.overrides',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\overrides.py',
+   'PYMODULE'),
+  ('numpy.compat._inspect',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\compat\\_inspect.py',
+   'PYMODULE'),
+  ('numpy.core.multiarray',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\multiarray.py',
+   'PYMODULE'),
+  ('numpy.core.numerictypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\numerictypes.py',
+   'PYMODULE'),
+  ('numpy.core._dtype',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_dtype.py',
+   'PYMODULE'),
+  ('numpy.core._type_aliases',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_type_aliases.py',
+   'PYMODULE'),
+  ('numpy.core._string_helpers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_string_helpers.py',
+   'PYMODULE'),
+  ('numpy.matrixlib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\matrixlib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.matrixlib.defmatrix',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\matrixlib\\defmatrix.py',
+   'PYMODULE'),
+  ('numpy.dual',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\dual.py',
+   'PYMODULE'),
+  ('numpy.core.numeric',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\numeric.py',
+   'PYMODULE'),
+  ('numpy.core.arrayprint',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\arrayprint.py',
+   'PYMODULE'),
+  ('numpy.core._ufunc_config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_ufunc_config.py',
+   'PYMODULE'),
+  ('numpy.core.shape_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.ma',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\ma\\__init__.py',
+   'PYMODULE'),
+  ('numpy.ma.extras',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\ma\\extras.py',
+   'PYMODULE'),
+  ('numpy.lib.index_tricks',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\index_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.stride_tricks',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\stride_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.function_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\function_base.py',
+   'PYMODULE'),
+  ('numpy.lib.histograms',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\histograms.py',
+   'PYMODULE'),
+  ('numpy.compat.py3k',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\compat\\py3k.py',
+   'PYMODULE'),
+  ('pathlib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pathlib.py',
+   'PYMODULE'),
+  ('numpy.lib.twodim_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\twodim_base.py',
+   'PYMODULE'),
+  ('numpy.core.function_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\function_base.py',
+   'PYMODULE'),
+  ('numpy.ma.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\ma\\core.py',
+   'PYMODULE'),
+  ('numpy.core._internal',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_internal.py',
+   'PYMODULE'),
+  ('numpy.ctypeslib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\ctypeslib.py',
+   'PYMODULE'),
+  ('numpy.random',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\random\\__init__.py',
+   'PYMODULE'),
+  ('numpy.random._pickle',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\random\\_pickle.py',
+   'PYMODULE'),
+  ('numpy.polynomial',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\__init__.py',
+   'PYMODULE'),
+  ('numpy.polynomial.laguerre',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\laguerre.py',
+   'PYMODULE'),
+  ('numpy.polynomial._polybase',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\_polybase.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite_e',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\hermite_e.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\hermite.py',
+   'PYMODULE'),
+  ('numpy.polynomial.legendre',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\legendre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.chebyshev',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\chebyshev.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polynomial',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polyutils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\polynomial\\polyutils.py',
+   'PYMODULE'),
+  ('numpy.fft',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\fft\\__init__.py',
+   'PYMODULE'),
+  ('numpy.fft.helper',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\fft\\helper.py',
+   'PYMODULE'),
+  ('numpy.fft._pocketfft',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\fft\\_pocketfft.py',
+   'PYMODULE'),
+  ('numpy.linalg',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\linalg\\__init__.py',
+   'PYMODULE'),
+  ('numpy.linalg.linalg',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\linalg\\linalg.py',
+   'PYMODULE'),
+  ('numpy.lib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.lib._version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\_version.py',
+   'PYMODULE'),
+  ('numpy.lib.arraypad',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\arraypad.py',
+   'PYMODULE'),
+  ('numpy.lib.arrayterator',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\arrayterator.py',
+   'PYMODULE'),
+  ('numpy.lib.financial',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\financial.py',
+   'PYMODULE'),
+  ('numpy.lib.npyio',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\npyio.py',
+   'PYMODULE'),
+  ('numpy.ma.mrecords',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\ma\\mrecords.py',
+   'PYMODULE'),
+  ('numpy.core.records',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\records.py',
+   'PYMODULE'),
+  ('numpy.lib._iotools',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\_iotools.py',
+   'PYMODULE'),
+  ('numpy.lib._datasource',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\_datasource.py',
+   'PYMODULE'),
+  ('numpy.lib.format',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\format.py',
+   'PYMODULE'),
+  ('numpy.lib.arraysetops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\arraysetops.py',
+   'PYMODULE'),
+  ('numpy.lib.utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\utils.py',
+   'PYMODULE'),
+  ('numpy.lib.polynomial',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.lib.ufunclike',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\ufunclike.py',
+   'PYMODULE'),
+  ('numpy.lib.shape_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.lib.nanfunctions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\nanfunctions.py',
+   'PYMODULE'),
+  ('numpy.lib.type_check',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\type_check.py',
+   'PYMODULE'),
+  ('numpy.core.getlimits',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\getlimits.py',
+   'PYMODULE'),
+  ('numpy.core.machar',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\machar.py',
+   'PYMODULE'),
+  ('numpy.lib.scimath',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\scimath.py',
+   'PYMODULE'),
+  ('numpy.lib.mixins',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\lib\\mixins.py',
+   'PYMODULE'),
+  ('numpy.compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\compat\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core._dtype_ctypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_dtype_ctypes.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\_add_newdocs.py',
+   'PYMODULE'),
+  ('numpy.core.einsumfunc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\einsumfunc.py',
+   'PYMODULE'),
+  ('numpy.core.memmap',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\memmap.py',
+   'PYMODULE'),
+  ('numpy.core.defchararray',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\core\\defchararray.py',
+   'PYMODULE'),
+  ('numpy._distributor_init',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\_distributor_init.py',
+   'PYMODULE'),
+  ('numpy.version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\version.py',
+   'PYMODULE'),
+  ('numpy.__config__',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\__config__.py',
+   'PYMODULE'),
+  ('numpy._globals',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\numpy\\_globals.py',
+   'PYMODULE'),
+  ('setuptools.namespaces',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\namespaces.py',
+   'PYMODULE'),
+  ('setuptools.monkey',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\monkey.py',
+   'PYMODULE'),
+  ('setuptools.depends',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\depends.py',
+   'PYMODULE'),
+  ('setuptools.dist',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\dist.py',
+   'PYMODULE'),
+  ('setuptools.py36compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\py36compat.py',
+   'PYMODULE'),
+  ('setuptools.config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\config.py',
+   'PYMODULE'),
+  ('setuptools.pep425tags',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\pep425tags.py',
+   'PYMODULE'),
+  ('setuptools.glibc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\glibc.py',
+   'PYMODULE'),
+  ('setuptools.ssl_support',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\ssl_support.py',
+   'PYMODULE'),
+  ('setuptools.windows_support',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\windows_support.py',
+   'PYMODULE'),
+  ('setuptools.extension',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\extension.py',
+   'PYMODULE'),
+  ('setuptools.version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\version.py',
+   'PYMODULE'),
+  ('setuptools._deprecation_warning',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\setuptools\\_deprecation_warning.py',
+   'PYMODULE'),
+  ('cffi.cparser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\cparser.py',
+   'PYMODULE'),
+  ('pycparser.lextab',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\lextab.py',
+   'PYMODULE'),
+  ('pycparser.yacctab',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\yacctab.py',
+   'PYMODULE'),
+  ('pycparser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\__init__.py',
+   'PYMODULE'),
+  ('pycparser.c_parser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\c_parser.py',
+   'PYMODULE'),
+  ('pycparser.ast_transforms',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\ast_transforms.py',
+   'PYMODULE'),
+  ('pycparser.plyparser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\plyparser.py',
+   'PYMODULE'),
+  ('pycparser.c_lexer',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\c_lexer.py',
+   'PYMODULE'),
+  ('pycparser.ply.lex',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\ply\\lex.py',
+   'PYMODULE'),
+  ('pycparser.ply.yacc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\ply\\yacc.py',
+   'PYMODULE'),
+  ('pycparser.ply',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\ply\\__init__.py',
+   'PYMODULE'),
+  ('pycparser.c_ast',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pycparser\\c_ast.py',
+   'PYMODULE'),
+  ('cffi.commontypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\commontypes.py',
+   'PYMODULE'),
+  ('cffi.model',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\cffi\\model.py',
+   'PYMODULE'),
+  ('win32ctypes.core._winerrors',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\core\\_winerrors.py',
+   'PYMODULE'),
+  ('win32ctypes.pywin32.pywintypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\pywin32\\pywintypes.py',
+   'PYMODULE'),
+  ('win32ctypes.pywin32',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\pywin32\\__init__.py',
+   'PYMODULE'),
+  ('win32ctypes.pywin32.win32cred',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\win32ctypes\\pywin32\\win32cred.py',
+   'PYMODULE'),
+  ('PyInstaller.log',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\log.py',
+   'PYMODULE'),
+  ('PyInstaller',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\__init__.py',
+   'PYMODULE'),
+  ('PyInstaller.utils.git',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\git.py',
+   'PYMODULE'),
+  ('PyInstaller.utils._gitrevision',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyInstaller\\utils\\_gitrevision.py',
+   'PYMODULE'),
+  ('sysconfig',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\sysconfig.py',
+   'PYMODULE'),
+  ('pkg_resources.py31compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\py31compat.py',
+   'PYMODULE'),
+  ('pkg_resources.extern',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pkg_resources\\extern\\__init__.py',
+   'PYMODULE'),
+  ('_strptime',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_strptime.py',
+   'PYMODULE'),
+  ('ntpath',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ntpath.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('fnmatch',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\fnmatch.py',
+   'PYMODULE'),
+  ('struct',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\struct.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\__future__.py',
+   'PYMODULE'),
+  ('difflib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\difflib.py',
+   'PYMODULE'),
+  ('ast',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ast.py',
+   'PYMODULE'),
+  ('inspect',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\inspect.py',
+   'PYMODULE'),
+  ('cmd',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\cmd.py',
+   'PYMODULE'),
+  ('bdb',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\bdb.py',
+   'PYMODULE'),
+  ('opcode',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\opcode.py',
+   'PYMODULE'),
+  ('dis',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\dis.py',
+   'PYMODULE'),
+  ('codeop',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\codeop.py',
+   'PYMODULE'),
+  ('code',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\code.py',
+   'PYMODULE'),
+  ('glob',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\glob.py',
+   'PYMODULE'),
+  ('shlex',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\shlex.py',
+   'PYMODULE'),
+  ('importlib._bootstrap',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\_bootstrap.py',
+   'PYMODULE'),
+  ('importlib._bootstrap_external',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\_bootstrap_external.py',
+   'PYMODULE'),
+  ('importlib.machinery',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\machinery.py',
+   'PYMODULE'),
+  ('importlib.util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\util.py',
+   'PYMODULE'),
+  ('importlib.abc',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('importlib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\importlib\\__init__.py',
+   'PYMODULE'),
+  ('pkgutil',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pkgutil.py',
+   'PYMODULE'),
+  ('xml',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.parsers',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\parsers\\__init__.py',
+   'PYMODULE'),
+  ('xml.parsers.expat',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\parsers\\expat.py',
+   'PYMODULE'),
+  ('plistlib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\plistlib.py',
+   'PYMODULE'),
+  ('platform',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\platform.py',
+   'PYMODULE'),
+  ('token',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\token.py',
+   'PYMODULE'),
+  ('tokenize',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\tokenize.py',
+   'PYMODULE'),
+  ('urllib.parse',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\urllib\\parse.py',
+   'PYMODULE'),
+  ('tempfile',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\tempfile.py',
+   'PYMODULE'),
+  ('tty',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\tty.py',
+   'PYMODULE'),
+  ('pydoc_data',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pydoc_data\\__init__.py',
+   'PYMODULE'),
+  ('pydoc_data.topics',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pydoc_data\\topics.py',
+   'PYMODULE'),
+  ('html.entities',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\html\\entities.py',
+   'PYMODULE'),
+  ('html',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\html\\__init__.py',
+   'PYMODULE'),
+  ('ipaddress',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ipaddress.py',
+   'PYMODULE'),
+  ('ssl',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\ssl.py',
+   'PYMODULE'),
+  ('http.client',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\http\\client.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\mimetypes.py',
+   'PYMODULE'),
+  ('socketserver',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\socketserver.py',
+   'PYMODULE'),
+  ('http',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\http\\__init__.py',
+   'PYMODULE'),
+  ('http.server',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('optparse',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\optparse.py',
+   'PYMODULE'),
+  ('uu',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\uu.py',
+   'PYMODULE'),
+  ('quopri',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\quopri.py',
+   'PYMODULE'),
+  ('email.feedparser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\feedparser.py',
+   'PYMODULE'),
+  ('email.parser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\parser.py',
+   'PYMODULE'),
+  ('email',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\__init__.py',
+   'PYMODULE'),
+  ('calendar',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\calendar.py',
+   'PYMODULE'),
+  ('email._parseaddr',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\_parseaddr.py',
+   'PYMODULE'),
+  ('email.utils',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\utils.py',
+   'PYMODULE'),
+  ('email.errors',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\errors.py',
+   'PYMODULE'),
+  ('email.header',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\header.py',
+   'PYMODULE'),
+  ('email._policybase',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\_policybase.py',
+   'PYMODULE'),
+  ('email.base64mime',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\base64mime.py',
+   'PYMODULE'),
+  ('email.encoders',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\encoders.py',
+   'PYMODULE'),
+  ('email.charset',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\charset.py',
+   'PYMODULE'),
+  ('base64',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\base64.py',
+   'PYMODULE'),
+  ('email._encoded_words',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('hashlib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\hashlib.py',
+   'PYMODULE'),
+  ('bisect',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\bisect.py',
+   'PYMODULE'),
+  ('random',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\random.py',
+   'PYMODULE'),
+  ('email.generator',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\generator.py',
+   'PYMODULE'),
+  ('email.iterators',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\iterators.py',
+   'PYMODULE'),
+  ('urllib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\urllib\\__init__.py',
+   'PYMODULE'),
+  ('email._header_value_parser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\_header_value_parser.py',
+   'PYMODULE'),
+  ('email.headerregistry',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\headerregistry.py',
+   'PYMODULE'),
+  ('email.quoprimime',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\quoprimime.py',
+   'PYMODULE'),
+  ('email.contentmanager',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\contentmanager.py',
+   'PYMODULE'),
+  ('email.policy',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\policy.py',
+   'PYMODULE'),
+  ('email.message',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\email\\message.py',
+   'PYMODULE'),
+  ('bz2',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\bz2.py',
+   'PYMODULE'),
+  ('lzma',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\lzma.py',
+   'PYMODULE'),
+  ('_compression',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_compression.py',
+   'PYMODULE'),
+  ('gzip',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\gzip.py',
+   'PYMODULE'),
+  ('tarfile',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\tarfile.py',
+   'PYMODULE'),
+  ('py_compile',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\py_compile.py',
+   'PYMODULE'),
+  ('zipfile',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\zipfile.py',
+   'PYMODULE'),
+  ('shutil',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\shutil.py',
+   'PYMODULE'),
+  ('socket',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\socket.py',
+   'PYMODULE'),
+  ('pydoc',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('getopt',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\getopt.py',
+   'PYMODULE'),
+  ('pdb',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pdb.py',
+   'PYMODULE'),
+  ('unittest.util',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\util.py',
+   'PYMODULE'),
+  ('unittest.result',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\result.py',
+   'PYMODULE'),
+  ('string',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\string.py',
+   'PYMODULE'),
+  ('logging',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('unittest.case',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\case.py',
+   'PYMODULE'),
+  ('unittest.suite',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\suite.py',
+   'PYMODULE'),
+  ('unittest.loader',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\loader.py',
+   'PYMODULE'),
+  ('unittest.runner',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\runner.py',
+   'PYMODULE'),
+  ('unittest.main',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\main.py',
+   'PYMODULE'),
+  ('unittest.signals',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\signals.py',
+   'PYMODULE'),
+  ('unittest',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\unittest\\__init__.py',
+   'PYMODULE'),
+  ('doctest',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\doctest.py',
+   'PYMODULE'),
+  ('stat',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\stat.py',
+   'PYMODULE'),
+  ('genericpath',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\genericpath.py',
+   'PYMODULE'),
+  ('posixpath',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\posixpath.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\signal.py',
+   'PYMODULE'),
+  ('contextlib',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\contextlib.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_threading_local.py',
+   'PYMODULE'),
+  ('threading',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\threading.py',
+   'PYMODULE'),
+  ('selectors',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\selectors.py',
+   'PYMODULE'),
+  ('_dummy_thread',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\_dummy_thread.py',
+   'PYMODULE'),
+  ('dummy_threading',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\dummy_threading.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('textwrap',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\textwrap.py',
+   'PYMODULE'),
+  ('gettext',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\gettext.py',
+   'PYMODULE'),
+  ('argparse',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\argparse.py',
+   'PYMODULE'),
+  ('pickle',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pickle.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('gui.gui',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\gui\\gui.py',
+   'PYMODULE'),
+  ('gui', '-', 'PYMODULE'),
+  ('pandas',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\__init__.py',
+   'PYMODULE'),
+  ('pandas._libs.window',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_libs\\window\\__init__.py',
+   'PYMODULE'),
+  ('pandas._libs.tslibs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_libs\\tslibs\\__init__.py',
+   'PYMODULE'),
+  ('pandas._version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_version.py',
+   'PYMODULE'),
+  ('pandas.arrays',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\arrays\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.arrays',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.timedeltas',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\timedeltas.py',
+   'PYMODULE'),
+  ('pandas.io.formats.format',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\format.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.multi',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\multi.py',
+   'PYMODULE'),
+  ('pandas.core.indexes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.numeric',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\numeric.py',
+   'PYMODULE'),
+  ('pandas.core.ops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.computation.expressions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\expressions.py',
+   'PYMODULE'),
+  ('pandas.core.computation',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.computation.check',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\check.py',
+   'PYMODULE'),
+  ('pandas.compat._optional',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\_optional.py',
+   'PYMODULE'),
+  ('pandas.compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\__init__.py',
+   'PYMODULE'),
+  ('pandas.compat.pickle_compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\pickle_compat.py',
+   'PYMODULE'),
+  ('pandas.core.ops.roperator',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\roperator.py',
+   'PYMODULE'),
+  ('pandas.core.ops.methods',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\methods.py',
+   'PYMODULE'),
+  ('pandas.core.ops.mask_ops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\mask_ops.py',
+   'PYMODULE'),
+  ('pandas.core.ops.invalid',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\invalid.py',
+   'PYMODULE'),
+  ('pandas.core.ops.docstrings',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\docstrings.py',
+   'PYMODULE'),
+  ('pandas.core.ops.dispatch',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\dispatch.py',
+   'PYMODULE'),
+  ('pandas.core.ops.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\common.py',
+   'PYMODULE'),
+  ('pandas.core.ops.array_ops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\array_ops.py',
+   'PYMODULE'),
+  ('pandas.core.ops.missing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\ops\\missing.py',
+   'PYMODULE'),
+  ('pandas.core.construction',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\construction.py',
+   'PYMODULE'),
+  ('pandas.core.series',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\series.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.reshape',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\reshape.py',
+   'PYMODULE'),
+  ('pandas.core.reshape',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.frame',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\frame.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.merge',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\merge.py',
+   'PYMODULE'),
+  ('pandas.core.apply',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\apply.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.melt',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\melt.py',
+   'PYMODULE'),
+  ('pandas.core.tools.numeric',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\tools\\numeric.py',
+   'PYMODULE'),
+  ('pandas.core.tools',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\tools\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.concat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\concat.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.pivot',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\pivot.py',
+   'PYMODULE'),
+  ('pandas.core.computation.eval',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\eval.py',
+   'PYMODULE'),
+  ('pandas.core.computation.scope',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\scope.py',
+   'PYMODULE'),
+  ('pandas.core.computation.ops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\ops.py',
+   'PYMODULE'),
+  ('pandas.core.computation.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\common.py',
+   'PYMODULE'),
+  ('pandas.compat.chainmap',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\chainmap.py',
+   'PYMODULE'),
+  ('pandas.core.computation.parsing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\parsing.py',
+   'PYMODULE'),
+  ('pandas.core.computation.expr',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\expr.py',
+   'PYMODULE'),
+  ('pandas.core.computation.engines',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\engines.py',
+   'PYMODULE'),
+  ('pandas.core.computation.align',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\align.py',
+   'PYMODULE'),
+  ('pandas.io.parquet',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\parquet.py',
+   'PYMODULE'),
+  ('pandas.io.s3',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\s3.py',
+   'PYMODULE'),
+  ('pandas.core.arrays._arrow_utils',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\_arrow_utils.py',
+   'PYMODULE'),
+  ('pandas.io.feather_format',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\feather_format.py',
+   'PYMODULE'),
+  ('pandas.io.stata',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\stata.py',
+   'PYMODULE'),
+  ('dateutil.relativedelta',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\relativedelta.py',
+   'PYMODULE'),
+  ('dateutil',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.rrule',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\rrule.py',
+   'PYMODULE'),
+  ('dateutil.parser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\parser\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.parser.isoparser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\parser\\isoparser.py',
+   'PYMODULE'),
+  ('dateutil.parser._parser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\parser\\_parser.py',
+   'PYMODULE'),
+  ('dateutil.easter',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\easter.py',
+   'PYMODULE'),
+  ('fractions',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\fractions.py',
+   'PYMODULE'),
+  ('dateutil.tz',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\tz\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.tz.tz',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\tz\\tz.py',
+   'PYMODULE'),
+  ('dateutil.zoneinfo',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.tz.win',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\tz\\win.py',
+   'PYMODULE'),
+  ('dateutil.tz._factories',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\tz\\_factories.py',
+   'PYMODULE'),
+  ('dateutil.tz._common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\tz\\_common.py',
+   'PYMODULE'),
+  ('dateutil._version',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\_version.py',
+   'PYMODULE'),
+  ('dateutil._common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\dateutil\\_common.py',
+   'PYMODULE'),
+  ('six',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\six.py',
+   'PYMODULE'),
+  ('pandas.io.gbq',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\gbq.py',
+   'PYMODULE'),
+  ('pandas.io',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\__init__.py',
+   'PYMODULE'),
+  ('pandas.io.clipboards',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\clipboards.py',
+   'PYMODULE'),
+  ('pandas.io.parsers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\parsers.py',
+   'PYMODULE'),
+  ('pandas.io.date_converters',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\date_converters.py',
+   'PYMODULE'),
+  ('csv',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\csv.py',
+   'PYMODULE'),
+  ('pandas.io.clipboard',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\clipboard\\__init__.py',
+   'PYMODULE'),
+  ('pandas.io.sql',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sql.py',
+   'PYMODULE'),
+  ('sqlite3',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\sqlite3\\dump.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\sqlite3\\dbapi2.py',
+   'PYMODULE'),
+  ('pandas.io.pytables',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\pytables.py',
+   'PYMODULE'),
+  ('pandas.core.computation.pytables',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\pytables.py',
+   'PYMODULE'),
+  ('pandas.io.gcs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\gcs.py',
+   'PYMODULE'),
+  ('pandas.io.formats.style',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\style.py',
+   'PYMODULE'),
+  ('pandas.io.formats.excel',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\excel.py',
+   'PYMODULE'),
+  ('pandas.io.excel',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\__init__.py',
+   'PYMODULE'),
+  ('pandas.io.excel._xlwt',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_xlwt.py',
+   'PYMODULE'),
+  ('pandas.io.excel._xlsxwriter',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_xlsxwriter.py',
+   'PYMODULE'),
+  ('pandas.io.excel._util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_util.py',
+   'PYMODULE'),
+  ('pandas.io.excel._openpyxl',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_openpyxl.py',
+   'PYMODULE'),
+  ('pandas.io.excel._base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_base.py',
+   'PYMODULE'),
+  ('pandas.io.excel._pyxlsb',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_pyxlsb.py',
+   'PYMODULE'),
+  ('pandas.io.excel._xlrd',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_xlrd.py',
+   'PYMODULE'),
+  ('xlrd.xldate',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\xldate.py',
+   'PYMODULE'),
+  ('xlrd',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\__init__.py',
+   'PYMODULE'),
+  ('xlrd.xlsx',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\xlsx.py',
+   'PYMODULE'),
+  ('xml.etree.cElementTree',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\etree\\cElementTree.py',
+   'PYMODULE'),
+  ('xml.etree.ElementTree',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\etree\\ElementTree.py',
+   'PYMODULE'),
+  ('xml.etree.ElementInclude',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\xml\\etree\\ElementInclude.py',
+   'PYMODULE'),
+  ('xlrd.info',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\info.py',
+   'PYMODULE'),
+  ('xlrd.formula',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\formula.py',
+   'PYMODULE'),
+  ('xlrd.book',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\book.py',
+   'PYMODULE'),
+  ('xlrd.sheet',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\sheet.py',
+   'PYMODULE'),
+  ('xlrd.formatting',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\formatting.py',
+   'PYMODULE'),
+  ('xlrd.compdoc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\compdoc.py',
+   'PYMODULE'),
+  ('xlrd.biffh',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\biffh.py',
+   'PYMODULE'),
+  ('xlrd.timemachine',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\xlrd\\timemachine.py',
+   'PYMODULE'),
+  ('pandas.io.excel._odfreader',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\excel\\_odfreader.py',
+   'PYMODULE'),
+  ('pandas.io.formats.css',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\css.py',
+   'PYMODULE'),
+  ('pandas.api.types',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\api\\types\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\api.py',
+   'PYMODULE'),
+  ('pandas.io.formats.console',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\console.py',
+   'PYMODULE'),
+  ('pandas.core.internals.construction',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\internals\\construction.py',
+   'PYMODULE'),
+  ('pandas.core.internals.blocks',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\internals\\blocks.py',
+   'PYMODULE'),
+  ('pandas.plotting',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\__init__.py',
+   'PYMODULE'),
+  ('pandas.plotting._misc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_misc.py',
+   'PYMODULE'),
+  ('pandas.plotting._core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_core.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\__init__.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.tools',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\tools.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.compat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\compat.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.misc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\misc.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.style',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\style.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.hist',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\hist.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\core.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.timeseries',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\timeseries.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.converter',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\converter.py',
+   'PYMODULE'),
+  ('pandas.plotting._matplotlib.boxplot',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\plotting\\_matplotlib\\boxplot.py',
+   'PYMODULE'),
+  ('pandas.core.tools.datetimes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\tools\\datetimes.py',
+   'PYMODULE'),
+  ('pandas.core.strings',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\strings.py',
+   'PYMODULE'),
+  ('pandas.core.internals',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\internals\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.internals.managers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\internals\\managers.py',
+   'PYMODULE'),
+  ('pandas.core.internals.concat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\internals\\concat.py',
+   'PYMODULE'),
+  ('pandas.core.indexing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexing.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.period',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\period.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.datetimelike',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\datetimelike.py',
+   'PYMODULE'),
+  ('pandas.core.tools.timedeltas',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\tools\\timedeltas.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.extension',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\extension.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.accessors',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\accessors.py',
+   'PYMODULE'),
+  ('pandas.core.indexers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexers.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.generic',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\generic.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.tile',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\tile.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.groupby',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\groupby.py',
+   'PYMODULE'),
+  ('pandas.core.window',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.window.rolling',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\rolling.py',
+   'PYMODULE'),
+  ('pandas.core.window.numba_',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\numba_.py',
+   'PYMODULE'),
+  ('pandas.core.window.indexers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\indexers.py',
+   'PYMODULE'),
+  ('pandas.core.window.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\common.py',
+   'PYMODULE'),
+  ('pandas.core.window.expanding',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\expanding.py',
+   'PYMODULE'),
+  ('pandas.core.window.ewm',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\window\\ewm.py',
+   'PYMODULE'),
+  ('pandas.core.resample',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\resample.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.grouper',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\grouper.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.categorical',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\categorical.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.ops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\ops.py',
+   'PYMODULE'),
+  ('pandas.core.groupby.base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\base.py',
+   'PYMODULE'),
+  ('pandas.core.groupby',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\groupby\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.accessor',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\accessor.py',
+   'PYMODULE'),
+  ('pandas.core.generic',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\generic.py',
+   'PYMODULE'),
+  ('pandas.io.formats.csvs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\csvs.py',
+   'PYMODULE'),
+  ('pandas.io.pickle',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\pickle.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.inference',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\inference.py',
+   'PYMODULE'),
+  ('pandas.util._validators',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\_validators.py',
+   'PYMODULE'),
+  ('pandas.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\__init__.py',
+   'PYMODULE'),
+  ('pandas.util.testing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\testing.py',
+   'PYMODULE'),
+  ('pandas._testing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_testing.py',
+   'PYMODULE'),
+  ('pandas._config.localization',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_config\\localization.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\util.py',
+   'PYMODULE'),
+  ('pandas.core.util.hashing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\util\\hashing.py',
+   'PYMODULE'),
+  ('pandas.core.util',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\util\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.sorting',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\sorting.py',
+   'PYMODULE'),
+  ('pandas.core.missing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\missing.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.frozen',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\frozen.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\base.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.interval',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\interval.py',
+   'PYMODULE'),
+  ('pandas.util._exceptions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\_exceptions.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.category',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\category.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.range',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\range.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.cast',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\cast.py',
+   'PYMODULE'),
+  ('pandas.util._decorators',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\_decorators.py',
+   'PYMODULE'),
+  ('pandas.io.formats.html',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\html.py',
+   'PYMODULE'),
+  ('pandas.io.formats.latex',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\latex.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.concat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\concat.py',
+   'PYMODULE'),
+  ('pandas.io.formats.printing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\printing.py',
+   'PYMODULE'),
+  ('pandas.io.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\common.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.timedeltas',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\timedeltas.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.datetimes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\datetimes.py',
+   'PYMODULE'),
+  ('pandas.core.indexes.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\indexes\\api.py',
+   'PYMODULE'),
+  ('pandas.core.base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\base.py',
+   'PYMODULE'),
+  ('pandas.io.formats',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\formats\\__init__.py',
+   'PYMODULE'),
+  ('pandas.errors',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\errors\\__init__.py',
+   'PYMODULE'),
+  ('pandas._typing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_typing.py',
+   'PYMODULE'),
+  ('pandas._config.config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_config\\config.py',
+   'PYMODULE'),
+  ('pandas.tseries.frequencies',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\tseries\\frequencies.py',
+   'PYMODULE'),
+  ('pytz',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pytz\\__init__.py',
+   'PYMODULE'),
+  ('pytz.tzfile',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pytz\\tzfile.py',
+   'PYMODULE'),
+  ('pytz.tzinfo',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pytz\\tzinfo.py',
+   'PYMODULE'),
+  ('pytz.lazy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pytz\\lazy.py',
+   'PYMODULE'),
+  ('pytz.exceptions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pytz\\exceptions.py',
+   'PYMODULE'),
+  ('pandas.core.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\common.py',
+   'PYMODULE'),
+  ('pandas.core.algorithms',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\algorithms.py',
+   'PYMODULE'),
+  ('pandas.core.nanops',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\nanops.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.missing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\missing.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.generic',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\generic.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.dtypes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\dtypes.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\base.py',
+   'PYMODULE'),
+  ('pandas.core.dtypes.common',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\dtypes\\common.py',
+   'PYMODULE'),
+  ('pandas.compat.numpy.function',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\numpy\\function.py',
+   'PYMODULE'),
+  ('typing',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\typing.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.string_',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\string_.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.period',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\period.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.numpy_',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\numpy_.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.interval',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\interval.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.integer',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\integer.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.masked',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\masked.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.datetimes',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\datetimes.py',
+   'PYMODULE'),
+  ('pandas.core.arrays._ranges',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\_ranges.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.categorical',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\categorical.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.boolean',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\boolean.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\base.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.datetimelike',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\datetimelike.py',
+   'PYMODULE'),
+  ('pandas.core',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\__init__.py',
+   'PYMODULE'),
+  ('pandas.testing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\testing.py',
+   'PYMODULE'),
+  ('pandas.util._tester',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\_tester.py',
+   'PYMODULE'),
+  ('pandas.io.json',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\json\\__init__.py',
+   'PYMODULE'),
+  ('pandas.io.json._table_schema',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\json\\_table_schema.py',
+   'PYMODULE'),
+  ('pandas.io.json._normalize',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\json\\_normalize.py',
+   'PYMODULE'),
+  ('pandas.io.json._json',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\json\\_json.py',
+   'PYMODULE'),
+  ('pandas.io.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\api.py',
+   'PYMODULE'),
+  ('pandas.io.spss',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\spss.py',
+   'PYMODULE'),
+  ('pandas.io.sas',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sas\\__init__.py',
+   'PYMODULE'),
+  ('pandas.io.sas.sasreader',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sas\\sasreader.py',
+   'PYMODULE'),
+  ('pandas.io.sas.sas7bdat',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sas\\sas7bdat.py',
+   'PYMODULE'),
+  ('pandas.io.sas.sas_constants',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sas\\sas_constants.py',
+   'PYMODULE'),
+  ('pandas.io.sas.sas_xport',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\sas\\sas_xport.py',
+   'PYMODULE'),
+  ('pandas.io.orc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\orc.py',
+   'PYMODULE'),
+  ('pandas.io.html',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\io\\html.py',
+   'PYMODULE'),
+  ('pandas.util._print_versions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\util\\_print_versions.py',
+   'PYMODULE'),
+  ('pandas.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\api\\__init__.py',
+   'PYMODULE'),
+  ('pandas.api.indexers',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\api\\indexers\\__init__.py',
+   'PYMODULE'),
+  ('pandas.api.extensions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\api\\extensions\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.reshape.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\reshape\\api.py',
+   'PYMODULE'),
+  ('pandas.core.computation.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\computation\\api.py',
+   'PYMODULE'),
+  ('pandas.tseries.offsets',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\tseries\\offsets.py',
+   'PYMODULE'),
+  ('pandas.tseries',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\tseries\\__init__.py',
+   'PYMODULE'),
+  ('pandas.tseries.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\tseries\\api.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.sparse',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\sparse\\__init__.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.sparse.dtype',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\sparse\\dtype.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.sparse.array',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\sparse\\array.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.sparse.accessor',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\sparse\\accessor.py',
+   'PYMODULE'),
+  ('pandas.core.arrays.sparse.scipy_sparse',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\arrays\\sparse\\scipy_sparse.py',
+   'PYMODULE'),
+  ('pandas.core.api',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\api.py',
+   'PYMODULE'),
+  ('pandas.core.config_init',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\core\\config_init.py',
+   'PYMODULE'),
+  ('pandas._config',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_config\\__init__.py',
+   'PYMODULE'),
+  ('pandas._config.display',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_config\\display.py',
+   'PYMODULE'),
+  ('pandas._config.dates',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_config\\dates.py',
+   'PYMODULE'),
+  ('pandas._libs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\_libs\\__init__.py',
+   'PYMODULE'),
+  ('pandas.compat.numpy',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\pandas\\compat\\numpy\\__init__.py',
+   'PYMODULE'),
+  ('fbs_runtime.application_context.PyQt5',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\application_context\\PyQt5.py',
+   'PYMODULE'),
+  ('fbs_runtime.application_context',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\application_context\\__init__.py',
+   'PYMODULE'),
+  ('fbs_runtime.licensing',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\licensing.py',
+   'PYMODULE'),
+  ('fbs_runtime.platform',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\platform.py',
+   'PYMODULE'),
+  ('fbs_runtime.excepthook',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\excepthook\\__init__.py',
+   'PYMODULE'),
+  ('fbs_runtime._signal',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_signal.py',
+   'PYMODULE'),
+  ('fbs_runtime._resources',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_resources.py',
+   'PYMODULE'),
+  ('fbs_runtime._source',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_source.py',
+   'PYMODULE'),
+  ('fbs_runtime._settings',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_settings.py',
+   'PYMODULE'),
+  ('fbs_runtime._fbs',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_fbs.py',
+   'PYMODULE'),
+  ('fbs_runtime._frozen',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_frozen.py',
+   'PYMODULE'),
+  ('fbs_runtime._state',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\_state.py',
+   'PYMODULE'),
+  ('fbs_runtime',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\fbs_runtime\\__init__.py',
+   'PYMODULE'),
+  ('algorithms.weekly_tabu',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\weekly_tabu.py',
+   'PYMODULE'),
+  ('algorithms', '-', 'PYMODULE'),
+  ('framework.scheduler',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\framework\\scheduler.py',
+   'PYMODULE'),
+  ('framework', '-', 'PYMODULE'),
+  ('algorithms.genetic',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\genetic.py',
+   'PYMODULE'),
+  ('PyQt5.uic',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5.uic.objcreator',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\objcreator.py',
+   'PYMODULE'),
+  ('PyQt5.uic.exceptions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\exceptions.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Loader.loader',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Loader\\loader.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Loader',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Loader\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Loader.qobjectcreator',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Loader\\qobjectcreator.py',
+   'PYMODULE'),
+  ('PyQt5.uic.uiparser',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\uiparser.py',
+   'PYMODULE'),
+  ('PyQt5.uic.properties',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\properties.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v3.ascii_upper',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v3\\ascii_upper.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v3',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v3\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5.uic.icon_cache',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\icon_cache.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v2.string_io',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v2\\string_io.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v2',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v2\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v3.string_io',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v3\\string_io.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.compiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\compiler.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.qobjectcreator',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\qobjectcreator.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v2.as_string',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v2\\as_string.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v3.as_string',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v3\\as_string.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.qtproxies',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\qtproxies.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v2.proxy_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v2\\proxy_base.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.proxy_metaclass',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\proxy_metaclass.py',
+   'PYMODULE'),
+  ('PyQt5.uic.port_v3.proxy_base',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\port_v3\\proxy_base.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.misc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\misc.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler.indenter',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\indenter.py',
+   'PYMODULE'),
+  ('PyQt5.uic.Compiler',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\uic\\Compiler\\__init__.py',
+   'PYMODULE'),
+  ('PyQt5',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\PyQt5\\__init__.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\webbrowser.py',
+   'PYMODULE'),
+  ('json2html',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\json2html\\__init__.py',
+   'PYMODULE'),
+  ('json2html.jsonconv',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\json2html\\jsonconv.py',
+   'PYMODULE'),
+  ('copy',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\copy.py',
+   'PYMODULE'),
+  ('os',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\os.py',
+   'PYMODULE'),
+  ('pprint',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\pprint.py',
+   'PYMODULE'),
+  ('datetime',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\datetime.py',
+   'PYMODULE'),
+  ('json',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\json\\__init__.py',
+   'PYMODULE'),
+  ('json.encoder',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\json\\encoder.py',
+   'PYMODULE'),
+  ('json.decoder',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\json\\decoder.py',
+   'PYMODULE'),
+  ('json.scanner',
+   'C:\\Users\\Paul '
+   'Disbeschl\\AppData\\Local\\Programs\\Python\\Python36\\lib\\json\\scanner.py',
+   'PYMODULE'),
+  ('framework.evaluate',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\framework\\evaluate.py',
+   'PYMODULE'),
+  ('framework.reader',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\framework\\reader.py',
+   'PYMODULE'),
+  ('algorithms.tabu',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\tabu.py',
+   'PYMODULE'),
+  ('algorithms.weekly',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\weekly.py',
+   'PYMODULE'),
+  ('algorithms.random',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\random.py',
+   'PYMODULE'),
+  ('algorithms.ilp',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\ilp.py',
+   'PYMODULE'),
+  ('mip',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\__init__.py',
+   'PYMODULE'),
+  ('mip.model',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\model.py',
+   'PYMODULE'),
+  ('mip.cbc',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\cbc.py',
+   'PYMODULE'),
+  ('mip.gurobi',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\gurobi.py',
+   'PYMODULE'),
+  ('mip.entities',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\entities.py',
+   'PYMODULE'),
+  ('mip.ndarray',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\ndarray.py',
+   'PYMODULE'),
+  ('mip.exceptions',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\exceptions.py',
+   'PYMODULE'),
+  ('mip.lists',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\lists.py',
+   'PYMODULE'),
+  ('mip.log',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\log.py',
+   'PYMODULE'),
+  ('mip.callbacks',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\callbacks.py',
+   'PYMODULE'),
+  ('mip.solver',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\solver.py',
+   'PYMODULE'),
+  ('mip.constants',
+   'c:\\users\\paul '
+   'disbeschl\\appdata\\local\\programs\\python\\python36\\venv\\lib\\site-packages\\mip\\constants.py',
+   'PYMODULE'),
+  ('algorithms.greedy',
+   'C:\\Users\\Paul Disbeschl\\Documents\\New folder '
+   '(2)\\src\\src\\main\\python\\algorithms\\greedy.py',
+   'PYMODULE')])

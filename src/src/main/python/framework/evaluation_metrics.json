@@ -1,0 +1,36 @@
+{
+    "preferences": {
+        "max_hours_per_day": {
+            "8": 0.072,
+            "6": 0.536,
+            "4": 0.392
+        },
+        "starting_time": {
+            "08:30:00": 0.367,
+            "11:00:00": 0.509,
+            "13:30:00": 0.124
+        },
+        "break_length":{
+            "0": 0.964,
+            "1": 0.036
+        },
+        "same_schedule_every_week":{
+            "true": 1
+        },
+        "day_off": {
+            "monday": 0.244,
+            "tuesday": 0.038,
+            "wednesday": 0.138,
+            "thursday": 0.116,
+            "friday": 0.387,
+            "none": 0.077
+        }
+    },
+    "weights": {
+        "max_hours_per_day": 0.425,
+        "starting_time": 0.281,
+        "break_length": 0.039,
+        "same_schedule_every_week": 0.078,
+        "day_off": 0.177
+    }
+}
