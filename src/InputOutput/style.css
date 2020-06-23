@@ -16,3 +16,158 @@ tr td{
   width:1%;
   white-space:nowrap;
 }
+
+.overlay {
+  display: flex;
+  max-height: 35%;
+  height: 0;
+  width: 100%;
+  position: fixed;
+  z-index: 1;
+  bottom: -4px;
+  left: 0;
+  border: solid black 2px;
+  background-color: rgba(245,245,220, 0.9);
+  overflow: hidden;
+  transition: max-height 0.2s;
+}
+
+#EditCourse {
+  background-color: aliceblue;
+  height: 5%;
+  width: 0%;
+  visibility: hidden;
+  position: fixed;
+  top: 32.5%;
+  left: 50%;
+  transform: translate(calc(-50% + 0.5px), calc(-50% + 0.5px));
+  transition: width 0.5s 0.5s, height 0.5s;
+  overflow: hidden;
+  border: solid black 2px;
+  border-radius: 25px;
+  margin-top: 1.5%;
+}
+
+#closeEditMenu {
+  margin: 0px;
+  right: 20px;
+  font-size: 30;
+  width: 10%;
+  display: inline-block;
+}
+
+#SaveEdit {
+  display: inline-block;
+  margin-left: 50%;
+  transform: translate(calc(-50% + 0.5px));
+  width: 20%;
+}
+
+#editMenuTimeslot {
+  width: 75%;
+  display: inline-block;
+  font-size: large;
+  margin: 5%;
+}
+
+.editLabel {
+  width:25%;
+  display: inline-block;
+  margin: 8px 5%;
+}
+
+.editInput {
+  width:55%;
+  display: inline-block;
+  margin: 8px 5%;
+}
+
+.split {
+  display: inline-block;
+  float:left;
+  width: 45%;
+  top: 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.Util {
+  width: 10%;
+  top: 0;
+  right: 0;
+  overflow: hidden;
+}
+
+.CourseInfoOverlay {
+  left: 0;
+}
+
+.CourseEditOverlay {
+  right: 10%;
+}
+
+#VerticalSplit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33%;
+  width: 100%;
+}
+
+.OverlayButton {
+  margin: auto;
+  height: 30%;
+  width: 50%;
+}
+
+.EE {
+  height: 100%;
+}
+
+#img {
+  width: fit-content;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #000000;
+}
+
+.overlay .closebtn {
+  top: 10px;
+  right: 60px;
+  font-size: 60px;
+  z-index:100;
+}
+
+.page-break {
+  page-break-after:always;
+}
+
+@media print {
+    .no-print, .no-print * {
+        display: none !important;
+    }
+
+    .no-print-course, .no-print-course * {
+        opacity: 0;
+    }
+
+
+    .info-field {
+      border: none !important;
+      display: inline !important;
+      font-family: inherit !important;
+      font-size: inherit !important;
+      padding: none !important;
+    }
+}
+
