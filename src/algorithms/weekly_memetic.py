@@ -574,6 +574,14 @@ class Weekly_memetic(Scheduler):
         return room_time_avb, rooms_times
 
     def get_schedule(self):
+        for timeslot in self.schedule.values():
+            for course in timeslot:
+                if "(" in course["CourseID"]:
+                    course["CourseID"] = course["CourseID"][:-3]
+                course["Name"] = self.hard_constraints.get_courses()[course["CourseID"]]["Course name"]
+                course["Lecturers"] = self.hard_constraints.get_courses()[course["CourseID"]]["Lecturers"]
+
+        print(self.schedule)
         return self.schedule
     
     def evaluate(self, schedule):
