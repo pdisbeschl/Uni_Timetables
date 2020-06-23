@@ -30,19 +30,20 @@ import sys
 import datetime
 import random
 
-class Weekly_LS(Scheduler):
+class Weekly_memetic(Scheduler):
 #    logFile = open(os.path.realpath('./Logs/log.txt'), "a")
     population_size = 10
     tournament_size = 5
     LS_iter_init = 20
-    prob_mutate = 0.75
+    LS_destroy = 2
+    prob_mutate = .5
     LS_iter_GA = 10
-    GA_iter = 50
+    GA_iter = 25
     only_local_search = False
 
-    def __init__(self):
+    def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
 #        self.logFile.write('Initialising Weekly algorithm\n')
-        super().__init__()
+        super().__init__(excel_file_path)
         self.generate_empty_timeslots()
 
     def schedule_empty_week(self):
@@ -179,6 +180,7 @@ class Weekly_LS(Scheduler):
         return chrom
 ######################## DESTROY & REPAIR OPERATORS ###########################
     def worst_removal(self, individual,q=2):
+        q = self.LS_destroy
         p = 6
         score_before = individual['Score']
         # copy of the schedule, such that it is LOCAL!!
@@ -209,7 +211,7 @@ class Weekly_LS(Scheduler):
             q -= 1
         # update individual
         individual['Schedule'] = schedule
-        individual['Score'] = score_before - sum(score_diff)
+        individual['Score'] = self.evaluate(schedule)
         # r[0] = timeslot, r[1] = event
         for r in removed:
             individual['Availables'][r[1]['RoomID']].append(r[0])
@@ -451,23 +453,7 @@ class Weekly_LS(Scheduler):
         for individual in population.values():
             print(self.evaluate(individual['Schedule']))
         return population
-    """
-    Creates a schedule per program: per day and per timeslot will be either empty
-    or a scheduled course
-    """
-    def schedules_per_program(self, chrom, courses, days, times, programmes):
-        schedules = {}
-        for programme in programmes:
-            schedules[programme] = {}
-            for day in days:
-                schedules[programme][day] = {}
-                for time in times:
-                    schedules[programme][day][time] = None
-            
-            for gene_no, gene in chrom.items():
-                if courses[gene["CourseID"]]["Programme"] == programme:
-                    schedules[programme][gene["TimeSlot"][0:10]][gene["TimeSlot"][-8:]] = gene
-        return schedules
+    
     
     ########################### HARD CONSTRAINTS ##############################
     """
@@ -594,5 +580,5 @@ class Weekly_LS(Scheduler):
         """
         Evaluates a schedule assuming that no hard constraint is violated.
         """
-        e = Evaluate(schedule, True)
+        e = Evaluate(schedule, False, True)
         return e.get_score()
