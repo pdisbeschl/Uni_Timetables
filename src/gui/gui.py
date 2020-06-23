@@ -21,6 +21,7 @@ from algorithms.weekly import Weekly
 from algorithms.tabu import Tabu
 from algorithms.genetic import Genetic
 from algorithms.weekly_tabu import Weekly_Tabu
+from algorithms.weekly_memetic import Weekly_memetic
 from framework.reader import ConstraintParser
 from framework.evaluate import Evaluate
 import time
@@ -200,7 +201,7 @@ class GUI:
         logFile = open(os.path.realpath('./Logs/log.txt'), "w")
         logFile.write('Starting scheduling algorithm\n')
 
-        algorithms = [ILP(excel_file_path), Greedy(excel_file_path), Tabu(excel_file_path), Random(excel_file_path), Weekly(excel_file_path), Genetic(excel_file_path), Weekly_Tabu(excel_file_path)]
+        algorithms = [ILP(excel_file_path), Greedy(excel_file_path), Tabu(excel_file_path), Random(excel_file_path), Weekly(excel_file_path), Genetic(excel_file_path), Weekly_memetic(excel_file_path), Weekly_Tabu(excel_file_path)]
         x = algorithms[selectedAlgorithm]
         
         x.generate_timetable()

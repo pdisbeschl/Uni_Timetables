@@ -25,7 +25,7 @@ import copy
 import numpy as np
 import random
 from framework.evaluate import Evaluate
-from algorithm.tabu import Tabu
+from algorithms.tabu import Tabu
 import sys
 import datetime
 import random

@@ -40,7 +40,7 @@ class ILP(Scheduler):
         #Enable/Supresses output from the ILP
         self.model.verbose = 1
         #Allow all cores to be used for faster runtime
-        #self.model.threads = -1 #FIXME this line causes trouble when using the ILP with the GUI
+        self.model.threads = -1 #FIXME this line causes trouble when using the ILP with the GUI
 
     """
     Method which is called to generate the timetable
