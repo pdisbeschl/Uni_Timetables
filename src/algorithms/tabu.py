@@ -29,6 +29,7 @@ class Tabu(Scheduler):
     placements_to_move = 5  # number of placements to consider in neighborhood
 
     def __init__(self, excel_file_path='./InputOutput/Sample.xlsx'):
+        self.excel_file_path = excel_file_path
         super().__init__(excel_file_path)
 
     def generate_timetable(self, initial_schedule=None):
@@ -37,7 +38,7 @@ class Tabu(Scheduler):
         The initial timetable can be given but it must satisfy all hard constraints.
         """
         if initial_schedule is None:
-            random = Random()
+            random = Random(self.excel_file_path)
             random.generate_timetable()
             initial_schedule = random.get_schedule()
             self.evaluate(initial_schedule)

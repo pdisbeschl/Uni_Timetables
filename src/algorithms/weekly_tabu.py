@@ -36,7 +36,7 @@ class Weekly_Tabu(Scheduler):
             if timeslot not in week_schedule.keys():
                 week_schedule.setdefault(timeslot, [])
 
-        print("Improving weekly schedule using tabu search")
+        print("Improve weekly schedule using tabu search")
         # generate schedule to be used by tabu search
         initial_week_schedule = {}
         for timeslot in week_schedule:
