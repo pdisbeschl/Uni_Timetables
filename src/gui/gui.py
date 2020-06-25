@@ -77,8 +77,11 @@ def see_output2(out, period_info, outputDir):
                    '<script src="schedule_info.js"></script>\n'
                    '<script src="edit_schedule.js"></script>\n'
                    '</head>')
-    programme = ['BAY1','BAY2','BAY3','MAAIY1','MADSDMY1']
-    #programme = ['BAY1']  # FIXME This is for testing the JavaScript code. Makes the HTML easier to read - To be removed
+    programme = []
+    for time, courses in out.items():
+        for course in courses:
+            programme.append(course["ProgID"])
+    programme = [*dict.fromkeys(programme)]
     full_html = ''
     #For each programme add a table
     for index, prog in enumerate(programme):

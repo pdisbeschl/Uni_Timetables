@@ -176,8 +176,9 @@ class ILP(Scheduler):
         self.model.objective = self.model.objective - xsum(lectures_per_day_8)*factor_eight
 
     def get_sum_of_lectures_for_day(self):
-        #Create a dictionary of all the years that are currently taught. Should be made dynamic
-        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4, 'MAAIDSDM': 5}
+        #Create a dictionary of all the years that are currently taught.
+        index_dict = self.get_programme_dict()
+
         #Create a list for the sum for every course for every day where classes can occur0
         lectures_per_day_sum = [0] * (self.weeks_per_block*self.days_per_week)
         #Get the period start and initialise a counter in which week we currently are
@@ -328,14 +329,13 @@ class ILP(Scheduler):
     sum(courses of the year at timeslot) <= 1 for every year for every timeslot
     """
     def add_no_course_overlap_constraint(self):
+        programmes = self.get_programme_dict()
         # We do not want to schedule two courses of the same year in one timeslot. Iterate over all timeslots
         for tid in self.free_timeslots:
-            # For every timeslot make sure that the sum of scheduled lectures is at most 1, i.e. we schedule no more than one couse in each timeslot
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY1') <= 1)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY2') <= 1)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'BAY3') <= 1)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MAAIY1') <= 1)
-            self.model.add_constr(xsum(self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == 'MADSDMY1') <= 1)
+            for programme in programmes.keys():
+                self.model.add_constr(xsum(
+                    # For every timeslot make sure that the sum of scheduled lectures is at most 1, i.e. we schedule no more than one couse in each timeslot
+                    self.model.var_by_name(str(tid) + ";" + cid) for cid, course in self.courses.items() if course['Programme'] == programme) <= 1)
 
     """
     No teacher can have two lectures at the same time. For every timeslot we create a constraint that the number of courses
@@ -372,6 +372,16 @@ class ILP(Scheduler):
                     for tid in lecturer_unavailability[lecturer]:
                         self.model.add_constr(self.model.var_by_name(str(tid) + ";" + cid) <= 0)#, name=constraint_name)
 
+
+    def get_programme_dict(self):
+        #Create a dictionary of all the years that are currently taught.
+        programme_dict = []
+        for key, course_info in self.hard_constraints.get_courses().items():
+            programme_dict.append(course_info["Programme"])
+        programme_dict = dict.fromkeys(programme_dict)
+        for i,p in enumerate(programme_dict):
+            programme_dict[p] = i;
+        return programme_dict
 
     """
     Returns a dictionary in the form <lecturer: [courses taught by lecturer]>
