@@ -128,6 +128,8 @@ class ILP(Scheduler):
         #Create constraints for all the days and years that we have in the form of BigM*d>=lectures on day. If d=0 it is good
         #because we add (1-d) to the objective function and this we want as many variables to be 0 as possible.
         for j,lectures_per_day_for_year in enumerate(lectures_per_day_sum):
+            if not isinstance(lectures_per_day_for_year, list):
+                lectures_per_day_for_year = [lectures_per_day_for_year]
             for i,lectures_on_day in enumerate(lectures_per_day_for_year):
                 bin_var = lectures_per_day[j*len(lectures_per_day_for_year)+i]
                 self.model.add_constr(5*bin_var >= lectures_on_day, name='y'+str(j)+str(bin_var.name))
@@ -151,6 +153,8 @@ class ILP(Scheduler):
         #for the objective function and this we want as many variables to be 1 as possible. Note that if we schedule less than four hours
         #we also schedule less than 6 and 8. Therefore, the fewer hours a day, the better.
         for j,lectures_per_day_for_year in enumerate(lectures_per_day_sum):
+            if not isinstance(lectures_per_day_for_year, list):
+                lectures_per_day_for_year = [lectures_per_day_for_year]
             for i,lectures_on_day in enumerate(lectures_per_day_for_year):
                 self.model.add_constr(1*lectures_per_day_2[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_2[j*len(lectures_per_day_for_year)+i].name))
                 self.model.add_constr(2*lectures_per_day_4[j*len(lectures_per_day_for_year)+i] <= lectures_on_day, name='y'+str(j)+str(lectures_per_day_4[j*len(lectures_per_day_for_year)+i].name))
@@ -173,7 +177,7 @@ class ILP(Scheduler):
 
     def get_sum_of_lectures_for_day(self):
         #Create a dictionary of all the years that are currently taught. Should be made dynamic
-        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4}
+        index_dict = {'BAY1': 0,'BAY2': 1,'BAY3': 2,'MAAIY1': 3,'MADSDMY1': 4, 'MAAIDSDM': 5}
         #Create a list for the sum for every course for every day where classes can occur0
         lectures_per_day_sum = [0] * (self.weeks_per_block*self.days_per_week)
         #Get the period start and initialise a counter in which week we currently are
@@ -183,7 +187,7 @@ class ILP(Scheduler):
         while tid <= self.free_timeslots[len(self.free_timeslots) - 1]:
             for i in range(0, self.days_per_week):
                 #For every year create a list which holds a linear expression of the decision variables for scheduled lectures
-                lectures_scheduled_per_day = [0] * 5
+                lectures_scheduled_per_day = [0] * len(index_dict)#5
                 #Iterate over all courses
                 for k, cid in enumerate(self.courses):
                     #Find the index for the lectures_scheduled_per_day to which we want to add the sum of the classes on the day
@@ -385,12 +389,14 @@ class ILP(Scheduler):
     """
     #TODO: Check if the names correctly correspond to the room codes -> they dont. Running it once would have shown that ;)
     def room_allocation(self, prog_id):
-        rooms = {'BAY1': {'Room Code':'C1', 'Full name':'Deep Space'}, #Sheep space?
-                 'BAY2': {'Room Code':'C2', 'Full name':'Cyber Space'},
-                 'BAY3': {'Room Code':'C3', 'Full name':'Search Space'},
-                 'MAAIY1': {'Room Code': 'C4', 'Full name': 'Eigenspace'},
-                 'MADSDMY1': {'Room Code':'C5', 'Full name':'Vector Space'},
-                 'Extra': {'Room Code':'C6', 'Full name':'Memory Space'}}
+        roomIDs = [*self.hard_constraints.get_rooms()]
+        rooms = {'BAY1': {'Room Code':roomIDs[0], 'Full name':'Deep Space'}, #Sheep space?
+                 'BAY2': {'Room Code':roomIDs[1], 'Full name':'Cyber Space'},
+                 'BAY3': {'Room Code':roomIDs[2], 'Full name':'Search Space'},
+                 'MAAIY1': {'Room Code': roomIDs[3], 'Full name': 'Eigenspace'},
+                 'MADSDMY1': {'Room Code':roomIDs[4], 'Full name':'Vector Space'},
+                 'MAAIDSDM': {'Room Code':roomIDs[5], 'Full name':'Vector Space'},
+                 'Extra': {'Room Code':roomIDs[6], 'Full name':'Memory Space'}}
         return rooms[prog_id]['Room Code']
 
     """
