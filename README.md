@@ -4,9 +4,7 @@
 
 >DKE Master Research Project 18 - Competition: Create University Timetables
 
-[Project Plan Overleaf](https://www.overleaf.com/6551622851pwnmpbffbypp)
-
-[Final Report Overleaf](https://www.overleaf.com/8361183875rgwhhrvqdxgh)
+Final Report can be found in GitHub
 
 ## Goals 🥇
 Create an educational scheduling system from scratch for the DKE and test different approaches.
